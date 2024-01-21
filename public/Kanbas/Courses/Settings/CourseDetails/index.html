@@ -1,0 +1,209 @@
+<html>
+  <head>
+    <title>Lab 1</title>
+  </head>
+  <body>
+    <a href="/Kanbas/Courses/Settings/CourseDetails/screen.html"
+      >Course Details</a
+    >
+    <a href="#">Sections</a>
+    <a href="/Kanbas/Courses/Settings/CourseNavigation/screen.html"
+      >Navigation</a
+    >
+    <a href="#">Apps</a>
+    <a href="#">Feature Options</a>
+    <a href="#">Integrations</a>
+
+    <h2>Course Details</h2>
+    <table border="1">
+      <tbody>
+        <tr>
+          <td>Image:</td>
+          <td>
+            <input type="file" accept="image/png, image/jpeg" />
+          </td>
+        </tr>
+        <tr>
+          <td>Name:</td>
+          <td>CS4550 12631 Web Development SEC 01 Fall 2023 [BOS-1-TR]</td>
+        </tr>
+        <tr>
+          <td>Course Code:</td>
+          <td>CS4550.12631.202410</td>
+        </tr>
+        <tr>
+          <td>Blueprint Course:</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td>Course Template:</td>
+          <td>
+            <input disabled type="checkbox" id="cb-course-template" />
+            <label for="cb-course-template"
+              >Enable course as a Course Template</label
+            >
+          </td>
+        </tr>
+        <tr>
+          <td>Timezone:</td>
+          <td>
+            <select id="timezone">
+              <option value="EST">
+                Eastern Time (US & Canada) (-05:00/-04:00)
+              </option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>SIS ID:</td>
+          <td>CS4550.12631.202410</td>
+        </tr>
+        <tr>
+          <td>Subaccount:</td>
+          <td><a href="#">CS Undergrad</a></td>
+        </tr>
+        <tr>
+          <td>Term:</td>
+          <td>202410_1 Fall 2023 Semester Full Term</td>
+        </tr>
+        <tr>
+          <td>Participation:</td>
+          <td>
+            <select id="participation">
+              <option value="term">Term</option>
+            </select>
+
+            Course participation is limited to <b>term</b> start and end dates.
+            <br />
+
+            <font size="3"><b>Start</b></font
+            ><br />
+            <input type="date" id="participation-start" value="" /><br />
+            <font size="3"><b>End</b></font
+            ><br />
+            <input type="date" id="participation-end" value="" /><br />
+
+            <input type="checkbox" id="cb-limit-view-before-start" />
+            <label for="cb-limit-view-before-start"
+              >Restrict students from viewing course before term start
+              date</label
+            >
+            <br />
+
+            <input type="checkbox" id="cb-limit-view-before-end" />
+            <label for="cb-limit-view-before-start"
+              >Restrict students from viewing course afterterm end date</label
+            >
+          </td>
+        </tr>
+        <tr>
+          <td>Default due time:</td>
+          <td>
+            <select id="default-due-time">
+              <option value="default">Account Default (11.59pm)</option>
+            </select>
+            <br />
+            This influences the user interface for setting due dates. It does
+            not change the time due for any existing assignments.
+          </td>
+        </tr>
+        <tr>
+          <td>Language:</td>
+          <td>
+            <select id="language">
+              <option value="not-set">
+                Not set (user-configurable, defaults to English (United States))
+              </option>
+            </select>
+            <br />
+            This will override any user/system language preferences. This is
+            only recommended for foreign language courses.
+          </td>
+        </tr>
+        <tr>
+          <td>File Storage:</td>
+          <td>10000 megabytes</td>
+        </tr>
+        <tr>
+          <td>Large Course:</td>
+          <td>
+            <input type="checkbox" id="cb-speedgrader-student-filter" />
+            <label for="cb-speedgrader-student-filter"
+              >Launch SpeedGrader Filtered by Student Group</label
+            >
+          </td>
+        </tr>
+        <tr>
+          <td>Grading Scheme:</td>
+          <td>
+            <input type="checkbox" id="cb-enable-grading-scheme" />
+            <label for="cb-enable-grading-scheme"
+              >Enable course grading scheme</label
+            >
+          </td>
+        </tr>
+        <tr>
+          <td>License:</td>
+          <td>
+            <select id="license">
+              <option value="private">Private (Copyrighted)</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>File Copyright:</td>
+          <td>
+            <input type="checkbox" id="cb-file-copyright" />
+            <label for="cb-file-copyright"
+              >Copyright and license information must be provided for files
+              before they are published.</label
+            >
+          </td>
+        </tr>
+        <tr>
+          <td>Visibility:</td>
+          <td>
+            If you need to make your course public please contact your
+            administrator/support.<br />
+            <select id="visibility" disabled>
+              <option value="course">Course</option>
+            </select>
+            <br />
+            <input type="checkbox" id="cb-include-in-public-index" />
+            <label for="cb-include-in-public-index"
+              >Include this course in the public course index</label
+            >
+          </td>
+        </tr>
+        <tr>
+          <td>Format:</td>
+          <td>
+            <select id="format">
+              <option value="on-campus">On-Campus</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Mastery Paths:</td>
+          <td>
+            <input type="checkbox" id="cb-enable-individual-learning-paths" />
+            <label for="cb-enable-individual-learning-paths"
+              >Enable individual learning paths for students based on
+              assessment</label
+            >
+          </td>
+        </tr>
+        <tr>
+          <td>Description:</td>
+          <td><textarea id="description" cols="30" rows="10"></textarea></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><a href="#">more options</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <div align="right"><button>Update Course Details</button></div>
+  </body>
+</html>
