@@ -8,7 +8,11 @@
     </style> -->
     <link href="index.css" rel="stylesheet" />
     <link href="/libs/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="/libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- <link href="/libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" /> -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <h1>Cascading Style Sheets (CSS)</h1>
@@ -755,6 +759,65 @@
         </p>
         <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
+    </div>
+
+    <h2>Simple icons</h2>
+    <i class="fa fa-cog"></i> <i class="fa fa-heart"></i>
+    <i class="fa fa-share"></i> <i class="fa fa-comment"></i><br />
+    <i class="fa fa-image"></i> <i class="fa fa-chart-bar"></i>
+    <i class="fa fa-calendar"></i> <i class="fa fa-smile"></i>
+
+    <h2>Resizing icons</h2>
+    <i class="fa fa-cog fa-2x"></i>
+    <i class="fa fa-heart fa-2x"></i>
+    <i class="fa fa-share fa-3x"></i>
+    <i class="fa fa-comment fa-3x"></i>
+    <br />
+    <i class="fa fa-image fa-3x"></i>
+    <i class="fa fa-chart-bar fa-4x"></i>
+    <i class="fa fa-calendar" style="font-size: 5em"></i>
+    <i class="fa fa-smile" style="font-size: 3.5em"></i>
+
+    <h2>Coloring icons</h2>
+    <i class="fa fa-cog fa-2x" style="color: tomato"></i>
+    <i class="fa fa-heart fa-2x" style="color: tomato"></i>
+    <i class="fa fa-share fa-3x" style="color: #5ec15b"></i>
+    <br />
+    <i class="fa fa-comment fa-3x" style="color: #19d49e"></i>
+    <i class="fa fa-image fa-3x" style="color: rgb(234, 123, 12)"></i>
+    <i class="fa fa-chart-bar fa-4x" style="color: rgb(123, 234, 123)"></i>
+
+    <h2>Brand icons</h2>
+    <i class="fab fa-twitter fa-2x"></i><br />
+    <i class="fab fa-facebook fa-2x"></i><br />
+    <i class="fab fa-apple fa-2x"></i><br />
+
+    <h2>Stacking icons</h2>
+    <span class="fa-stack fa-2x">
+      <i class="fas fa-square fa-stack-2x"></i>
+      <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+    </span>
+    <br />
+    <span class="fa-stack fa-2x">
+      <i class="fas fa-circle fa-stack-2x"></i>
+      <i class="fas fa-flag fa-stack-1x fa-inverse"></i>
+    </span>
+    <br />
+    <span class="fa-stack fa-2x">
+      <i class="fas fa-camera fa-stack-1x"></i>
+      <i class="fas fa-ban fa-stack-2x" style="color: Tomato"></i>
+    </span>
+    <br />
+
+    <h2>Rotating icons</h2>
+    <div class="fa-4x">
+      <i class="fas fa-snowboarding"></i>
+      <i class="fas fa-snowboarding fa-rotate-90"></i>
+      <i class="fas fa-snowboarding fa-rotate-180"></i><br />
+      <i class="fas fa-snowboarding fa-rotate-270"></i>
+      <i class="fas fa-snowboarding fa-flip-horizontal"></i>
+      <i class="fas fa-snowboarding fa-flip-vertical"></i><br />
+      <i class="fas fa-snowboarding fa-flip-both"></i><br />
     </div>
   </div>
 </html>
