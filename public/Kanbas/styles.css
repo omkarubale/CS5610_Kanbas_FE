@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body * {
+  font-family: "Lato Extended","Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+table td {
+  padding: 0;
+  border: 0;
+}
+
+.wd-content {
+  margin-left: 80px;
+}

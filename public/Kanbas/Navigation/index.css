@@ -1,0 +1,82 @@
+.wd-kanbas-navigation-container {
+  background-color: black;
+  width: 84px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  
+}
+
+.wd-kanbas-navigation {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  width: inherit;
+  position: fixed;
+  overflow-y: auto;
+  overflow-x: hidden;
+  top: 0;
+  bottom: 0;
+}
+.wd-kanbas-navigation li {
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+}
+.wd-kanbas-navigation li.wd-active {
+  background-color: white;
+}
+.wd-kanbas-navigation li.wd-active.wd-nav-account i {
+  color: black !important;
+}
+.wd-kanbas-navigation li.wd-active a {
+  color: red;
+}
+.wd-kanbas-navigation a {
+  color: white;
+  text-decoration: none;
+}
+.wd-kanbas-navigation a i {
+  color: red;
+  font-size: 2em;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.wd-kanbas-navigation .wd-kanbas-nav-item {
+  padding-top: 10px;
+  padding-bottom: 6px;
+}
+
+.wd-icon-white {
+  color: white !important;
+}
+
+.wd-kanbas-navigation-bottom {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  width: 80px;
+  position: fixed;
+  overflow-y: auto;
+  overflow-x: hidden;
+  bottom: 0;
+}
+
+.wd-kanbas-navigation-bottom li a {
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  color: red;
+  text-decoration: none;
+}
+
+.wd-kanbas-navigation-bottom a i {
+  margin-bottom: 5px;
+  display: block;
+}
+
+.wd-kanbas-navigation-bottom .wd-kanbas-navigation-bottom-item {
+  padding-top: 10px;
+  padding-bottom: 6px;
+}

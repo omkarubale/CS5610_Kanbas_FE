@@ -1,89 +1,149 @@
 <html>
   <head>
-    <title>Lab 1</title>
+    <title>Kanbas - Profile</title>
+    <link rel="stylesheet" href="/Kanbas/styles.css" />
+    <link rel="stylesheet" href="/Kanbas/Navigation/index.css" />
+    <!-- <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css" /> -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <table width="100%">
-      <tbody>
-        <td valign="top">
-          <ul>
-            <li>
-              <a href="/Kanbas/Account/Profile/screen.html"> Account</a>
-            </li>
-            <li><a href="#">Dashboard</a></li>
-            <li>
-              <a href="/Kanbas/Courses/Home/screen.html">Courses</a>
-            </li>
-            <li><a href="#">Calendar</a></li>
-            <li><a href="#">Inbox</a></li>
-            <li><a href="#">History</a></li>
-            <li><a href="#">Studio</a></li>
-            <li><a href="#">Commons</a></li>
-            <li><a href="#">Help</a></li>
-          </ul>
-        </td>
-        <td valign="top">
-          <ul>
-            <li>
-              <a href="#"> Notifications</a>
-            </li>
-            <li><a href="/Kanbas/Account/Profile/screen.html"> Profile</a></li>
-            <li><a href="#"> Files</a></li>
-            <li>
-              <a href="#"> Settings</a>
-            </li>
-            <li>
-              <a href="#"> ePortfolios</a>
-            </li>
-            <li><a href="#"> Shared Content</a></li>
-            <li><a href="#"> The Hub</a></li>
-            <li><a href="#"> Qwickly Course Tools</a></li>
-            <li>
-              <a href="#"> Global Announcements</a>
-            </li>
-          </ul>
-        </td>
-        <td valign="top">
-          Jose Annunziato's Profile
-          <br />
-          <br />
-
-          <hr />
-
-          <br />
-
-          <div align="right">
-            <a href="/Kanbas/Account/Profile/Edit/screen.html"
-              ><button>Edit Profile</button></a
-            >
+    <div class="wd-kanbas-navigation-container">
+      <ul class="wd-kanbas-navigation">
+        <li>
+          <a href="http://northeastern.edu">
+            <img
+              src="/assets/NEU_logo.webp"
+              alt="N"
+              height="80px"
+              width="80px"
+            />
+          </a>
+        </li>
+        <li class="wd-nav-account wd-active">
+          <div class="wd-kanbas-nav-item">
+            <a href="/Kanbas/Account/Profile/screen.html">
+              <i class="fa-regular fa-circle-user wd-icon-white"></i> Account
+            </a>
           </div>
+        </li>
+        <li>
+          <div class="wd-kanbas-nav-item">
+            <a href="/Kanbas/Dashboard/screen.html">
+              <i class="fa fa-gauge-high"></i> Dashboard
+            </a>
+          </div>
+        </li>
+        <li>
+          <div class="wd-kanbas-nav-item">
+            <a href="/Kanbas/Courses/Home/screen.html">
+              <i class="fa fa-book"></i> Courses
+            </a>
+          </div>
+        </li>
+        <li>
+          <div class="wd-kanbas-nav-item">
+            <a href="#"> <i class="fa fa-calendar"></i> Calendar </a>
+          </div>
+        </li>
+        <li>
+          <div class="wd-kanbas-nav-item">
+            <a href="#"><i class="fa fa-inbox"></i> Inbox</a>
+          </div>
+        </li>
+        <li>
+          <div class="wd-kanbas-nav-item">
+            <a href="#"><i class="fa-regular fa-clock"></i> History</a>
+          </div>
+        </li>
+        <li>
+          <div class="wd-kanbas-nav-item">
+            <a href="#"><i class="fa-solid fa-tv"></i> Studio</a>
+          </div>
+        </li>
+        <li>
+          <div class="wd-kanbas-nav-item">
+            <a href="#"><i class="fa-solid fa-c"></i> Commons</a>
+          </div>
+        </li>
+        <li>
+          <div class="wd-kanbas-nav-item">
+            <a href="#"> <i class="fa-regular fa-circle-question"></i> Help </a>
+          </div>
+        </li>
+      </ul>
 
-          <font size="5.5">Jose Annunziato</font>
-          <br />
-          <br />
+      <ul class="wd-kanbas-navigation-bottom">
+        <li>
+          <div class="wd-kanbas-navigation-bottom-item">
+            <a href="#"><i class="fa-solid fa-arrow-left-long fa-2x"></i></a>
+          </div>
+        </li>
+      </ul>
+    </div>
 
-          <font size="5">Contact</font>
-          <br />
-          <br />
-          No registered services, you can add some on the
-          <a href="#">settings</a> page.
-
-          <br />
-          <br />
-
-          <font size="5">Biography</font>
-          <br />
-          <br />Faculty, Software Engineer, AI, Space, and renwables enthusiast.
-
-          <br />
-          <br />
-
-          <font size="5">Links</font>
-          <br />
-          <br />
-          <a href="https://youtube.com">YouTube</a>
-        </td>
-      </tbody>
-    </table>
+    <div class="wd-content">
+      <table width="100%">
+        <tbody>
+          <td valign="top">
+            <ul>
+              <li>
+                <a href="#"> Notifications</a>
+              </li>
+              <li>
+                <a href="/Kanbas/Account/Profile/screen.html"> Profile</a>
+              </li>
+              <li><a href="#"> Files</a></li>
+              <li>
+                <a href="#"> Settings</a>
+              </li>
+              <li>
+                <a href="#"> ePortfolios</a>
+              </li>
+              <li><a href="#"> Shared Content</a></li>
+              <li><a href="#"> The Hub</a></li>
+              <li><a href="#"> Qwickly Course Tools</a></li>
+              <li>
+                <a href="#"> Global Announcements</a>
+              </li>
+            </ul>
+          </td>
+          <td valign="top">
+            Jose Annunziato's Profile
+            <br />
+            <br />
+            <hr />
+            <br />
+            <div align="right">
+              <a href="/Kanbas/Account/Profile/Edit/screen.html"
+                ><button>Edit Profile</button></a
+              >
+            </div>
+            <font size="5.5">Jose Annunziato</font>
+            <br />
+            <br />
+            <font size="5">Contact</font>
+            <br />
+            <br />
+            No registered services, you can add some on the
+            <a href="#">settings</a> page.
+            <br />
+            <br />
+            <font size="5">Biography</font>
+            <br />
+            <br />Faculty, Software Engineer, AI, Space, and renwables
+            enthusiast.
+            <br />
+            <br />
+            <font size="5">Links</font>
+            <br />
+            <br />
+            <a href="https://youtube.com">YouTube</a>
+          </td>
+        </tbody>
+      </table>
+    </div>
   </body>
 </html>
