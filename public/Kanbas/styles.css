@@ -13,5 +13,22 @@ table td {
 }
 
 .wd-content {
-  margin-left: 80px;
+  margin-left: 85px;
+  display: inline-flex;
 }
+
+/* .wd-content .wd-left-side {
+
+}
+
+.wd-content .wd-not-left-side {
+
+}
+
+.wd-content .wd-not-left-side .wd-right-side {
+
+}
+
+.wd-content .wd-not-left-side .wd-middle-content {
+  
+} */
