@@ -4,7 +4,8 @@ body {
 }
 
 body * {
-  font-family: "Lato Extended","Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: "Lato Extended", "Lato", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
 }
 
 table td {
@@ -12,42 +13,114 @@ table td {
   border: 0;
 }
 
+/* Content */
 .wd-content {
   margin-left: 85px;
   display: inline-flex;
 }
 
-.wd-content .wd-left-side {
+  /* Left Side */
+  .wd-left-side {
+  }
+
+  /* Not Left Side */
+  .wd-not-left-side {
+    display: inline-flex;
+  }
+
+    /* Middle Content */
+    .wd-middle-content {
+    }
+
+      /* Middle Content Actions */
+      .wd-middle-content-actions {
+        display: block;
+        text-align: end;
+        margin-top: 1rem;
+      }
+
+      /* Middle Content Data */
+      .wd-middle-content-data {
+        display: block;
+      }
+
+    /* Right Side */
+    .wd-right-side {
+      -ms-flex: 0 0 240px;
+      flex: 0 0 240px;
+    }
+
+    @media (max-width: 1140px) {
+      .wd-right-side {
+        display: none;
+      }
+    }
+
+      /* Right Side Header */
+      .wd-right-side h2 {
+        font-size: 1rem;
+        font-weight: bold;
+        margin-top: 16px;
+      }
+
+      .wd-right-side h2::after {
+        content: "";
+        display: inline-block;
+        height: 1px;
+        background: gray;
+        width: 100%;
+        margin-top: 8px;
+      }
+
+      .wd-right-side .wd-h2-link {
+        float: right;
+        padding-top: 2px;
+        font-size: 0.8775rem;
+        font-weight: 400;
+      }
+
+        .wd-right-side .wd-h2-link i {
+          color: #2e3a45;
+        }
+
+        .wd-right-side .wd-h2-link a {
+          color: rgb(181, 40, 40);
+        }
+
+/* Buttons */
+.wd-button-standard {
+  border: 1px solid #c7cdd1 !important;
+  border-radius: 3px !important;
+  color: #2d3b45 !important;
+  background: #f5f5f5 !important;
+}
+
+.wd-button-red {
+  border: 1px solid #d41a2b !important;
+  border-radius: 3px !important;
+  color: #ffffff !important;
+  background: #d41a2b !important;
+}
+
+.wd-button-published {
+  border: 1px solid #c7cdd1 !important;
+  border-radius: 3px !important;
+  color: #fdfdfd !important;
+  background: #9ec199 !important;
+}
+
+/* Course Status */
+.wd-course-status {
 
 }
 
-.wd-content .wd-not-left-side {
-  display: inline-flex;
-}
+  .wd-course-status-publish-toggle {
+    margin-bottom: 8px;
+  }
 
-.wd-content .wd-not-left-side .wd-right-side {
-  -ms-flex: 0 0 230px;
-  flex: 0 0 230px;
-  background-color: greenyellow;
-}
+  .wd-course-status-actions {
+  }
 
-@media (max-width: 1140px) {
-  .wd-content .wd-not-left-side .wd-right-side {
-    display: none; 
-  } 
-}
-
-.wd-content .wd-not-left-side .wd-middle-content {
-
-}
-
-.wd-content .wd-not-left-side .wd-middle-content .wd-middle-content-actions {
-  display: block;
-  text-align: end;
-  margin-top: 1rem;
-}
-
-.wd-content .wd-not-left-side .wd-middle-content .wd-middle-content-data {
-  display: block;
+.wd-coming-up {
   
 }

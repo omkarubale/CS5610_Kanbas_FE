@@ -390,31 +390,65 @@
         </div>
 
         <div class="wd-right-side">
-          <h2>Course Status</h2>
-          <button>Unpublish</button>
-          <button>Published</button>
-          <ul>
-            <li><a href="#">Import Existing Content</a></li>
-            <li><a href="#">Import from Commons</a></li>
-            <li><a href="#">Choose Home Page</a></li>
-            <li><a href="#">View Course Stream</a></li>
-            <li><a href="#">New Announcement</a></li>
-            <li><a href="#">New Analytics</a></li>
-            <li><a href="#">View Course Notifications</a></li>
-          </ul>
-          <h2>Comming Up</h2>
-          <a href="#">View Calendar</a>
-          <ul>
-            <li>
-              <a href="#">Lecture CS4550.12631.202410 Sept 7 at 11:45am</a>
-            </li>
-            <li>
-              <a href="#">Lecture CS4550.12631.202410 Sep 11 at 11:45am</a>
-            </li>
-            <li>
-              <a href="#">CS5610 06 SP23 Lecture Sep 11 at 6pm</a>
-            </li>
-          </ul>
+          <div class="wd-course-status">
+            <h2>Course Status</h2>
+            <div class="wd-course-status-publish-toggle">
+              <div class="btn-group w-100">
+                <button class="btn wd-button-standard col-6">
+                  <i class="fa-solid fa-ban"></i> Unpublish
+                </button>
+                <button class="btn wd-button-published col-6">
+                  <i class="fa-solid fa-circle-check"></i> Published
+                </button>
+              </div>
+            </div>
+
+            <div class="wd-course-status-actions d-grid gap-1">
+              <a class="btn btn-block wd-button-standard text-start" href="#">
+                Import Existing Content</a
+              >
+              <a class="btn btn-block wd-button-standard text-start" href="#">
+                Import from Commons</a
+              >
+              <a class="btn btn-block wd-button-standard text-start" href="#">
+                Choose Home Page</a
+              >
+              <a class="btn btn-block wd-button-standard text-start" href="#">
+                View Course Stream</a
+              >
+              <a class="btn btn-block wd-button-standard text-start" href="#">
+                New Announcement</a
+              >
+              <a class="btn btn-block wd-button-standard text-start" href="#">
+                New Analytics</a
+              >
+              <a class="btn btn-block wd-button-standard text-start" href="#"
+                >View Course Notifications</a
+              >
+            </div>
+          </div>
+
+          <div class="wd-coming-up">
+            <h2>
+              Comming Up
+              <div class="wd-h2-link">
+                <i class="fa-solid fa-calendar-days"></i>
+                <a href="#">View Calendar</a>
+              </div>
+            </h2>
+
+            <ul>
+              <li>
+                <a href="#">Lecture CS4550.12631.202410 Sept 7 at 11:45am</a>
+              </li>
+              <li>
+                <a href="#">Lecture CS4550.12631.202410 Sep 11 at 11:45am</a>
+              </li>
+              <li>
+                <a href="#">CS5610 06 SP23 Lecture Sep 11 at 6pm</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
