@@ -37,8 +37,14 @@ table td {
 
 /* Content */
 .wd-content {
-  margin-left: 85px;
+  margin-left: 0px;
   display: flex;
+}
+
+@media (min-width: 768px) {
+  .wd-content {
+    margin-left: 85px;
+  }
 }
 
   /* Left Side */
