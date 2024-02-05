@@ -121,6 +121,13 @@ table td {
   .wd-course-status-actions {
   }
 
+    .wd-course-status-actions i {
+      width: 20px;
+      text-align: center;
+      margin-right: 4px;
+      margin-left: -4px;
+    }
+
 .wd-coming-up {
   
 }
