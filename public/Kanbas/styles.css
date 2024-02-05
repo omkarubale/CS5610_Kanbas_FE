@@ -17,18 +17,37 @@ table td {
   display: inline-flex;
 }
 
-/* .wd-content .wd-left-side {
+.wd-content .wd-left-side {
 
 }
 
 .wd-content .wd-not-left-side {
-
+  display: inline-flex;
 }
 
 .wd-content .wd-not-left-side .wd-right-side {
+  -ms-flex: 0 0 230px;
+  flex: 0 0 230px;
+  background-color: greenyellow;
+}
 
+@media (max-width: 1140px) {
+  .wd-content .wd-not-left-side .wd-right-side {
+    display: none; 
+  } 
 }
 
 .wd-content .wd-not-left-side .wd-middle-content {
+
+}
+
+.wd-content .wd-not-left-side .wd-middle-content .wd-middle-content-actions {
+  display: block;
+  text-align: end;
+  margin-top: 1rem;
+}
+
+.wd-content .wd-not-left-side .wd-middle-content .wd-middle-content-data {
+  display: block;
   
-} */
+}
