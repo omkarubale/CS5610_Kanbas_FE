@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="/Kanbas/styles.css" />
     <link rel="stylesheet" href="/Kanbas/Navigation/index.css" />
     <link rel="stylesheet" href="/Kanbas/Courses/Navigation/index.css" />
+    <link rel="stylesheet" href="/Kanbas/Courses/Grades/index.css" />
     <!-- <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css" /> -->
     <link
       href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.css"
@@ -352,289 +353,408 @@
             </li>
           </ul>
         </div>
-        <div class="wd-not-left-side">
-          <div class="wd-middle-content">
-            <select>
-              <option value="gradebook">Gradebook</option>
-            </select>
-            <button>Import</button>
-            <select>
-              <option value="export">Export</option>
-            </select>
-            <button>Configure</button>
-            <form>
-              <h2>Student Names</h2>
-              <input
-                type="text"
-                id="student-filter-input"
-                placeholder="Search Students"
-              />
-              <h2>Assignment Names</h2>
-              <input
-                type="text"
-                id="assignment-filter-input"
-                placeholder="Search Assignments"
-              />
-              <p />
-              <button>Apply Filters</button>
-              <p />
-            </form>
-            <table border="1px" width="100%">
-              <thead>
-                <th>Student Name</th>
-                <th>A1 SETUP <br />Out of 100</th>
-                <th>A2 HTML <br />Out of 100</th>
-                <th>A3 CSS <br />Out of 100</th>
-                <th>A4 BOOTSTRAP <br />Out of 100</th>
-                <th>A5 JAVASCRIPT <br />Out of 100</th>
-                <th>A6 REACT<br />Out of 100</th>
-                <th>A7 REDUX<br />Out of 100</th>
-                <th>A8 NODE<br />Out of 100</th>
-                <th>A9 MONGO<br />Out of 100</th>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Alice Wonderland</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">
+        <div class="wd-not-left-side flex-fill">
+          <div class="wd-middle-content flex-fill">
+            <div class="wd-middle-content-actions">
+              <button class="btn wd-button-standard">
+                <i class="fa-solid fa-file-import"></i> Import
+              </button>
+              <button class="btn wd-button-standard">
+                <i class="fa-solid fa-file-export"></i> Export
+                <i class="fa-solid fa-caret-down"></i>
+              </button>
+              <button class="btn wd-button-standard">
+                <i class="fa-solid fa-gear m-1"></i>
+              </button>
+            </div>
+
+            <div class="wd-middle-content-data">
+              <form>
+                <div class="mb-3 row">
+                  <div class="col-6">
+                    <label for="gradesStudentNames" class="form-label fw-bold"
+                      >Student Names</label
+                    >
                     <input
-                      type="number"
-                      id="grade-input-s1"
-                      value="90"
-                      min="0"
-                      max="100"
+                      type="text"
+                      class="form-control"
+                      id="gradesStudentNames"
+                      placeholder="Search Students"
                     />
-                  </td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                </tr>
-                <tr>
-                  <td>Princess Leia</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">
+                  </div>
+                  <div class="col-6">
+                    <label
+                      for="gradesAssignmentNames"
+                      class="form-label fw-bold"
+                      >Assignment Names</label
+                    >
                     <input
-                      type="number"
-                      id="grade-input-s1"
-                      value="90"
-                      min="0"
-                      max="100"
+                      type="text"
+                      class="form-control"
+                      id="gradesAssignmentNames"
+                      placeholder="Search Assignments"
                     />
-                  </td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                </tr>
-                <tr>
-                  <td>Luke Skywalker</td>
-                  <td align="center">100</td>
-                  <td align="center">
-                    <input
-                      type="number"
-                      id="grade-input-s3"
-                      value="90"
-                      min="0"
-                      max="100"
-                    />
-                  </td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                </tr>
-                <tr>
-                  <td>Han Solo</td>
-                  <td align="center">
-                    <input
-                      type="number"
-                      id="grade-input-s4"
-                      value="90"
-                      min="0"
-                      max="100"
-                    />
-                  </td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                </tr>
-                <tr>
-                  <td>Lando Calresian</td>
-                  <td align="center">100</td>
-                  <td align="center">
-                    <input
-                      type="number"
-                      id="grade-input-s5"
-                      value="90"
-                      min="0"
-                      max="100"
-                    />
-                  </td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                </tr>
-                <tr>
-                  <td>Boba Fet</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">
-                    <input
-                      type="number"
-                      id="grade-input-s6"
-                      value="90"
-                      min="0"
-                      max="100"
-                    />
-                  </td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                </tr>
-                <tr>
-                  <td>Darth Vader</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">
-                    <input
-                      type="number"
-                      id="grade-input-s7"
-                      value="90"
-                      min="0"
-                      max="100"
-                    />
-                  </td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                </tr>
-                <tr>
-                  <td>Obi-Wan Kenobi</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">
-                    <input
-                      type="number"
-                      id="grade-input-s8"
-                      value="90"
-                      min="0"
-                      max="100"
-                    />
-                  </td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                </tr>
-                <tr>
-                  <td>R2-D2</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">
-                    <input
-                      type="number"
-                      id="grade-input-s9"
-                      value="90"
-                      min="0"
-                      max="100"
-                    />
-                  </td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                </tr>
-                <tr>
-                  <td>C-3PO</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">
-                    <input
-                      type="number"
-                      id="grade-input-s10"
-                      value="90"
-                      min="0"
-                      max="100"
-                    />
-                  </td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                </tr>
-                <tr>
-                  <td>Yoda</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">
-                    <input
-                      type="number"
-                      id="grade-input-s11"
-                      value="90"
-                      min="0"
-                      max="100"
-                    />
-                  </td>
-                  <td align="center">100</td>
-                </tr>
-                <tr>
-                  <td>Admiral Ackbar</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">100</td>
-                  <td align="center">
-                    <input
-                      type="number"
-                      id="grade-input-s12"
-                      value="90"
-                      min="0"
-                      max="100"
-                    />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                  </div>
+                </div>
+                <p />
+                <button class="btn wd-button-standard">
+                  <i class="fa-solid fa-filter"></i> Apply Filters
+                </button>
+              </form>
+
+              <div class="table-responsive">
+                <table
+                  class="wd-grades-table table table-bordered"
+                  width="100%"
+                >
+                  <thead>
+                    <tr class="table-secondary">
+                      <th scope="col" class="text-start fw-bold">
+                        Student Name
+                      </th>
+                      <th scope="col">
+                        <div>A1 SETUP</div>
+                        <div>Out of 100</div>
+                      </th>
+                      <th scope="col">
+                        <div>A2 HTML</div>
+                        <div>Out of 100</div>
+                      </th>
+                      <th scope="col">
+                        <div>A3 CSS</div>
+                        <div>Out of 100</div>
+                      </th>
+                      <th scope="col">
+                        <div>A4 BOOTSTRAP</div>
+                        <div>Out of 100</div>
+                      </th>
+                      <th scope="col">
+                        <div>A5 JAVASCRIPT</div>
+                        <div>Out of 100</div>
+                      </th>
+                      <th scope="col">
+                        <div>A6 REACT</div>
+                        <div>Out of 100</div>
+                      </th>
+                      <th scope="col">
+                        <div>A7 REDUX</div>
+                        <div>Out of 100</div>
+                      </th>
+                      <th scope="col">
+                        <div>A8 NODE</div>
+                        <div>Out of 100</div>
+                      </th>
+                      <th scope="col">
+                        <div>A9 MONGO</div>
+                        <div>Out of 100</div>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="table-light">
+                      <th scope="row">
+                        <a href="#" class="wd-grades-grid-student text-truncate"
+                          >Alice Wonderland</a
+                        >
+                      </th>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td class="py-0">
+                        <input
+                          class="form-control"
+                          type="number"
+                          id="grade-input-s1"
+                          value="90"
+                          min="0"
+                          max="100"
+                        />
+                      </td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                    </tr>
+                    <tr class="table-secondary">
+                      <th scope="row">
+                        <a href="#" class="wd-grades-grid-student text-truncate"
+                          >Princess Leia</a
+                        >
+                      </th>
+                      <td>100</td>
+                      <td>100</td>
+                      <td class="py-0">
+                        <input
+                          class="form-control"
+                          type="number"
+                          id="grade-input-s1"
+                          value="90"
+                          min="0"
+                          max="100"
+                        />
+                      </td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                    </tr>
+                    <tr class="table-light">
+                      <th scope="row">
+                        <a href="#" class="wd-grades-grid-student text-truncate"
+                          >Luke Skywalker</a
+                        >
+                      </th>
+                      <td>100</td>
+                      <td class="py-0">
+                        <input
+                          class="form-control"
+                          type="number"
+                          id="grade-input-s3"
+                          value="90"
+                          min="0"
+                          max="100"
+                        />
+                      </td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                    </tr>
+                    <tr class="table-secondary">
+                      <th scope="row">
+                        <a href="#" class="wd-grades-grid-student text-truncate"
+                          >Han Solo</a
+                        >
+                      </th>
+                      <td class="py-0">
+                        <input
+                          class="form-control"
+                          type="number"
+                          id="grade-input-s4"
+                          value="90"
+                          min="0"
+                          max="100"
+                        />
+                      </td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                    </tr>
+                    <tr class="table-light">
+                      <th scope="row">
+                        <a href="#" class="wd-grades-grid-student text-truncate"
+                          >Lando Calresian</a
+                        >
+                      </th>
+                      <td>100</td>
+                      <td class="py-0">
+                        <input
+                          class="form-control"
+                          type="number"
+                          id="grade-input-s5"
+                          value="90"
+                          min="0"
+                          max="100"
+                        />
+                      </td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                    </tr>
+                    <tr class="table-secondary">
+                      <th scope="row">
+                        <a href="#" class="wd-grades-grid-student text-truncate"
+                          >Boba Fet</a
+                        >
+                      </th>
+                      <td>100</td>
+                      <td>100</td>
+                      <td class="py-0">
+                        <input
+                          class="form-control"
+                          type="number"
+                          id="grade-input-s6"
+                          value="90"
+                          min="0"
+                          max="100"
+                        />
+                      </td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                    </tr>
+                    <tr class="table-light">
+                      <th scope="row">
+                        <a href="#" class="wd-grades-grid-student text-truncate"
+                          >Darth Vader</a
+                        >
+                      </th>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td class="py-0">
+                        <input
+                          class="form-control"
+                          type="number"
+                          id="grade-input-s7"
+                          value="90"
+                          min="0"
+                          max="100"
+                        />
+                      </td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                    </tr>
+                    <tr class="table-secondary">
+                      <th scope="row">
+                        <a href="#" class="wd-grades-grid-student text-truncate"
+                          >Obi-Wan Kenobi</a
+                        >
+                      </th>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td class="py-0">
+                        <input
+                          class="form-control"
+                          type="number"
+                          id="grade-input-s8"
+                          value="90"
+                          min="0"
+                          max="100"
+                        />
+                      </td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                    </tr>
+                    <tr class="table-light">
+                      <th scope="row">
+                        <a href="#" class="wd-grades-grid-student text-truncate"
+                          >R2-D2</a
+                        >
+                      </th>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td class="py-0">
+                        <input
+                          class="form-control"
+                          type="number"
+                          id="grade-input-s9"
+                          value="90"
+                          min="0"
+                          max="100"
+                        />
+                      </td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                    </tr>
+                    <tr class="table-secondary">
+                      <th scope="row">
+                        <a href="#" class="wd-grades-grid-student text-truncate"
+                          >C-3PO</a
+                        >
+                      </th>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td class="py-0">
+                        <input
+                          class="form-control"
+                          type="number"
+                          id="grade-input-s10"
+                          value="90"
+                          min="0"
+                          max="100"
+                        />
+                      </td>
+                      <td>100</td>
+                      <td>100</td>
+                    </tr>
+                    <tr class="table-light">
+                      <th scope="row">
+                        <a href="#" class="wd-grades-grid-student text-truncate"
+                          >Yoda</a
+                        >
+                      </th>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td class="py-0">
+                        <input
+                          class="form-control"
+                          type="number"
+                          id="grade-input-s11"
+                          value="90"
+                          min="0"
+                          max="100"
+                        />
+                      </td>
+                      <td>100</td>
+                    </tr>
+                    <tr class="table-secondary">
+                      <th scope="row">
+                        <a href="#" class="wd-grades-grid-student text-truncate"
+                          >Admiral Ackbar</a
+                        >
+                      </th>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td>100</td>
+                      <td class="py-0">
+                        <input
+                          class="form-control"
+                          type="number"
+                          id="grade-input-s12"
+                          value="90"
+                          min="0"
+                          max="100"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>

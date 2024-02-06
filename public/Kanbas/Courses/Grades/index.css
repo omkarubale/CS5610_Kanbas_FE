@@ -1,0 +1,17 @@
+.wd-grades-table th {
+    text-align: center;
+    font-weight: 400;
+}
+
+a.wd-grades-grid-student {
+    color: rgb(181, 40, 40);
+    
+}
+
+th:has(a.wd-grades-grid-student) {
+    text-align: start;
+}
+
+.wd-grades-table td {
+    text-align: center;
+}
