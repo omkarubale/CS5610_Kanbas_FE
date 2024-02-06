@@ -35,6 +35,11 @@ table td {
   background: #9ec199 !important;
 }
 
+/* Expanding Caret */
+.wd-modules-section i.fa-caret-down[aria-expanded='false'] {
+  transform: rotate(-90deg);
+}
+
 /* Content */
 .wd-content {
   margin-left: 0px;
