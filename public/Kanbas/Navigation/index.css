@@ -1,3 +1,4 @@
+/* Desktop Navigation */
 .wd-kanbas-navigation-container {
   background-color: black;
   width: 84px;
@@ -80,6 +81,7 @@
   padding-bottom: 6px;
 }
 
+/* Mobile Navigation */
 .wd-mobile-navigation-container {
 
 }
@@ -116,15 +118,44 @@
     float: right;
   }
 
-  .wd-mobile-navigation-container .wd-courses-navigation-mobile-content {
-    margin-bottom: 50px;
-    box-shadow: 0 0.375rem 0.4375rem rgba(0,0,0,.1), 0 0.625rem 1.75rem rgba(0,0,0,.25);
-  }
 
+  /* Kanbas Mobile Navigation */
   .wd-mobile-navigation-container .wd-kanbas-navigation-mobile-content {
     min-width: 100%;
     background-color: white;
     color: #d41a2b;
+  }
+
+  .wd-kanbas-navigation-mobile-content {
+    
+  }
+
+  .wd-kanbas-navigation-mobile-content a {
+    font-size: 16px;
+    color: #d41a2b;
+    text-decoration: underline;
+  }
+
+  .wd-kanbas-navigation-mobile-content i {
+    width: 48px;
+    color: #d41a2b;
+    text-align: center;
+    margin-right: 12px;
+  }
+
+    .wd-kanbas-navigation-mobile {
+    }
+
+    .wd-kanbas-navigation-mobile .nav-link {
+      display: flex;
+      align-items: center;
+    }
+
+
+  /* Courses Mobile Navigation */
+  .wd-mobile-navigation-container .wd-courses-navigation-mobile-content {
+    margin-bottom: 50px;
+    box-shadow: 0 0.375rem 0.4375rem rgba(0,0,0,.1), 0 0.625rem 1.75rem rgba(0,0,0,.25);
   }
 
   .wd-courses-navigation-mobile-content {
