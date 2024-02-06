@@ -355,125 +355,220 @@
             </li>
           </ul>
         </div>
-        <div class="wd-not-left-side">
-          <div class="wd-middle-content">
-            <table width="100%">
-              <tbody>
-                <tr>
-                  <td>
-                    <select id="assignment-speedgrader">
-                      <option value="">SpeedGrader</option>
+        <div class="wd-not-left-side flex-fill">
+          <div class="wd-middle-content flex-fill">
+            <div class="wd-middle-content-actions">
+              <div class="d-inline-flex align-center text-success pe-1">
+                <i class="fa-solid fa-circle-check pe-1"></i>
+                <span class="fw-bold">Published</span>
+              </div>
+              <button class="btn wd-button-standard">
+                <i class="fa fa-ellipsis-v m-1"></i>
+              </button>
+            </div>
+
+            <hr />
+
+            <form>
+              <div class="mb-3">
+                <label for="assignmentName" class="form-label"
+                  >Assignment Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="assignmentName"
+                  value="A1 - ENV + HTML"
+                />
+              </div>
+
+              <div class="mb-3">
+                <textarea
+                  class="form-control"
+                  id="assignmentDescription"
+                  rows="3"
+                >
+This is the assignment description.</textarea
+                >
+              </div>
+
+              <div>
+                <div class="row mb-3">
+                  <div class="col-3">
+                    <label
+                      for="assignmentPoints"
+                      class="form-label float-end mt-1"
+                      >Points</label
+                    >
+                  </div>
+                  <div class="col-6 mr-auto">
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="assignmentPoints"
+                      value="100"
+                    />
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col-3">
+                    <label
+                      for="assignmentGroup"
+                      class="form-label float-end mt-1"
+                      >Assignment Group</label
+                    >
+                  </div>
+                  <div class="col-6 mr-auto">
+                    <select
+                      class="form-select"
+                      id="assignmentGroup"
+                      aria-label="Assignment Group"
+                    >
+                      <option selected>ASSIGNMENTS</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
                     </select>
-                    <hr />
-                    <h3>Assignment Name</h3>
-                    <form>
-                      <input
-                        type="text"
-                        id="assignment-name"
-                        value="A1 - ENV + HTML"
-                      />
-                      <br />
-                      <br />
-                      <textarea id="assignment-description">
-            This is the assignment description.
-                      </textarea>
-                      <br />
-                      <br />
-                      Points
-                      <br />
-                      <input type="number" id="assignment-points" value="100" />
-                      <br />
-                      <br />
-                      Assignment Group
-                      <br />
-                      <select id="assignment-group">
-                        <option value="assignments">ASSIGNMENTS</option>
-                      </select>
-                      <br />
-                      <br />
-                      Display Grade as
-                      <br />
-                      <select id="assignment-grade-display">
-                        <option value="percentage">Percentage</option>
-                      </select>
-                      <br />
-                      <br />
-                      Submission type
-                      <br />
-                      <select id="assignment-submission-type">
-                        <option value="online">Online</option>
-                      </select>
-                      <br />
-                      <br />
-                      Online Entry Options
-                      <br />
-                      <input type="checkbox" id="cb-text-entry" />
-                      <label for="cb-text-entry">Text Entry</label>
-                      <br />
-                      <input type="checkbox" id="cb-website-url" />
-                      <label for="cb-website-url">Website URL</label>
-                      <br />
-                      <input type="checkbox" id="cb-media-recordingsentry" />
-                      <label for="cb-media-recordings">Media Recordings</label>
-                      <br />
-                      <input type="checkbox" id="cb-student-annotation" />
-                      <label for="cb-student-annotation"
-                        >Student Annotation</label
-                      >
-                      <br />
-                      <input type="checkbox" id="cb-file-uploads" />
-                      <label for="cb-file-uploads">File Uploads</label>
-                      <br />
-                      <br />
-                      Assign
-                      <br />
-                      Assign to
-                      <br />
-                      <input
-                        type="text"
-                        id="assignment-assign-to"
-                        value="Everyone"
-                      />
-                      <br />
-                      <br />
-                      Due
-                      <br />
-                      <input
-                        type="date"
-                        id="assignment-due-date"
-                        value="2021-01-01"
-                      />
-                      <br />
-                      <br />
-                      Available from
-                      <br />
-                      <input
-                        type="date"
-                        id="assignment-available-from-date"
-                        value="2021-01-01"
-                      />
-                      <br />
-                      <br />
-                      Until
-                      <br />
-                      <input
-                        type="date"
-                        id="assignment-available-until-date"
-                        value="2021-01-01"
-                      />
-                      <br />
-                      <br />
-                    </form>
-                    <a href="/Kanbas/Courses/Assignments/screen.html"
-                      ><button>Cancel</button></a
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col-3">
+                    <label
+                      for="assignmentGradeDisplay"
+                      class="form-label float-end mt-1"
+                      >Display Grade as</label
                     >
-                    <a href="/Kanbas/Courses/Assignments/screen.html"
-                      ><button>Save</button></a
+                  </div>
+                  <div class="col-6 mr-auto">
+                    <select
+                      class="form-select"
+                      id="assignmentGradeDisplay"
+                      aria-label="Display Grade as"
                     >
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                      <option selected>Percentage</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col-3">
+                    <label
+                      for="assignmentGradeDisplay"
+                      class="form-label float-end mt-1"
+                      >Assign</label
+                    >
+                  </div>
+                  <div class="col-6 mr-auto">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="mb-3">
+                          <label
+                            for="assignmentAssignTo"
+                            class="form-label fw-bold"
+                            >Assign to</label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="assignmentTo"
+                            value="Everyone"
+                          />
+                          <!-- <select
+                            class="form-select"
+                            id="assignmentTo"
+                            aria-label="Assign To"
+                            multiple
+                          >
+                            <option selected>Everyone</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                          </select> -->
+                        </div>
+
+                        <div class="mb-3">
+                          <label
+                            for="assignmentDueDate"
+                            class="form-label fw-bold"
+                            >Due</label
+                          >
+                          <input
+                            type="date"
+                            class="form-control"
+                            id="assignmentDueDate"
+                            value="2021-01-01"
+                          />
+                        </div>
+
+                        <div class="mb-3 row">
+                          <div class="col-6 pe-1">
+                            <label
+                              for="assignmentAvailableFromDate"
+                              class="form-label fw-bold"
+                              >Available From</label
+                            >
+                            <input
+                              type="date"
+                              class="form-control"
+                              id="assignmentAvailableFromDate"
+                              value="2021-01-01"
+                            />
+                          </div>
+                          <div class="col-6 ps-1">
+                            <label
+                              for="assignmentAvailableUntilDate"
+                              class="form-label fw-bold"
+                              >Until</label
+                            >
+                            <input
+                              type="date"
+                              class="form-control"
+                              id="assignmentAvailableUntilDate"
+                              value="2021-01-01"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-footer text-center">
+                        <i class="fa-solid fa-plus"></i> Add
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+            <hr />
+            <div>
+              <div class="form-check float-start mt-2">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  name="cb-notify-change"
+                  id="cbNotifyChange"
+                />
+                <label class="form-check-label" for="cb-notify-change"
+                  >Notify users that this content has changed</label
+                >
+              </div>
+              <div class="float-end">
+                <a
+                  class="btn wd-button-standard"
+                  href="/Kanbas/Courses/Assignments/screen.html"
+                  >Cancel</a
+                >
+                <a
+                  class="btn wd-button-red"
+                  href="/Kanbas/Courses/Assignments/screen.html"
+                  >Save</a
+                >
+              </div>
+            </div>
           </div>
         </div>
       </div>

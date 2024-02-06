@@ -13,6 +13,11 @@ table td {
   border: 0;
 }
 
+/* Common */
+.align-center {
+  align-items: center;
+}
+
 /* Buttons */
 .wd-button-standard {
   border: 1px solid #c7cdd1 !important;
