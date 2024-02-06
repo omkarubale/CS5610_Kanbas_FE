@@ -30,14 +30,14 @@
   color: black !important;
 }
 .wd-kanbas-navigation li.wd-active a {
-  color: red;
+  color: rgb(181, 40, 40);
 }
 .wd-kanbas-navigation a {
   color: white;
   text-decoration: none;
 }
 .wd-kanbas-navigation a i {
-  color: red;
+  color: rgb(181, 40, 40);
   font-size: 2em;
   margin-bottom: 5px;
   display: block;
@@ -67,7 +67,7 @@
   font-size: 14px;
   font-weight: 400;
   text-align: center;
-  color: red;
+  color: rgb(181, 40, 40);
   text-decoration: none;
 }
 
@@ -123,7 +123,7 @@
   .wd-mobile-navigation-container .wd-kanbas-navigation-mobile-content {
     min-width: 100%;
     background-color: white;
-    color: #d41a2b;
+    color: rgb(181, 40, 40);
   }
 
   .wd-kanbas-navigation-mobile-content {
@@ -132,13 +132,13 @@
 
   .wd-kanbas-navigation-mobile-content a {
     font-size: 16px;
-    color: #d41a2b;
+    color: rgb(181, 40, 40);
     text-decoration: underline;
   }
 
   .wd-kanbas-navigation-mobile-content i {
     width: 48px;
-    color: #d41a2b;
+    color: rgb(181, 40, 40);
     text-align: center;
     margin-right: 12px;
   }
@@ -169,12 +169,12 @@
     }
 
     .wd-course-navigation-mobile a {
-      color: #d41a2b;
+      color: rgb(181, 40, 40);
     }
 
     .wd-course-navigation-mobile i {
       width: 24px;
-      color: #d41a2b;
+      color: rgb(181, 40, 40);
       text-align: center;
       margin-right: 4px;
     }
