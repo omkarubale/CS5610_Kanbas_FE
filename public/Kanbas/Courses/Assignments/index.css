@@ -1,0 +1,70 @@
+.wd-assignments-grid,
+.wd-assignments-grid * {
+  border-radius: 0% !important;
+  border: none;
+  margin: 0px;
+  padding: 0px;
+  color: #2e3a45;
+}
+
+.wd-assignments-grid {
+  margin: 0;
+}
+
+.wd-assignments-grid > li {
+  background-color: #f5f5f5;
+  border: 1px solid #c7cdd1 !important;
+  border-left: none !important;
+}
+
+.wd-assignments-grid > li > div {
+  padding: 6px;
+  border-left: 1px solid #c7cdd1 !important;
+}
+
+.wd-assignments-grid > li > ul > li {
+  padding: 12px 5px 12px 5px;
+  border-top: 1px solid #c7cdd1 !important;
+  border-left: 4px solid green;
+  border-right: 0;
+  border-bottom: 0;
+  display: inline-flex;
+  align-items: center;
+}
+.wd-assignments-grid > li > ul > li .wd-assignments-grid-content-text {
+  display: block;
+  padding-left: 12px;
+}
+
+.wd-assignments-grid > li > ul > li .wd-assignments-grid-content-details {
+  display: block;
+  color: rgb(45, 59, 69);
+  font-size: 0.875rem;
+}
+
+.wd-assignments-grid > li > ul > li .wd-assignments-grid-content-actions {
+  display: inline-flex;
+  align-items: center;
+  padding-right: 8px;
+}
+
+.wd-content-child {
+  padding-left: 40px !important;
+}
+
+.wd-assignments-grid > li {
+  margin-bottom: 20px;
+  padding: 0;
+}
+
+.wd-assignments-grid > li > .wd-assignments-grid-section {
+  padding: 12px 6px;
+  padding-left: 8px;
+  padding-right: 13px;
+}
+
+/* Expanding Caret */
+.wd-assignments-grid-section i.fa-caret-down[aria-expanded='false'] {
+  transform: rotate(-90deg);
+}
+

@@ -51,3 +51,8 @@
   padding-left: 8px;
   padding-right: 13px;
 }
+
+/* Expanding Caret */
+.wd-modules-section i.fa-caret-down[aria-expanded='false'] {
+  transform: rotate(-90deg);
+}

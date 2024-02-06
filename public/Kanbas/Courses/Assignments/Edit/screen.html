@@ -293,158 +293,188 @@
     </div>
 
     <div class="wd-content">
-      <div class="wd-course-navigation-container d-none d-md-block">
-        <ul class="wd-course-navigation">
-          <li>
-            <a href="/Kanbas/Courses/Home/screen.html"> Home</a>
-          </li>
-          <li>
-            <a href="#"> Modules</a>
-          </li>
-          <li><a href="#"> Piazza</a></li>
-          <li><a href="#"> Zoom Meetings</a></li>
-          <li class="wd-submenu-active">
-            <a href="/Kanbas/Courses/Assignments/screen.html"> Assignments</a>
-          </li>
-          <li><a href="#"> Quizzes</a></li>
-          <li><a href="/Kanbas/Courses/Grades/screen.html"> Grades</a></li>
-          <li><a href="#"> People</a></li>
-          <li><a href="#"> Panopto Video</a></li>
-          <li><a href="#"> Discussions</a></li>
-          <li><a href="#"> Announcements</a></li>
-          <li><a href="#"> Pages</a></li>
-          <li><a href="#"> Files</a></li>
-          <li><a href="#"> Rubrics</a></li>
-          <li><a href="#"> Outcomes</a></li>
-          <li><a href="#"> Collaborations</a></li>
-          <li><a href="#"> Syllabus</a></li>
-          <li>
-            <a href="/Kanbas/Courses/Settings/CourseDetails/screen.html">
-              Settings</a
-            >
-          </li>
-        </ul>
+      <div class="wd-breadcrumb d-none d-md-inline-flex">
+        <!-- Fields to Add:
+        data-bs-toggle="collapse"
+        data-bs-target="#contentMenu"
+        aria-expanded="true"
+        aria-controls="collapseExample" -->
+        <button class="btn wd-menu-toggle">
+          <i class="fa-solid fa-bars fa-lg"></i>
+        </button>
+
+        <nav aria-label="breadcrumb d-inline-flex">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item">
+              <a href="#">CS4550.12631.202410</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a href="#">Assignments</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              <a href="#">A1 - ENV + HTML</a>
+            </li>
+          </ol>
+        </nav>
       </div>
 
-      <div class="wd-not-left-side">
-        <div class="wd-middle-content">
-          <table width="100%">
-            <tbody>
-              <tr>
-                <td>
-                  <select id="assignment-speedgrader">
-                    <option value="">SpeedGrader</option>
-                  </select>
-                  <hr />
-                  <h3>Assignment Name</h3>
-                  <form>
-                    <input
-                      type="text"
-                      id="assignment-name"
-                      value="A1 - ENV + HTML"
-                    />
-                    <br />
-                    <br />
-                    <textarea id="assignment-description">
-    This is the assignment description.
-                    </textarea>
-                    <br />
-                    <br />
-                    Points
-                    <br />
-                    <input type="number" id="assignment-points" value="100" />
-                    <br />
-                    <br />
-                    Assignment Group
-                    <br />
-                    <select id="assignment-group">
-                      <option value="assignments">ASSIGNMENTS</option>
+      <div class="wd-breadcrumb-divider d-none d-md-block">
+        <hr />
+      </div>
+
+      <div class="wd-after-breadcrumb">
+        <div class="wd-course-navigation-container d-none d-md-block">
+          <ul class="wd-course-navigation">
+            <li>
+              <a href="/Kanbas/Courses/Home/screen.html"> Home</a>
+            </li>
+            <li>
+              <a href="#"> Modules</a>
+            </li>
+            <li><a href="#"> Piazza</a></li>
+            <li><a href="#"> Zoom Meetings</a></li>
+            <li class="wd-submenu-active">
+              <a href="/Kanbas/Courses/Assignments/screen.html"> Assignments</a>
+            </li>
+            <li><a href="#"> Quizzes</a></li>
+            <li><a href="/Kanbas/Courses/Grades/screen.html"> Grades</a></li>
+            <li><a href="#"> People</a></li>
+            <li><a href="#"> Panopto Video</a></li>
+            <li><a href="#"> Discussions</a></li>
+            <li><a href="#"> Announcements</a></li>
+            <li><a href="#"> Pages</a></li>
+            <li><a href="#"> Files</a></li>
+            <li><a href="#"> Rubrics</a></li>
+            <li><a href="#"> Outcomes</a></li>
+            <li><a href="#"> Collaborations</a></li>
+            <li><a href="#"> Syllabus</a></li>
+            <li>
+              <a href="/Kanbas/Courses/Settings/CourseDetails/screen.html">
+                Settings</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="wd-not-left-side">
+          <div class="wd-middle-content">
+            <table width="100%">
+              <tbody>
+                <tr>
+                  <td>
+                    <select id="assignment-speedgrader">
+                      <option value="">SpeedGrader</option>
                     </select>
-                    <br />
-                    <br />
-                    Display Grade as
-                    <br />
-                    <select id="assignment-grade-display">
-                      <option value="percentage">Percentage</option>
-                    </select>
-                    <br />
-                    <br />
-                    Submission type
-                    <br />
-                    <select id="assignment-submission-type">
-                      <option value="online">Online</option>
-                    </select>
-                    <br />
-                    <br />
-                    Online Entry Options
-                    <br />
-                    <input type="checkbox" id="cb-text-entry" />
-                    <label for="cb-text-entry">Text Entry</label>
-                    <br />
-                    <input type="checkbox" id="cb-website-url" />
-                    <label for="cb-website-url">Website URL</label>
-                    <br />
-                    <input type="checkbox" id="cb-media-recordingsentry" />
-                    <label for="cb-media-recordings">Media Recordings</label>
-                    <br />
-                    <input type="checkbox" id="cb-student-annotation" />
-                    <label for="cb-student-annotation"
-                      >Student Annotation</label
+                    <hr />
+                    <h3>Assignment Name</h3>
+                    <form>
+                      <input
+                        type="text"
+                        id="assignment-name"
+                        value="A1 - ENV + HTML"
+                      />
+                      <br />
+                      <br />
+                      <textarea id="assignment-description">
+            This is the assignment description.
+                      </textarea>
+                      <br />
+                      <br />
+                      Points
+                      <br />
+                      <input type="number" id="assignment-points" value="100" />
+                      <br />
+                      <br />
+                      Assignment Group
+                      <br />
+                      <select id="assignment-group">
+                        <option value="assignments">ASSIGNMENTS</option>
+                      </select>
+                      <br />
+                      <br />
+                      Display Grade as
+                      <br />
+                      <select id="assignment-grade-display">
+                        <option value="percentage">Percentage</option>
+                      </select>
+                      <br />
+                      <br />
+                      Submission type
+                      <br />
+                      <select id="assignment-submission-type">
+                        <option value="online">Online</option>
+                      </select>
+                      <br />
+                      <br />
+                      Online Entry Options
+                      <br />
+                      <input type="checkbox" id="cb-text-entry" />
+                      <label for="cb-text-entry">Text Entry</label>
+                      <br />
+                      <input type="checkbox" id="cb-website-url" />
+                      <label for="cb-website-url">Website URL</label>
+                      <br />
+                      <input type="checkbox" id="cb-media-recordingsentry" />
+                      <label for="cb-media-recordings">Media Recordings</label>
+                      <br />
+                      <input type="checkbox" id="cb-student-annotation" />
+                      <label for="cb-student-annotation"
+                        >Student Annotation</label
+                      >
+                      <br />
+                      <input type="checkbox" id="cb-file-uploads" />
+                      <label for="cb-file-uploads">File Uploads</label>
+                      <br />
+                      <br />
+                      Assign
+                      <br />
+                      Assign to
+                      <br />
+                      <input
+                        type="text"
+                        id="assignment-assign-to"
+                        value="Everyone"
+                      />
+                      <br />
+                      <br />
+                      Due
+                      <br />
+                      <input
+                        type="date"
+                        id="assignment-due-date"
+                        value="2021-01-01"
+                      />
+                      <br />
+                      <br />
+                      Available from
+                      <br />
+                      <input
+                        type="date"
+                        id="assignment-available-from-date"
+                        value="2021-01-01"
+                      />
+                      <br />
+                      <br />
+                      Until
+                      <br />
+                      <input
+                        type="date"
+                        id="assignment-available-until-date"
+                        value="2021-01-01"
+                      />
+                      <br />
+                      <br />
+                    </form>
+                    <a href="/Kanbas/Courses/Assignments/screen.html"
+                      ><button>Cancel</button></a
                     >
-                    <br />
-                    <input type="checkbox" id="cb-file-uploads" />
-                    <label for="cb-file-uploads">File Uploads</label>
-                    <br />
-                    <br />
-                    Assign
-                    <br />
-                    Assign to
-                    <br />
-                    <input
-                      type="text"
-                      id="assignment-assign-to"
-                      value="Everyone"
-                    />
-                    <br />
-                    <br />
-                    Due
-                    <br />
-                    <input
-                      type="date"
-                      id="assignment-due-date"
-                      value="2021-01-01"
-                    />
-                    <br />
-                    <br />
-                    Available from
-                    <br />
-                    <input
-                      type="date"
-                      id="assignment-available-from-date"
-                      value="2021-01-01"
-                    />
-                    <br />
-                    <br />
-                    Until
-                    <br />
-                    <input
-                      type="date"
-                      id="assignment-available-until-date"
-                      value="2021-01-01"
-                    />
-                    <br />
-                    <br />
-                  </form>
-                  <a href="/Kanbas/Courses/Assignments/screen.html"
-                    ><button>Cancel</button></a
-                  >
-                  <a href="/Kanbas/Courses/Assignments/screen.html"
-                    ><button>Save</button></a
-                  >
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                    <a href="/Kanbas/Courses/Assignments/screen.html"
+                      ><button>Save</button></a
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

@@ -294,403 +294,421 @@
     </div>
 
     <div class="wd-content">
-      <div class="wd-course-navigation-container d-none d-md-block">
-        <ul class="wd-course-navigation">
-          <li class="wd-submenu-active">
-            <a href="/Kanbas/Courses/Home/screen.html"> Home</a>
-          </li>
-          <li>
-            <a href="#"> Modules</a>
-          </li>
-          <li><a href="#"> Piazza</a></li>
-          <li><a href="#"> Zoom Meetings</a></li>
-          <li>
-            <a href="/Kanbas/Courses/Assignments/screen.html"> Assignments</a>
-          </li>
-          <li><a href="#"> Quizzes</a></li>
-          <li><a href="/Kanbas/Courses/Grades/screen.html"> Grades</a></li>
-          <li><a href="#"> People</a></li>
-          <li><a href="#"> Panopto Video</a></li>
-          <li><a href="#"> Discussions</a></li>
-          <li><a href="#"> Announcements</a></li>
-          <li><a href="#"> Pages</a></li>
-          <li><a href="#"> Files</a></li>
-          <li><a href="#"> Rubrics</a></li>
-          <li><a href="#"> Outcomes</a></li>
-          <li><a href="#"> Collaborations</a></li>
-          <li><a href="#"> Syllabus</a></li>
-          <li>
-            <a href="/Kanbas/Courses/Settings/CourseDetails/screen.html">
-              Settings</a
-            >
-          </li>
-        </ul>
+      <div class="wd-breadcrumb d-none d-md-inline-flex">
+        <!-- Fields to Add:
+        data-bs-toggle="collapse"
+        data-bs-target="#contentMenu"
+        aria-expanded="true"
+        aria-controls="collapseExample" -->
+        <button class="btn wd-menu-toggle">
+          <i class="fa-solid fa-bars fa-lg"></i>
+        </button>
+
+        <nav aria-label="breadcrumb d-inline-flex">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="#">CS4550.12631.202410</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+              <a href="#">Modules</a>
+            </li>
+          </ol>
+        </nav>
       </div>
 
-      <div class="wd-not-left-side flex-fill">
-        <div class="wd-middle-content flex-fill">
-          <div class="wd-middle-content-actions">
-            <button class="btn wd-button-standard">Collapse All</button>
-            <button class="btn wd-button-standard">View Progress</button>
-            <div class="dropdown d-inline-block">
-              <button
-                class="btn wd-button-standard dropdown-toggle"
-                type="button"
-                id="modulesActions"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+      <div class="wd-breadcrumb-divider d-none d-md-block">
+        <hr />
+      </div>
+
+      <div class="wd-after-breadcrumb">
+        <div class="wd-course-navigation-container d-none d-md-block">
+          <ul class="wd-course-navigation">
+            <li class="wd-submenu-active">
+              <a href="/Kanbas/Courses/Home/screen.html"> Home</a>
+            </li>
+            <li>
+              <a href="#"> Modules</a>
+            </li>
+            <li><a href="#"> Piazza</a></li>
+            <li><a href="#"> Zoom Meetings</a></li>
+            <li>
+              <a href="/Kanbas/Courses/Assignments/screen.html"> Assignments</a>
+            </li>
+            <li><a href="#"> Quizzes</a></li>
+            <li><a href="/Kanbas/Courses/Grades/screen.html"> Grades</a></li>
+            <li><a href="#"> People</a></li>
+            <li><a href="#"> Panopto Video</a></li>
+            <li><a href="#"> Discussions</a></li>
+            <li><a href="#"> Announcements</a></li>
+            <li><a href="#"> Pages</a></li>
+            <li><a href="#"> Files</a></li>
+            <li><a href="#"> Rubrics</a></li>
+            <li><a href="#"> Outcomes</a></li>
+            <li><a href="#"> Collaborations</a></li>
+            <li><a href="#"> Syllabus</a></li>
+            <li>
+              <a href="/Kanbas/Courses/Settings/CourseDetails/screen.html">
+                Settings</a
               >
-                <i class="fa-regular fa-circle-check text-success"></i> Publish
-                All
-              </button>
-              <div class="dropdown-menu" aria-labelledby="modulesActions">
-                <a class="dropdown-item" href="#">Option 1</a>
-                <a class="dropdown-item" href="#">Option 2</a>
-              </div>
-            </div>
-            <button class="btn wd-button-red">
-              <i class="fa-solid fa-plus"></i> Module
-            </button>
-            <button class="btn wd-button-standard">
-              <i class="fa fa-ellipsis-v m-1"></i>
-            </button>
-          </div>
-
-          <hr />
-
-          <div class="wd-middle-content-data">
-            <ul class="list-group wd-modules">
-              <li class="list-group-item">
-                <div class="wd-modules-section">
-                  <i class="fa-solid fa-grip-vertical"></i>
-                  <i
-                    class="fa-solid fa-caret-down p-1"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#contentWeek0"
-                    aria-expanded="true"
-                    aria-controls="collapseExample"
-                  ></i>
-                  Week 0 - INTRO
-                  <span class="float-end wd-modules-content-actions">
-                    <i class="fa fa-check-circle text-success"></i>
-                    <i class="fa fa-plus ms-2"></i>
-                    <i class="fa fa-ellipsis-v ms-2"></i>
-                  </span>
-                </div>
-                <ul class="list-group collapse show" id="contentWeek0">
-                  <li class="list-group-item">
-                    <i class="fa-solid fa-grip-vertical"></i>
-                    <div class="wd-modules-content-text">
-                      LEARNING OBJECTIVES
-                    </div>
-                    <span class="float-end wd-modules-content-actions">
-                      <i class="fa fa-check-circle text-success"></i>
-                      <i class="fa fa-ellipsis-v ms-2"></i>
-                    </span>
-                  </li>
-                  <li class="list-group-item">
-                    <i class="fa-solid fa-grip-vertical"></i>
-                    <div class="wd-modules-content-text wd-content-child">
-                      Introduction to the course
-                    </div>
-                    <span class="float-end wd-modules-content-actions">
-                      <i class="fa fa-check-circle text-success"></i>
-                      <i class="fa fa-ellipsis-v ms-2"></i>
-                    </span>
-                  </li>
-                  <li class="list-group-item">
-                    <i class="fa-solid fa-grip-vertical"></i>
-                    <div class="wd-modules-content-text wd-content-child">
-                      Learn what is Web Development
-                    </div>
-                    <span class="float-end wd-modules-content-actions">
-                      <i class="fa fa-check-circle text-success"></i>
-                      <i class="fa fa-ellipsis-v ms-2"></i>
-                    </span>
-                  </li>
-                  <li class="list-group-item">
-                    <i class="fa-solid fa-grip-vertical"></i>
-                    <div class="wd-modules-content-text wd-content-child">
-                      Creating a development environment
-                    </div>
-                    <span class="float-end wd-modules-content-actions">
-                      <i class="fa fa-check-circle text-success"></i>
-                      <i class="fa fa-ellipsis-v ms-2"></i>
-                    </span>
-                  </li>
-                  <li class="list-group-item">
-                    <i class="fa-solid fa-grip-vertical"></i>
-                    <div class="wd-modules-content-text wd-content-child">
-                      Creating a Web Application
-                    </div>
-                    <span class="float-end wd-modules-content-actions">
-                      <i class="fa fa-check-circle text-success"></i>
-                      <i class="fa fa-ellipsis-v ms-2"></i>
-                    </span>
-                  </li>
-                  <li class="list-group-item">
-                    <i class="fa-solid fa-grip-vertical"></i>
-                    <div class="wd-modules-content-text wd-content-child">
-                      Gettings started with the 1st assignment
-                    </div>
-                    <span class="float-end wd-modules-content-actions">
-                      <i class="fa fa-check-circle text-success"></i>
-                      <i class="fa fa-ellipsis-v ms-2"></i>
-                    </span>
-                  </li>
-
-                  <li class="list-group-item">
-                    <i class="fa-solid fa-grip-vertical"></i>
-                    <div class="wd-modules-content-text">READING</div>
-                    <span class="float-end wd-modules-content-actions">
-                      <i class="fa fa-check-circle text-success"></i>
-                      <i class="fa fa-ellipsis-v ms-2"></i>
-                    </span>
-                  </li>
-                  <li class="list-group-item">
-                    <i class="fa-solid fa-grip-vertical"></i>
-                    <div class="wd-modules-content-text wd-content-child">
-                      Full Stack Developer - Chapter 1 - Introduction
-                    </div>
-                    <span class="float-end wd-modules-content-actions">
-                      <i class="fa fa-check-circle text-success"></i>
-                      <i class="fa fa-ellipsis-v ms-2"></i>
-                    </span>
-                  </li>
-                  <li class="list-group-item">
-                    <i class="fa-solid fa-grip-vertical"></i>
-                    <div class="wd-modules-content-text wd-content-child">
-                      Full Stack Developer - Chapter 2 - Creating User
-                    </div>
-                    <span class="float-end wd-modules-content-actions">
-                      <i class="fa fa-check-circle text-success"></i>
-                      <i class="fa fa-ellipsis-v ms-2"></i>
-                    </span>
-                  </li>
-
-                  <li class="list-group-item">
-                    <i class="fa-solid fa-grip-vertical"></i>
-                    <div class="wd-modules-content-text">SLIDES</div>
-                    <span class="float-end wd-modules-content-actions">
-                      <i class="fa fa-check-circle text-success"></i>
-                      <i class="fa fa-ellipsis-v ms-2"></i>
-                    </span>
-                  </li>
-                  <li class="list-group-item">
-                    <i class="fa-solid fa-grip-vertical"></i>
-                    <a
-                      class="wd-modules-content-text wd-content-child"
-                      href="https://www.google.com"
-                      >Introduction to Web Development Links to an external
-                      site</a
-                    >
-                    <span class="float-end wd-modules-content-actions">
-                      <i class="fa fa-check-circle text-success"></i>
-                      <i class="fa fa-ellipsis-v ms-2"></i>
-                    </span>
-                  </li>
-                  <li class="list-group-item">
-                    <i class="fa-solid fa-grip-vertical"></i>
-                    <a
-                      class="wd-modules-content-text wd-content-child"
-                      href="https://www.facebook.com"
-                      >Creating a HTTP server with Node.js Links to an external
-                      site</a
-                    >
-                    <span class="float-end wd-modules-content-actions">
-                      <i class="fa fa-check-circle text-success"></i>
-                      <i class="fa fa-ellipsis-v ms-2"></i>
-                    </span>
-                  </li>
-                  <li class="list-group-item">
-                    <i class="fa-solid fa-grip-vertical"></i>
-                    <a
-                      class="wd-modules-content-text wd-content-child"
-                      href="https://www.linkedin.com"
-                      >Creating a React Application Links to an external site</a
-                    >
-                    <span class="float-end wd-modules-content-actions">
-                      <i class="fa fa-check-circle text-success"></i>
-                      <i class="fa fa-ellipsis-v ms-2"></i>
-                    </span>
-                  </li>
-                </ul>
-              </li>
-              <li class="list-group-item">
-                <div class="wd-modules-section">
-                  <i class="fa-solid fa-grip-vertical"></i>
-                  <i
-                    class="fa-solid fa-caret-down p-1"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#contentWeek1"
-                    aria-expanded="true"
-                    aria-controls="collapseExample"
-                  ></i>
-                  Week 1 - HTML
-                  <span class="float-end wd-modules-content-actions">
-                    <i class="fa fa-check-circle text-success"></i>
-                    <i class="fa fa-plus ms-2"></i>
-                    <i class="fa fa-ellipsis-v ms-2"></i>
-                  </span>
-                </div>
-                <ul class="list-group collapse show" id="contentWeek1">
-                  <li class="list-group-item">
-                    <i class="fa-solid fa-grip-vertical"></i>
-                    <div class="wd-modules-content-text">
-                      LEARNING OBJECTIVES
-                    </div>
-                    <span class="float-end wd-modules-content-actions">
-                      <i class="fa fa-check-circle text-success"></i>
-                      <i class="fa fa-ellipsis-v ms-2"></i>
-                    </span>
-                  </li>
-                  <li class="list-group-item">
-                    <i class="fa-solid fa-grip-vertical"></i>
-                    <div class="wd-modules-content-text wd-content-child">
-                      Learn how to create user interfaces with HTML
-                    </div>
-                    <span class="float-end wd-modules-content-actions">
-                      <i class="fa fa-check-circle text-success"></i>
-                      <i class="fa fa-ellipsis-v ms-2"></i>
-                    </span>
-                  </li>
-                  <li class="list-group-item">
-                    <i class="fa-solid fa-grip-vertical"></i>
-                    <div class="wd-modules-content-text wd-content-child">
-                      Keep working on assignment 1
-                    </div>
-                    <span class="float-end wd-modules-content-actions">
-                      <i class="fa fa-check-circle text-success"></i>
-                      <i class="fa fa-ellipsis-v ms-2"></i>
-                    </span>
-                  </li>
-                  <li class="list-group-item">
-                    <i class="fa-solid fa-grip-vertical"></i>
-                    <div class="wd-modules-content-text wd-content-child">
-                      Deploy the assignment to Netlify
-                    </div>
-                    <span class="float-end wd-modules-content-actions">
-                      <i class="fa fa-check-circle text-success"></i>
-                      <i class="fa fa-ellipsis-v ms-2"></i>
-                    </span>
-                  </li>
-
-                  <li class="list-group-item">
-                    <i class="fa-solid fa-grip-vertical"></i> READING
-                    <span class="float-end wd-modules-content-actions">
-                      <i class="fa fa-check-circle text-success"></i>
-                      <i class="fa fa-ellipsis-v ms-2"></i>
-                    </span>
-                  </li>
-                  <li class="list-group-item">
-                    <i class="fa-solid fa-grip-vertical"></i>
-                    <div class="wd-modules-content-text wd-content-child">
-                      Full Stack Developer - Chapter 1 - Introduction
-                    </div>
-                    <span class="float-end wd-modules-content-actions">
-                      <i class="fa fa-check-circle text-success"></i>
-                      <i class="fa fa-ellipsis-v ms-2"></i>
-                    </span>
-                  </li>
-                  <li class="list-group-item">
-                    <i class="fa-solid fa-grip-vertical"></i>
-                    <div class="wd-modules-content-text wd-content-child">
-                      Full Stack Developer - Chapter 2 - Creating User
-                      Interfaces With HTML
-                    </div>
-                    <span class="float-end wd-modules-content-actions">
-                      <i class="fa fa-check-circle text-success"></i>
-                      <i class="fa fa-ellipsis-v ms-2"></i>
-                    </span>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
+            </li>
+          </ul>
         </div>
-
-        <div class="wd-right-side d-none d-lg-block">
-          <div class="wd-course-status">
-            <h2>Course Status</h2>
-            <div class="wd-course-status-publish-toggle">
-              <div class="btn-group w-100">
-                <button class="btn wd-button-standard col-6">
-                  <i class="fa-solid fa-ban"></i> Unpublish
+        <div class="wd-not-left-side flex-fill">
+          <div class="wd-middle-content flex-fill">
+            <div class="wd-middle-content-actions">
+              <button class="btn wd-button-standard">Collapse All</button>
+              <button class="btn wd-button-standard">View Progress</button>
+              <div class="dropdown d-inline-block">
+                <button
+                  class="btn wd-button-standard dropdown-toggle"
+                  type="button"
+                  id="modulesActions"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="fa-regular fa-circle-check text-success"></i>
+                  Publish All
                 </button>
-                <button class="btn wd-button-published col-6">
-                  <i class="fa-solid fa-circle-check"></i> Published
-                </button>
+                <div class="dropdown-menu" aria-labelledby="modulesActions">
+                  <a class="dropdown-item" href="#">Option 1</a>
+                  <a class="dropdown-item" href="#">Option 2</a>
+                </div>
               </div>
+              <button class="btn wd-button-red">
+                <i class="fa-solid fa-plus"></i> Module
+              </button>
+              <button class="btn wd-button-standard">
+                <i class="fa fa-ellipsis-v m-1"></i>
+              </button>
             </div>
-
-            <div class="wd-course-status-actions d-grid gap-1">
-              <a class="btn btn-block wd-button-standard text-start" href="#">
-                <i class="fa-solid fa-file-import"></i> Import Existing
-                Content</a
-              >
-              <a class="btn btn-block wd-button-standard text-start" href="#">
-                <i class="fa-solid fa-c"></i> Import from Commons</a
-              >
-              <a class="btn btn-block wd-button-standard text-start" href="#">
-                <i class="fa-solid fa-crosshairs"></i> Choose Home Page</a
-              >
-              <a class="btn btn-block wd-button-standard text-start" href="#">
-                <i class="fa-solid fa-chart-simple"></i> View Course Stream</a
-              >
-              <a class="btn btn-block wd-button-standard text-start" href="#">
-                <i class="fa-solid fa-bullhorn"></i> New Announcement</a
-              >
-              <a class="btn btn-block wd-button-standard text-start" href="#">
-                <i class="fa-solid fa-chart-simple"></i> New Analytics</a
-              >
-              <a class="btn btn-block wd-button-standard text-start" href="#"
-                ><i class="fa-regular fa-bell"></i> View Course Notifications</a
-              >
+            <hr />
+            <div class="wd-middle-content-data">
+              <ul class="list-group wd-modules">
+                <li class="list-group-item">
+                  <div class="wd-modules-section">
+                    <i class="fa-solid fa-grip-vertical"></i>
+                    <i
+                      class="fa-solid fa-caret-down p-1"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#contentWeek0"
+                      aria-expanded="true"
+                      aria-controls="collapseExample"
+                    ></i>
+                    Week 0 - INTRO
+                    <span class="float-end wd-modules-content-actions">
+                      <i class="fa fa-check-circle text-success"></i>
+                      <i class="fa fa-plus ms-2"></i>
+                      <i class="fa fa-ellipsis-v ms-2"></i>
+                    </span>
+                  </div>
+                  <ul class="list-group collapse show" id="contentWeek0">
+                    <li class="list-group-item">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <div class="wd-modules-content-text">
+                        LEARNING OBJECTIVES
+                      </div>
+                      <span class="float-end wd-modules-content-actions">
+                        <i class="fa fa-check-circle text-success"></i>
+                        <i class="fa fa-ellipsis-v ms-2"></i>
+                      </span>
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <div class="wd-modules-content-text wd-content-child">
+                        Introduction to the course
+                      </div>
+                      <span class="float-end wd-modules-content-actions">
+                        <i class="fa fa-check-circle text-success"></i>
+                        <i class="fa fa-ellipsis-v ms-2"></i>
+                      </span>
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <div class="wd-modules-content-text wd-content-child">
+                        Learn what is Web Development
+                      </div>
+                      <span class="float-end wd-modules-content-actions">
+                        <i class="fa fa-check-circle text-success"></i>
+                        <i class="fa fa-ellipsis-v ms-2"></i>
+                      </span>
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <div class="wd-modules-content-text wd-content-child">
+                        Creating a development environment
+                      </div>
+                      <span class="float-end wd-modules-content-actions">
+                        <i class="fa fa-check-circle text-success"></i>
+                        <i class="fa fa-ellipsis-v ms-2"></i>
+                      </span>
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <div class="wd-modules-content-text wd-content-child">
+                        Creating a Web Application
+                      </div>
+                      <span class="float-end wd-modules-content-actions">
+                        <i class="fa fa-check-circle text-success"></i>
+                        <i class="fa fa-ellipsis-v ms-2"></i>
+                      </span>
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <div class="wd-modules-content-text wd-content-child">
+                        Gettings started with the 1st assignment
+                      </div>
+                      <span class="float-end wd-modules-content-actions">
+                        <i class="fa fa-check-circle text-success"></i>
+                        <i class="fa fa-ellipsis-v ms-2"></i>
+                      </span>
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <div class="wd-modules-content-text">READING</div>
+                      <span class="float-end wd-modules-content-actions">
+                        <i class="fa fa-check-circle text-success"></i>
+                        <i class="fa fa-ellipsis-v ms-2"></i>
+                      </span>
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <div class="wd-modules-content-text wd-content-child">
+                        Full Stack Developer - Chapter 1 - Introduction
+                      </div>
+                      <span class="float-end wd-modules-content-actions">
+                        <i class="fa fa-check-circle text-success"></i>
+                        <i class="fa fa-ellipsis-v ms-2"></i>
+                      </span>
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <div class="wd-modules-content-text wd-content-child">
+                        Full Stack Developer - Chapter 2 - Creating User
+                      </div>
+                      <span class="float-end wd-modules-content-actions">
+                        <i class="fa fa-check-circle text-success"></i>
+                        <i class="fa fa-ellipsis-v ms-2"></i>
+                      </span>
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <div class="wd-modules-content-text">SLIDES</div>
+                      <span class="float-end wd-modules-content-actions">
+                        <i class="fa fa-check-circle text-success"></i>
+                        <i class="fa fa-ellipsis-v ms-2"></i>
+                      </span>
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <a
+                        class="wd-modules-content-text wd-content-child"
+                        href="https://www.google.com"
+                        >Introduction to Web Development Links to an external
+                        site</a
+                      >
+                      <span class="float-end wd-modules-content-actions">
+                        <i class="fa fa-check-circle text-success"></i>
+                        <i class="fa fa-ellipsis-v ms-2"></i>
+                      </span>
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <a
+                        class="wd-modules-content-text wd-content-child"
+                        href="https://www.facebook.com"
+                        >Creating a HTTP server with Node.js Links to an
+                        external site</a
+                      >
+                      <span class="float-end wd-modules-content-actions">
+                        <i class="fa fa-check-circle text-success"></i>
+                        <i class="fa fa-ellipsis-v ms-2"></i>
+                      </span>
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <a
+                        class="wd-modules-content-text wd-content-child"
+                        href="https://www.linkedin.com"
+                        >Creating a React Application Links to an external
+                        site</a
+                      >
+                      <span class="float-end wd-modules-content-actions">
+                        <i class="fa fa-check-circle text-success"></i>
+                        <i class="fa fa-ellipsis-v ms-2"></i>
+                      </span>
+                    </li>
+                  </ul>
+                </li>
+                <li class="list-group-item">
+                  <div class="wd-modules-section">
+                    <i class="fa-solid fa-grip-vertical"></i>
+                    <i
+                      class="fa-solid fa-caret-down p-1"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#contentWeek1"
+                      aria-expanded="true"
+                      aria-controls="collapseExample"
+                    ></i>
+                    Week 1 - HTML
+                    <span class="float-end wd-modules-content-actions">
+                      <i class="fa fa-check-circle text-success"></i>
+                      <i class="fa fa-plus ms-2"></i>
+                      <i class="fa fa-ellipsis-v ms-2"></i>
+                    </span>
+                  </div>
+                  <ul class="list-group collapse show" id="contentWeek1">
+                    <li class="list-group-item">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <div class="wd-modules-content-text">
+                        LEARNING OBJECTIVES
+                      </div>
+                      <span class="float-end wd-modules-content-actions">
+                        <i class="fa fa-check-circle text-success"></i>
+                        <i class="fa fa-ellipsis-v ms-2"></i>
+                      </span>
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <div class="wd-modules-content-text wd-content-child">
+                        Learn how to create user interfaces with HTML
+                      </div>
+                      <span class="float-end wd-modules-content-actions">
+                        <i class="fa fa-check-circle text-success"></i>
+                        <i class="fa fa-ellipsis-v ms-2"></i>
+                      </span>
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <div class="wd-modules-content-text wd-content-child">
+                        Keep working on assignment 1
+                      </div>
+                      <span class="float-end wd-modules-content-actions">
+                        <i class="fa fa-check-circle text-success"></i>
+                        <i class="fa fa-ellipsis-v ms-2"></i>
+                      </span>
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <div class="wd-modules-content-text wd-content-child">
+                        Deploy the assignment to Netlify
+                      </div>
+                      <span class="float-end wd-modules-content-actions">
+                        <i class="fa fa-check-circle text-success"></i>
+                        <i class="fa fa-ellipsis-v ms-2"></i>
+                      </span>
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fa-solid fa-grip-vertical"></i> READING
+                      <span class="float-end wd-modules-content-actions">
+                        <i class="fa fa-check-circle text-success"></i>
+                        <i class="fa fa-ellipsis-v ms-2"></i>
+                      </span>
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <div class="wd-modules-content-text wd-content-child">
+                        Full Stack Developer - Chapter 1 - Introduction
+                      </div>
+                      <span class="float-end wd-modules-content-actions">
+                        <i class="fa fa-check-circle text-success"></i>
+                        <i class="fa fa-ellipsis-v ms-2"></i>
+                      </span>
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <div class="wd-modules-content-text wd-content-child">
+                        Full Stack Developer - Chapter 2 - Creating User
+                        Interfaces With HTML
+                      </div>
+                      <span class="float-end wd-modules-content-actions">
+                        <i class="fa fa-check-circle text-success"></i>
+                        <i class="fa fa-ellipsis-v ms-2"></i>
+                      </span>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
             </div>
           </div>
-
-          <div class="wd-coming-up">
-            <h2>
-              Comming Up
-              <div class="wd-h2-link">
-                <i class="fa-solid fa-calendar-days"></i>
-                <a href="#">View Calendar</a>
+          <div class="wd-right-side d-none d-lg-block">
+            <div class="wd-course-status">
+              <h2>Course Status</h2>
+              <div class="wd-course-status-publish-toggle">
+                <div class="btn-group w-100">
+                  <button class="btn wd-button-standard col-6">
+                    <i class="fa-solid fa-ban"></i> Unpublish
+                  </button>
+                  <button class="btn wd-button-published col-6">
+                    <i class="fa-solid fa-circle-check"></i> Published
+                  </button>
+                </div>
               </div>
-            </h2>
-
-            <ul class="list-group">
-              <li class="list-group-item d-inline-flex">
-                <div class="wd-event-icon">
+              <div class="wd-course-status-actions d-grid gap-1">
+                <a class="btn btn-block wd-button-standard text-start" href="#">
+                  <i class="fa-solid fa-file-import"></i> Import Existing
+                  Content</a
+                >
+                <a class="btn btn-block wd-button-standard text-start" href="#">
+                  <i class="fa-solid fa-c"></i> Import from Commons</a
+                >
+                <a class="btn btn-block wd-button-standard text-start" href="#">
+                  <i class="fa-solid fa-crosshairs"></i> Choose Home Page</a
+                >
+                <a class="btn btn-block wd-button-standard text-start" href="#">
+                  <i class="fa-solid fa-chart-simple"></i> View Course Stream</a
+                >
+                <a class="btn btn-block wd-button-standard text-start" href="#">
+                  <i class="fa-solid fa-bullhorn"></i> New Announcement</a
+                >
+                <a class="btn btn-block wd-button-standard text-start" href="#">
+                  <i class="fa-solid fa-chart-simple"></i> New Analytics</a
+                >
+                <a class="btn btn-block wd-button-standard text-start" href="#"
+                  ><i class="fa-regular fa-bell"></i> View Course
+                  Notifications</a
+                >
+              </div>
+            </div>
+            <div class="wd-coming-up">
+              <h2>
+                Comming Up
+                <div class="wd-h2-link">
                   <i class="fa-solid fa-calendar-days"></i>
+                  <a href="#">View Calendar</a>
                 </div>
-                <div class="wd-event-details">
-                  <a href="#" class="wd-event-link"
-                    >Lecture CS4550.12631.202410</a
-                  >
-                  <p class="wd-event-time">Sept 7 at 11:45am</p>
-                </div>
-              </li>
-              <li class="list-group-item d-inline-flex">
-                <div class="wd-event-icon">
-                  <i class="fa-solid fa-calendar-days"></i>
-                </div>
-                <div class="wd-event-details">
-                  <a href="#" class="wd-event-link"
-                    >Lecture CS4550.12631.202410</a
-                  >
-                  <p class="wd-event-time">Sept 11 at 11:45am</p>
-                </div>
-              </li>
-              <li class="list-group-item d-inline-flex">
-                <div class="wd-event-icon">
-                  <i class="fa-solid fa-calendar-days"></i>
-                </div>
-                <div class="wd-event-details">
-                  <a href="#" class="wd-event-link">CS5610 06 SP23 Lecture</a>
-                  <p class="wd-event-time">Sept 11 at 6pm</p>
-                </div>
-              </li>
-            </ul>
+              </h2>
+              <ul class="list-group">
+                <li class="list-group-item d-inline-flex">
+                  <div class="wd-event-icon">
+                    <i class="fa-solid fa-calendar-days"></i>
+                  </div>
+                  <div class="wd-event-details">
+                    <a href="#" class="wd-event-link"
+                      >Lecture CS4550.12631.202410</a
+                    >
+                    <p class="wd-event-time">Sept 7 at 11:45am</p>
+                  </div>
+                </li>
+                <li class="list-group-item d-inline-flex">
+                  <div class="wd-event-icon">
+                    <i class="fa-solid fa-calendar-days"></i>
+                  </div>
+                  <div class="wd-event-details">
+                    <a href="#" class="wd-event-link"
+                      >Lecture CS4550.12631.202410</a
+                    >
+                    <p class="wd-event-time">Sept 11 at 11:45am</p>
+                  </div>
+                </li>
+                <li class="list-group-item d-inline-flex">
+                  <div class="wd-event-icon">
+                    <i class="fa-solid fa-calendar-days"></i>
+                  </div>
+                  <div class="wd-event-details">
+                    <a href="#" class="wd-event-link">CS5610 06 SP23 Lecture</a>
+                    <p class="wd-event-time">Sept 11 at 6pm</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
