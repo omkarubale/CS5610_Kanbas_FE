@@ -126,3 +126,28 @@
     background-color: white;
     color: #d41a2b;
   }
+
+  .wd-courses-navigation-mobile-content {
+    
+  }
+
+    .wd-course-navigation-mobile {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 0;
+    }
+
+    .wd-course-navigation-mobile a {
+      color: #d41a2b;
+    }
+
+    .wd-course-navigation-mobile i {
+      width: 24px;
+      color: #d41a2b;
+      text-align: center;
+      margin-right: 4px;
+    }
+
+    .wd-submenu-active-mobile {
+      font-weight: bold;
+    }
