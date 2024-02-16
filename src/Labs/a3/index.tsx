@@ -1,4 +1,5 @@
 import Classes from "./Classes";
+import Styles from "./Styles";
 import JavaScript from "./JavaScript";
 import Add from "./routing/Add";
 import PathParameters from "./routing/PathParameters";
@@ -10,6 +11,7 @@ function Assignment3() {
       <JavaScript />
       <PathParameters />
       <Classes />
+      <Styles />
     </div>
   );
 }
