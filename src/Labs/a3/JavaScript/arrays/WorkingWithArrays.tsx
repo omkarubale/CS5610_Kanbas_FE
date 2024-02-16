@@ -1,4 +1,9 @@
+import Destructing from "../json/Destructing";
+import FunctionDestructing from "../json/FunctionDestructing";
+import House from "../json/House";
 import JsonStringify from "../json/JsonStringify";
+import Spreading from "../json/Spreading";
+import TemplateLiterals from "../string/TemplateLiterals";
 import AddingAndRemovingDataToFromArrays from "./AddingAndRemovingDataToFromArrays";
 import ArrayIndexAndLength from "./ArrayIndexAndLength";
 import FilterFunction from "./FilterFunction";
@@ -39,6 +44,11 @@ function WorkingWithArrays() {
       <FindFunction />
       <FindIndexFunction />
       <FilterFunction />
+      <TemplateLiterals />
+      <House />
+      <Spreading />
+      <Destructing />
+      <FunctionDestructing />
     </>
   );
 }
