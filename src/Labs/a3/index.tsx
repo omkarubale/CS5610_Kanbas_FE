@@ -5,6 +5,7 @@ import Add from "./routing/Add";
 import PathParameters from "./routing/PathParameters";
 import ConditionalOutput from "./ConditionalOutput";
 import Highlight from "./Highlight";
+import TodoList from "./todos/TodoList";
 
 function Assignment3() {
   return (
@@ -21,6 +22,7 @@ function Assignment3() {
         inventore sed explicabo facilis magni perferendis illum. Pariatur, quae
         ipsam?
       </Highlight>
+      <TodoList />
     </div>
   );
 }
