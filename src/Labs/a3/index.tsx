@@ -3,6 +3,7 @@ import Styles from "./Styles";
 import JavaScript from "./JavaScript";
 import Add from "./routing/Add";
 import PathParameters from "./routing/PathParameters";
+import ConditionalOutput from "./ConditionalOutput";
 
 function Assignment3() {
   return (
@@ -12,6 +13,7 @@ function Assignment3() {
       <PathParameters />
       <Classes />
       <Styles />
+      <ConditionalOutput />
     </div>
   );
 }
