@@ -10,9 +10,7 @@ import {
   FaRegQuestionCircle,
   FaLongArrowAltLeft,
   FaBars,
-  FaChevronDown,
   FaGlasses,
-  FaHome,
   FaInbox,
 } from "react-icons/fa";
 import { FaC } from "react-icons/fa6";
@@ -66,6 +64,7 @@ function KanbasNavigation() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
+
   const handleShow = () => setShow(true);
 
   return (
