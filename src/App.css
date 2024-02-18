@@ -18,6 +18,10 @@ table td {
 }
 
 /* Buttons */
+.btn svg {
+  vertical-align: middle;
+}
+
 .wd-button-standard {
   border: 1px solid #c7cdd1 !important;
   border-radius: 3px !important;
