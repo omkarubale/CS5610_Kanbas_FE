@@ -1,0 +1,42 @@
+/* Breadcrumb */
+.wd-breadcrumb {
+  margin: 20px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.wd-breadcrumb a {
+  color: rgb(181, 40, 40);
+}
+
+.wd-breadcrumb li.active a {
+  color: rgb(45, 59, 69);
+}
+
+.wd-breadcrumb > nav {
+  --bs-breadcrumb-divider: ">";
+}
+
+.wd-breadcrumb .wd-menu-toggle {
+  display: contents;
+  margin-right: 20px;
+  color: rgb(181, 40, 40);
+  height: 24px;
+  width: 26px;
+}
+
+.wd-menu-toggle svg {
+  margin-right: 20px;
+  font-size: 1.25em;
+  font-weight: 100;
+}
+
+/* Breadcrumb Divider */
+.wd-breadcrumb-divider {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.wd-breadcrumb-divider > hr {
+  margin-top: 0;
+}
