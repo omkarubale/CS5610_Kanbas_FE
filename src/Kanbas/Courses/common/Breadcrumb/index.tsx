@@ -1,12 +1,14 @@
 import { courses } from "../../../Database";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { FaBars } from "react-icons/fa6";
 import "./index.css";
+import { courseNavigationLinks } from "../../Navigation";
 
 function Breadcrumb() {
   const { courseId } = useParams();
   const course = courses.find((course) => course._id === courseId);
+  const { pathname } = useLocation();
 
   return (
     <>
@@ -27,9 +29,14 @@ function Breadcrumb() {
             <li className="breadcrumb-item">
               <a href="">{course?.name}</a>
             </li>
-            {/* <li className="breadcrumb-item active" aria-current="page">
-              <a href="#">Modules</a>
-            </li> */}
+            {courseNavigationLinks.map(
+              (courseNavigationLink, index) =>
+                pathname.includes(courseNavigationLink.link) && (
+                  <li className="breadcrumb-item active" aria-current="page">
+                    <a href="#">{courseNavigationLink.title}</a>
+                  </li>
+                )
+            )}
           </ol>
         </nav>
       </div>
