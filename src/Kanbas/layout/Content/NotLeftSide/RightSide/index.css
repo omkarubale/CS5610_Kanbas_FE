@@ -1,0 +1,37 @@
+/* Right Side */
+.wd-right-side {
+  width: 250px;
+  min-width: 250px;
+  margin-right: 16px;
+}
+
+/* Right Side Header */
+.wd-right-side h2 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 16px;
+}
+
+.wd-right-side h2::after {
+  content: "";
+  display: inline-block;
+  height: 1px;
+  background: gray;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.wd-right-side .wd-h2-link {
+  float: right;
+  padding-top: 2px;
+  font-size: 0.8775rem;
+  font-weight: 400;
+}
+
+.wd-right-side .wd-h2-link i {
+  color: #2e3a45;
+}
+
+.wd-right-side .wd-h2-link a {
+  color: rgb(181, 40, 40);
+}

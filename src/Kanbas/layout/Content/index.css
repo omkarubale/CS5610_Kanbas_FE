@@ -1,0 +1,11 @@
+/* Content */
+.wd-content {
+  margin-left: 0px;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .wd-content {
+    margin-left: 85px;
+  }
+}

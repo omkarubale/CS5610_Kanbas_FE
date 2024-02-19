@@ -4,6 +4,7 @@ import "./index.css";
 import CourseNavigation from "./Navigation";
 import Modules from "./Modules";
 import Breadcrumb from "./common/Breadcrumb";
+import NotLeftSide from "../layout/Content/NotLeftSide";
 
 function Courses() {
   return (
@@ -14,7 +15,7 @@ function Courses() {
         <div className="wd-course-navigation-container">
           <CourseNavigation />
         </div>
-        <div className="wd-not-left-side flex-fill">
+        <NotLeftSide>
           <Routes>
             <Route path="/" element={<Navigate to="Home" />} />
             <Route path="Home" element={<h1>Home</h1>} />
@@ -30,7 +31,7 @@ function Courses() {
               <div className="middle-content flex-fill"></div>
               <div className="wd-right-side d-none d-lg-block"></div> */}
           </Routes>
-        </div>
+        </NotLeftSide>
       </div>
     </>
   );

@@ -1,8 +1,0 @@
-.wd-content {
-  margin-left: 0px;
-  display: block;
-
-  @media (min-width: 768px) { 
-    margin-left: 85px;
-  }
-}
