@@ -13,7 +13,7 @@ function Courses() {
       <Breadcrumb />
 
       <div className="wd-after-breadcrumb">
-        <div className="wd-course-navigation-container">
+        <div className="wd-course-navigation-container d-none d-md-block">
           <CourseNavigation />
         </div>
         <NotLeftSide>
