@@ -1,12 +1,14 @@
-import ModuleList from "./List";
-import "../../layout/common.css";
+import ModuleList from "./../Modules/List";
 import { FaEllipsisV, FaPlus, FaRegCheckCircle } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
 import MiddleContent from "../../layout/Content/NotLeftSide/MiddleContent";
 import MiddleContentActions from "../../layout/Content/NotLeftSide/MiddleContent/MiddleContentActions";
 import MiddleContentData from "../../layout/Content/NotLeftSide/MiddleContent/MiddleContentData";
+import RightSide from "../../layout/Content/NotLeftSide/RightSide";
+import CourseStatus from "./CourseStatus";
+import ComingUp from "./ComingUp";
 
-function Modules() {
+function CoursesHome() {
   return (
     <>
       <MiddleContent>
@@ -45,7 +47,13 @@ function Modules() {
           <ModuleList />
         </MiddleContentData>
       </MiddleContent>
+
+      <RightSide>
+        <CourseStatus />
+        <ComingUp />
+      </RightSide>
     </>
   );
 }
-export default Modules;
+
+export default CoursesHome;

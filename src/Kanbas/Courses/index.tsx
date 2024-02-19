@@ -5,6 +5,7 @@ import CourseNavigation from "./Navigation";
 import Modules from "./Modules";
 import Breadcrumb from "./common/Breadcrumb";
 import NotLeftSide from "../layout/Content/NotLeftSide";
+import CoursesHome from "./Home";
 
 function Courses() {
   return (
@@ -18,7 +19,7 @@ function Courses() {
         <NotLeftSide>
           <Routes>
             <Route path="/" element={<Navigate to="Home" />} />
-            <Route path="Home" element={<h1>Home</h1>} />
+            <Route path="Home" element={<CoursesHome />} />
             <Route path="Modules" element={<Modules />} />
             <Route path="Piazza" element={<h1>Piazza</h1>} />
             <Route path="Assignments" element={<h1>Assignments</h1>} />
@@ -28,8 +29,8 @@ function Courses() {
             />
             <Route path="Grades" element={<h1>Grades</h1>} />
             {/* Inside each, we need this structure:
-              <div className="middle-content flex-fill"></div>
-              <div className="wd-right-side d-none d-lg-block"></div> */}
+              <MiddleContent></MiddleContent>
+              optional : <RightSide></RightSide> */}
           </Routes>
         </NotLeftSide>
       </div>

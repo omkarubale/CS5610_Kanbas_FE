@@ -1,0 +1,17 @@
+/* Course Status */
+/* .wd-course-status {
+} */
+
+.wd-course-status-publish-toggle {
+    margin-bottom: 8px;
+  }
+
+  /* .wd-course-status-actions {
+  } */
+
+    .wd-course-status-actions svg {
+      width: 20px;
+      text-align: center;
+      margin-right: 4px;
+      margin-left: -4px;
+    }

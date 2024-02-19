@@ -10,6 +10,7 @@
   font-size: 1rem;
   font-weight: bold;
   margin-top: 16px;
+  line-height: 1;
 }
 
 .wd-right-side h2::after {

@@ -1,0 +1,36 @@
+/* .wd-coming-up {
+} */
+
+.wd-coming-up h2 {
+  margin-bottom: 0;
+}
+
+.wd-coming-up .list-group-item {
+  border: none;
+  padding-left: 0;
+  padding-right: 8px;
+}
+
+.wd-coming-up .wd-event-icon {
+  display: flex;
+  padding-top: 4px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.wd-coming-up .wd-event-icon svg {
+  color: #2e3a45;
+}
+
+.wd-coming-up .wd-event-details {
+  font-size: 0.875rem;
+}
+
+.wd-coming-up .wd-event-details .wd-event-link {
+  color: rgb(181, 40, 40);
+}
+
+.wd-coming-up .wd-event-details .wd-event-time {
+  color: rgb(45, 59, 69);
+  margin-bottom: 0;
+}

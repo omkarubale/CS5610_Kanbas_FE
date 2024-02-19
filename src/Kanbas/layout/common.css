@@ -1,0 +1,30 @@
+/* Common */
+.align-center {
+  align-items: center;
+}
+
+/* Buttons */
+.btn svg {
+  vertical-align: middle;
+}
+
+.wd-button-standard {
+  border: 1px solid #c7cdd1 !important;
+  border-radius: 3px !important;
+  color: #2d3b45 !important;
+  background: #f5f5f5 !important;
+}
+
+.wd-button-red {
+  border: 1px solid #d41a2b !important;
+  border-radius: 3px !important;
+  color: #ffffff !important;
+  background: #d41a2b !important;
+}
+
+.wd-button-published {
+  border: 1px solid #c7cdd1 !important;
+  border-radius: 3px !important;
+  color: #fdfdfd !important;
+  background: #9ec199 !important;
+}
