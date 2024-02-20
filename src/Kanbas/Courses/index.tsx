@@ -8,6 +8,7 @@ import NotLeftSide from "../layout/Content/NotLeftSide";
 import CoursesHome from "./Home";
 import Assignments from "./Assignments";
 import AssignmentEditor from "./Assignments/Editor";
+import Grades from "./Grades";
 
 function Courses() {
   return (
@@ -20,6 +21,9 @@ function Courses() {
         </div>
         <NotLeftSide>
           <Routes>
+            {/* Inside each, we need this structure:
+                <MiddleContent></MiddleContent>
+                optional : <RightSide></RightSide> */}
             <Route path="/" element={<Navigate to="Home" />} />
             <Route path="Home" element={<CoursesHome />} />
             <Route path="Modules" element={<Modules />} />
@@ -28,10 +32,7 @@ function Courses() {
               path="Assignments/:assignmentId"
               element={<AssignmentEditor />}
             />
-            <Route path="Grades" element={<h1>Grades</h1>} />
-            {/* Inside each, we need this structure:
-              <MiddleContent></MiddleContent>
-              optional : <RightSide></RightSide> */}
+            <Route path="Grades" element={<Grades />} />
           </Routes>
         </NotLeftSide>
       </div>
