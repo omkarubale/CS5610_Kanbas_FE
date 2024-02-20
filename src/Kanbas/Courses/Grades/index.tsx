@@ -14,6 +14,7 @@ import Table from "react-bootstrap/Table";
 import { FaGear } from "react-icons/fa6";
 import { assignments, enrollments, grades, users } from "../../Database";
 import "./index.css";
+import { Link } from "react-router-dom";
 
 function Grades() {
   const { courseId } = useParams();
@@ -77,14 +78,14 @@ function Grades() {
                   className={index % 2 == 0 ? "table-light" : "table-secondary"}
                 >
                   <th scope="row">
-                    <a
-                      href="#"
+                    <Link
+                      to="#"
                       className="wd-grades-grid-student text-truncate"
                     >
                       {users
                         .filter((user) => user._id == enrollment.user)
                         .map((u) => u.firstName + " " + u.lastName)}
-                    </a>
+                    </Link>
                   </th>
                   {courseAssignments.map((assignment) => (
                     <td>

@@ -1,5 +1,6 @@
 import { FaCalendarAlt } from "react-icons/fa";
 import "./index.css";
+import { Link } from "react-router-dom";
 
 function ComingUp() {
   return (
@@ -8,7 +9,7 @@ function ComingUp() {
         Comming Up
         <div className="wd-h2-link">
           <FaCalendarAlt className="me-1" />
-          <a href="#">View Calendar</a>
+          <Link to="#">View Calendar</Link>
         </div>
       </h2>
       <ul className="list-group">
@@ -17,9 +18,9 @@ function ComingUp() {
             <FaCalendarAlt />
           </div>
           <div className="wd-event-details">
-            <a href="#" className="wd-event-link">
+            <Link to="#" className="wd-event-link">
               Lecture CS4550.12631.202410
-            </a>
+            </Link>
             <p className="wd-event-time">Sept 7 at 11:45am</p>
           </div>
         </li>
@@ -28,9 +29,9 @@ function ComingUp() {
             <FaCalendarAlt />
           </div>
           <div className="wd-event-details">
-            <a href="#" className="wd-event-link">
+            <Link to="#" className="wd-event-link">
               Lecture CS4550.12631.202410
-            </a>
+            </Link>
             <p className="wd-event-time">Sept 11 at 11:45am</p>
           </div>
         </li>
@@ -39,9 +40,9 @@ function ComingUp() {
             <FaCalendarAlt />
           </div>
           <div className="wd-event-details">
-            <a href="#" className="wd-event-link">
+            <Link to="#" className="wd-event-link">
               CS5610 06 SP23 Lecture
-            </a>
+            </Link>
             <p className="wd-event-time">Sept 11 at 6pm</p>
           </div>
         </li>

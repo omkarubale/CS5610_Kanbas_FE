@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import MiddleContent from "../../layout/Content/NotLeftSide/MiddleContent";
 import MiddleContentActions from "../../layout/Content/NotLeftSide/MiddleContent/MiddleContentActions";
 import MiddleContentData from "../../layout/Content/NotLeftSide/MiddleContent/MiddleContentData";
+import { Link } from "react-router-dom";
 
 function Modules() {
   return (
@@ -24,12 +25,12 @@ function Modules() {
               Publish All
             </Button>
             <div className="dropdown-menu" aria-labelledby="modulesActions">
-              <a className="dropdown-item" href="#">
+              <Link className="dropdown-item" to="#">
                 Option 1
-              </a>
-              <a className="dropdown-item" href="#">
+              </Link>
+              <Link className="dropdown-item" to="#">
                 Option 2
-              </a>
+              </Link>
             </div>
           </div>
           <Button className="wd-button-red">

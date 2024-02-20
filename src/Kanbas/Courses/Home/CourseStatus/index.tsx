@@ -10,6 +10,7 @@ import {
 import "./index.css";
 import { FaC } from "react-icons/fa6";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 
 function CourseStatus() {
   return (
@@ -29,27 +30,27 @@ function CourseStatus() {
           </div>
         </div>
         <div className="wd-course-status-actions d-grid gap-1">
-          <a className="btn btn-block wd-button-standard text-start" href="#">
+          <Link className="btn btn-block wd-button-standard text-start" to="#">
             <FaFileImport /> Import Existing Content
-          </a>
-          <a className="btn btn-block wd-button-standard text-start" href="#">
+          </Link>
+          <Link className="btn btn-block wd-button-standard text-start" to="#">
             <FaC /> Import from Commons
-          </a>
-          <a className="btn btn-block wd-button-standard text-start" href="#">
+          </Link>
+          <Link className="btn btn-block wd-button-standard text-start" to="#">
             <FaCrosshairs /> Choose Home Page
-          </a>
-          <a className="btn btn-block wd-button-standard text-start" href="#">
+          </Link>
+          <Link className="btn btn-block wd-button-standard text-start" to="#">
             <FaChartBar /> View Course Stream
-          </a>
-          <a className="btn btn-block wd-button-standard text-start" href="#">
+          </Link>
+          <Link className="btn btn-block wd-button-standard text-start" to="#">
             <FaBullhorn /> New Announcement
-          </a>
-          <a className="btn btn-block wd-button-standard text-start" href="#">
+          </Link>
+          <Link className="btn btn-block wd-button-standard text-start" to="#">
             <FaChartBar /> New Analytics
-          </a>
-          <a className="btn btn-block wd-button-standard text-start" href="#">
+          </Link>
+          <Link className="btn btn-block wd-button-standard text-start" to="#">
             <FaBell /> View Course Notifications
-          </a>
+          </Link>
         </div>
       </div>
     </>

@@ -61,7 +61,8 @@ function AssignmentList() {
                           {assignment.title}
                         </Link>
                         <p className="wd-assignments-grid-content-details">
-                          <a href="#"> Multiple Modules</a> | Not Available yet
+                          <Link to="#"> Multiple Modules</Link> | Not Available
+                          yet
                         </p>
                       </div>
                       <span className="float-end wd-assignments-grid-content-actions">

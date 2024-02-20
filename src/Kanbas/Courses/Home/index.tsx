@@ -7,6 +7,7 @@ import MiddleContentData from "../../layout/Content/NotLeftSide/MiddleContent/Mi
 import RightSide from "../../layout/Content/NotLeftSide/RightSide";
 import CourseStatus from "./CourseStatus";
 import ComingUp from "./ComingUp";
+import { Link } from "react-router-dom";
 
 function CoursesHome() {
   return (
@@ -27,12 +28,12 @@ function CoursesHome() {
               Publish All
             </Button>
             <div className="dropdown-menu" aria-labelledby="modulesActions">
-              <a className="dropdown-item" href="#">
+              <Link className="dropdown-item" to="#">
                 Option 1
-              </a>
-              <a className="dropdown-item" href="#">
+              </Link>
+              <Link className="dropdown-item" to="#">
                 Option 2
-              </a>
+              </Link>
             </div>
           </div>
           <Button className="wd-button-red">

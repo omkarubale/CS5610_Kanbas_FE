@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import { FaBars } from "react-icons/fa6";
 import "./index.css";
 import { courseNavigationLinks } from "../../Navigation";
+import { Link } from "react-router-dom";
 
 function Breadcrumb() {
   const { courseId } = useParams();
@@ -33,7 +34,7 @@ function Breadcrumb() {
               (courseNavigationLink, index) =>
                 pathname.includes(courseNavigationLink.link) && (
                   <li className="breadcrumb-item active" aria-current="page">
-                    <a href="#">{courseNavigationLink.title}</a>
+                    <Link to="#">{courseNavigationLink.title}</Link>
                   </li>
                 )
             )}
