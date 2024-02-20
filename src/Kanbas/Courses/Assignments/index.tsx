@@ -1,4 +1,3 @@
-import "../../layout/common.css";
 import { FaEllipsisV, FaPlus } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
 import MiddleContent from "../../layout/Content/NotLeftSide/MiddleContent";

@@ -4,6 +4,7 @@ import Dashboard from "./Dashboard";
 import Courses from "./Courses";
 import "./index.css";
 import Content from "./layout/Content";
+import "./layout/common.css";
 
 function Kanbas() {
   return (

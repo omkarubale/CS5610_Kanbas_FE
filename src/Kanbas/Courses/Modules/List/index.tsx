@@ -8,7 +8,6 @@ import {
   FaGripVertical,
 } from "react-icons/fa";
 import { useParams } from "react-router";
-import "../../../layout/common.css";
 
 function ModuleList() {
   const { courseId } = useParams();
