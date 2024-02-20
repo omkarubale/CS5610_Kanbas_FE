@@ -8,6 +8,8 @@ import {
   FaGripVertical,
 } from "react-icons/fa";
 import { useParams } from "react-router";
+import "../../../layout/common.css";
+
 function ModuleList() {
   const { courseId } = useParams();
   const modulesList = modules.filter((module) => module.course === courseId);
@@ -25,7 +27,7 @@ function ModuleList() {
               <FaGripVertical className="me-2" />
               {module.name}
               <span className="float-end wd-modules-content-actions">
-                <FaCheckCircle className="text-success" />
+                <FaCheckCircle className="wd-icon-green" />
                 <FaPlus className="ms-2" />
                 <FaEllipsisV className="ms-2" />
               </span>
@@ -38,7 +40,7 @@ function ModuleList() {
                     <FaGripVertical className="me-2" />
                     <div className="wd-modules-content-text">{lesson.name}</div>
                     <span className="float-end wd-modules-content-actions">
-                      <FaCheckCircle className="text-success" />
+                      <FaCheckCircle className="wd-icon-green" />
                       <FaEllipsisV className="ms-2" />
                     </span>
                   </li>

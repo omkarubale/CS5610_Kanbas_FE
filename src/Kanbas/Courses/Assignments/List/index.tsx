@@ -42,7 +42,7 @@ function AssignmentList() {
                 >
                   {assignmentSection.weightage} of Total
                 </Button>
-                <FaCheckCircle className="text-success" />
+                <FaCheckCircle className="wd-icon-green" />
                 <FaPlus className="ms-2" />
                 <FaEllipsisV className="ms-2" />
               </span>
@@ -55,7 +55,7 @@ function AssignmentList() {
                   ?.map((assignment) => (
                     <li className="list-group-item">
                       <FaGripVertical className="me-2" />
-                      <FaFilePen className="ms-2 text-success" />
+                      <FaFilePen className="ms-2 wd-icon-green" />
                       <div className="wd-assignments-grid-content-text flex-fill">
                         <Link to={assignment._id} className="wd-event-link">
                           {assignment.title}
@@ -65,7 +65,7 @@ function AssignmentList() {
                         </p>
                       </div>
                       <span className="float-end wd-assignments-grid-content-actions">
-                        <FaCheckCircle className="text-success" />
+                        <FaCheckCircle className="wd-icon-green" />
                         <FaEllipsisV className="ms-2" />
                       </span>
                     </li>

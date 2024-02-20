@@ -28,3 +28,7 @@
   color: #fdfdfd !important;
   background: #9ec199 !important;
 }
+
+svg.wd-icon-green * {
+  color: green;
+}

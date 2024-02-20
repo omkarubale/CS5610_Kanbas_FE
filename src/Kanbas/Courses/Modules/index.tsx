@@ -21,7 +21,7 @@ function Modules() {
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              <FaRegCheckCircle />
+              <FaRegCheckCircle className="wd-icon-green" />
               Publish All
             </Button>
             <div className="dropdown-menu" aria-labelledby="modulesActions">
