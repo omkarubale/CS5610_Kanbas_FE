@@ -1,6 +1,5 @@
-import ModuleList from "./List";
 import "../../layout/common.css";
-import { FaEllipsisV, FaPlus, FaRegCheckCircle } from "react-icons/fa";
+import { FaEllipsisV, FaPlus } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
 import MiddleContent from "../../layout/Content/NotLeftSide/MiddleContent";
 import MiddleContentActions from "../../layout/Content/NotLeftSide/MiddleContent/MiddleContentActions";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./index.css";
 import { assignments, assignmentSections } from "../../../Database";
 import {
@@ -10,7 +10,7 @@ import {
 import Button from "react-bootstrap/Button";
 import { useParams } from "react-router";
 import { FaFilePen } from "react-icons/fa6";
-// import "../../../layout/common.css";
+import { Link } from "react-router-dom";
 
 function AssignmentList() {
   const { courseId } = useParams();
@@ -57,12 +57,9 @@ function AssignmentList() {
                       <FaGripVertical className="me-2" />
                       <FaFilePen className="ms-2 text-success" />
                       <div className="wd-assignments-grid-content-text flex-fill">
-                        <a
-                          href="/Kanbas/Courses/Assignments/Edit/screen.html"
-                          className="wd-event-link"
-                        >
+                        <Link to={assignment._id} className="wd-event-link">
                           {assignment.title}
-                        </a>
+                        </Link>
                         <p className="wd-assignments-grid-content-details">
                           <a href="#"> Multiple Modules</a> | Not Available yet
                         </p>
