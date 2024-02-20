@@ -1,0 +1,14 @@
+a_count = 0;
+for assignment in [
+"A301",
+"A302",
+"A303",
+"Q301",
+"Q302",
+"E301",
+"E302",
+"P301"]:
+    
+    for student_id in range(131, 141, 1):
+        print("{ " ,f"\" _id\": \"{a_count * 10 + (student_id - 130) + 160}\", \"student\": \"{student_id}\", \"assignment\": \"{assignment}\", \"grade\": \"98\"" , " },")
+    a_count = a_count + 1
