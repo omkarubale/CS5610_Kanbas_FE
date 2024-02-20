@@ -18,6 +18,7 @@ function Dashboard() {
                   src={`/assets/images/${course.image}`}
                   className="card-img-top"
                   style={{ height: 150 }}
+                  alt="N"
                 />
                 <div className="card-body">
                   <Link

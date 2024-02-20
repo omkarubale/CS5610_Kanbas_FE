@@ -18,8 +18,8 @@ import { Link } from "react-router-dom";
 
 function Grades() {
   const { courseId } = useParams();
-  const courseAssignments = assignments.filter((a) => a.course == courseId);
-  const courseEnrollments = enrollments.filter((e) => e.course == courseId);
+  const courseAssignments = assignments.filter((a) => a.course === courseId);
+  const courseEnrollments = enrollments.filter((e) => e.course === courseId);
 
   return (
     <>
@@ -75,7 +75,9 @@ function Grades() {
             <tbody>
               {courseEnrollments.map((enrollment, index) => (
                 <tr
-                  className={index % 2 == 0 ? "table-light" : "table-secondary"}
+                  className={
+                    index % 2 === 0 ? "table-light" : "table-secondary"
+                  }
                 >
                   <th scope="row">
                     <Link
@@ -83,7 +85,7 @@ function Grades() {
                       className="wd-grades-grid-student text-truncate"
                     >
                       {users
-                        .filter((user) => user._id == enrollment.user)
+                        .filter((user) => user._id === enrollment.user)
                         .map((u) => u.firstName + " " + u.lastName)}
                     </Link>
                   </th>
@@ -92,8 +94,8 @@ function Grades() {
                       {grades
                         .filter(
                           (grade) =>
-                            grade.assignment == assignment._id &&
-                            grade.student == enrollment.user
+                            grade.assignment === assignment._id &&
+                            grade.student === enrollment.user
                         )
                         ?.map((g) => g.grade)}
                     </td>

@@ -51,7 +51,7 @@ function AssignmentList() {
             {selectedSectionId === assignmentSection._id && (
               <ul className="list-group">
                 {assignmentsList
-                  ?.filter((a) => a.sectionId == assignmentSection._id)
+                  ?.filter((a) => a.sectionId === assignmentSection._id)
                   ?.map((assignment) => (
                     <li className="list-group-item">
                       <FaGripVertical className="me-2" />

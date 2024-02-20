@@ -85,7 +85,7 @@ function KanbasNavigation() {
             <li
               key={index}
               className={
-                (link.label == "Account" ? "wd-nav-account" : "") +
+                (link.label === "Account" ? "wd-nav-account" : "") +
                 " " +
                 (pathname.includes(link.label) ? "wd-active" : "")
               }
