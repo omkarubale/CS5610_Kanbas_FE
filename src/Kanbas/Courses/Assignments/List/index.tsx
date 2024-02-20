@@ -20,8 +20,8 @@ function AssignmentList() {
   const assignmentsList = assignments.filter(
     (assignment) => assignment.course === courseId
   );
-  const [selectedSection, setSelectedSection] = useState(
-    assignmentSectionsList[0]
+  const [selectedSectionId, setSelectedSection] = useState(
+    assignmentSectionsList[0]._id
   );
 
   return (
@@ -30,7 +30,7 @@ function AssignmentList() {
         {assignmentSectionsList.map((assignmentSection) => (
           <li
             className="list-group-item"
-            onClick={() => setSelectedSection(assignmentSection)}
+            onClick={() => setSelectedSection(assignmentSection._id)}
           >
             <div className="wd-assignments-grid-section">
               <FaGripVertical className="me-2" />
@@ -48,7 +48,7 @@ function AssignmentList() {
               </span>
             </div>
 
-            {selectedSection._id === assignmentSection._id && (
+            {selectedSectionId === assignmentSection._id && (
               <ul className="list-group">
                 {assignmentsList
                   ?.filter((a) => a.sectionId == assignmentSection._id)

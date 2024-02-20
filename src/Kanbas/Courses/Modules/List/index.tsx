@@ -11,7 +11,7 @@ import { useParams } from "react-router";
 function ModuleList() {
   const { courseId } = useParams();
   const modulesList = modules.filter((module) => module.course === courseId);
-  const [selectedModule, setSelectedModule] = useState(modulesList[0]);
+  const [selectedModuleId, setSelectedModule] = useState(modulesList[0]._id);
 
   return (
     <>
@@ -19,7 +19,7 @@ function ModuleList() {
         {modulesList.map((module) => (
           <li
             className="list-group-item"
-            onClick={() => setSelectedModule(module)}
+            onClick={() => setSelectedModule(module._id)}
           >
             <div className="wd-modules-section">
               <FaGripVertical className="me-2" />
@@ -31,7 +31,7 @@ function ModuleList() {
               </span>
             </div>
 
-            {selectedModule._id === module._id && (
+            {selectedModuleId === module._id && (
               <ul className="list-group">
                 {module.lessons?.map((lesson) => (
                   <li className="list-group-item">
