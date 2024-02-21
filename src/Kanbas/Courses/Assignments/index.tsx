@@ -17,13 +17,19 @@ function Assignments() {
             placeholder="Search for Assignment"
           />
           <Button className="wd-button-standard">
-            <FaPlus /> Group
+            <div className="d-flex justify-content-center align-items-center">
+              <FaPlus className="me-1" /> Group
+            </div>
           </Button>
           <Button className="wd-button-red">
-            <FaPlus /> Assignment
+            <div className="d-flex justify-content-center align-items-center">
+              <FaPlus className="me-1" /> Assignment
+            </div>
           </Button>
           <Button className="wd-button-standard">
-            <FaEllipsisV />
+            <div className="d-flex justify-content-center align-items-center">
+              <FaEllipsisV className="my-1" />
+            </div>
           </Button>
         </MiddleContentActions>
         <hr />

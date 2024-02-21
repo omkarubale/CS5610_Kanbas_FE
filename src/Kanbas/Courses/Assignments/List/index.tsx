@@ -32,13 +32,13 @@ function AssignmentList() {
             className="list-group-item"
             onClick={() => setSelectedSection(assignmentSection._id)}
           >
-            <div className="wd-assignments-grid-section">
+            <div className="wd-assignments-grid-section d-flex align-items-center">
               <FaGripVertical className="me-2" />
-              {assignmentSection.title}
-              <span className="float-end wd-assignments-grid-content-actions">
+              <div className="me-auto">{assignmentSection.title}</div>
+              <span className="float-end wd-assignments-grid-content-actions d-flex align-items-center">
                 <Button
                   type="button"
-                  className="btn wd-button-standard btn-sm me-2 mb-1 wd-assignment-weightage"
+                  className="btn wd-button-standard btn-sm me-2 wd-assignment-weightage"
                 >
                   {assignmentSection.weightage} of Total
                 </Button>
@@ -53,10 +53,10 @@ function AssignmentList() {
                 {assignmentsList
                   ?.filter((a) => a.sectionId === assignmentSection._id)
                   ?.map((assignment) => (
-                    <li className="list-group-item">
+                    <li className="list-group-item d-flex align-items-center">
                       <FaGripVertical className="me-2" />
                       <FaFilePen className="ms-2 wd-icon-green" />
-                      <div className="wd-assignments-grid-content-text flex-fill">
+                      <div className="wd-assignments-grid-content-text flex-fill me-auto">
                         <Link to={assignment._id} className="wd-event-link">
                           {assignment.title}
                         </Link>
@@ -65,7 +65,7 @@ function AssignmentList() {
                           yet
                         </p>
                       </div>
-                      <span className="float-end wd-assignments-grid-content-actions">
+                      <span className="float-end wd-assignments-grid-content-actions d-flex align-items-center">
                         <FaCheckCircle className="wd-icon-green" />
                         <FaEllipsisV className="ms-2" />
                       </span>

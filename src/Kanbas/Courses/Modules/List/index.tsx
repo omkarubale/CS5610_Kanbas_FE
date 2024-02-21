@@ -22,10 +22,10 @@ function ModuleList() {
             className="list-group-item"
             onClick={() => setSelectedModule(module._id)}
           >
-            <div className="wd-modules-section">
+            <div className="wd-modules-section d-flex align-items-center">
               <FaGripVertical className="me-2" />
-              {module.name}
-              <span className="float-end wd-modules-content-actions">
+              <div className="me-auto">{module.name}</div>
+              <span className="float-end wd-modules-content-actions d-flex">
                 <FaCheckCircle className="wd-icon-green" />
                 <FaPlus className="ms-2" />
                 <FaEllipsisV className="ms-2" />
@@ -35,10 +35,12 @@ function ModuleList() {
             {selectedModuleId === module._id && (
               <ul className="list-group">
                 {module.lessons?.map((lesson) => (
-                  <li className="list-group-item">
+                  <li className="list-group-item d-flex align-items-center">
                     <FaGripVertical className="me-2" />
-                    <div className="wd-modules-content-text">{lesson.name}</div>
-                    <span className="float-end wd-modules-content-actions">
+                    <div className="wd-modules-content-text me-auto">
+                      {lesson.name}
+                    </div>
+                    <span className="float-end wd-modules-content-actions d-flex">
                       <FaCheckCircle className="wd-icon-green" />
                       <FaEllipsisV className="ms-2" />
                     </span>

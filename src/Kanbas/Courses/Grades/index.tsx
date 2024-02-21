@@ -26,14 +26,20 @@ function Grades() {
       <MiddleContent>
         <MiddleContentActions>
           <Button className="btn wd-button-standard">
-            <FaFileImport /> Import
+            <div className="d-flex justify-content-center align-items-center">
+              <FaFileImport className="me-1" /> Import
+            </div>
           </Button>
           <Button className="btn wd-button-standard">
-            <FaFileExport /> Export
-            <FaCaretDown />
+            <div className="d-flex justify-content-center align-items-center">
+              <FaFileExport className="me-1" /> Export
+              <FaCaretDown className="ms-1" />
+            </div>
           </Button>
           <Button className="btn wd-button-standard">
-            <FaGear className="m-1" />
+            <div className="d-flex justify-content-center align-items-center">
+              <FaGear className="my-1" />
+            </div>
           </Button>
         </MiddleContentActions>
 
@@ -54,7 +60,9 @@ function Grades() {
             </div>
             <p />
             <Button className="wd-button-standard">
-              <FaFilter /> Apply Filters
+              <div className="d-flex justify-content-center align-items-center">
+                <FaFilter className="me-1" /> Apply Filters
+              </div>
             </Button>
           </Form>
 

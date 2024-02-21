@@ -14,6 +14,7 @@ function AssignmentEditor() {
   );
   const { courseId } = useParams();
   const navigate = useNavigate();
+  console.log("In AssignmentEditor useParams: ", useParams());
 
   const handleSave = () => {
     console.log("Actually saving assignment TBD in later assignments");
@@ -28,7 +29,9 @@ function AssignmentEditor() {
             <FaCheckCircle className="pe-1" />
             <span className="fw-bold pe-1">Published</span>
             <Button className="wd-button-standard me-0">
-              <FaEllipsisV />
+              <div className="d-flex justify-content-center align-items-center">
+                <FaEllipsisV className="my-1" />
+              </div>
             </Button>
           </div>
         </MiddleContentActions>
@@ -141,7 +144,9 @@ function AssignmentEditor() {
                       </div>
                     </div>
                     <div className="card-footer text-center">
-                      <FaPlus /> Add
+                      <div className="d-flex justify-content-center align-items-center">
+                        <FaPlus className="me-1" /> Add
+                      </div>
                     </div>
                   </div>
                 </div>

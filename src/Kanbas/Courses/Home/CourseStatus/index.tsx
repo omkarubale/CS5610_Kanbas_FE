@@ -22,34 +22,52 @@ function CourseStatus() {
         <div className="wd-course-status-publish-toggle">
           <div className="btn-group w-100">
             <Button className="btn wd-button-standard col-6">
-              <FaBan /> Unpublish
+              <div className="d-flex justify-content-center align-items-center">
+                <FaBan className="me-1" /> Unpublish
+              </div>
             </Button>
             <Button className="btn wd-button-published col-6">
-              <FaCheckCircle /> Published
+              <div className="d-flex justify-content-center align-items-center">
+                <FaCheckCircle className="me-1" /> Published
+              </div>
             </Button>
           </div>
         </div>
         <div className="wd-course-status-actions d-grid gap-1">
           <Link className="btn btn-block wd-button-standard text-start" to="#">
-            <FaFileImport /> Import Existing Content
+            <div className="d-flex align-items-center">
+              <FaFileImport className="me-1" /> Import Existing Content
+            </div>
           </Link>
           <Link className="btn btn-block wd-button-standard text-start" to="#">
-            <FaC /> Import from Commons
+            <div className="d-flex align-items-center">
+              <FaC className="me-1" /> Import from Commons
+            </div>
           </Link>
           <Link className="btn btn-block wd-button-standard text-start" to="#">
-            <FaCrosshairs /> Choose Home Page
+            <div className="d-flex align-items-center">
+              <FaCrosshairs className="me-1" /> Choose Home Page
+            </div>
           </Link>
           <Link className="btn btn-block wd-button-standard text-start" to="#">
-            <FaChartBar /> View Course Stream
+            <div className="d-flex align-items-center">
+              <FaChartBar className="me-1" /> View Course Stream
+            </div>
           </Link>
           <Link className="btn btn-block wd-button-standard text-start" to="#">
-            <FaBullhorn /> New Announcement
+            <div className="d-flex align-items-center">
+              <FaBullhorn className="me-1" /> New Announcement
+            </div>
           </Link>
           <Link className="btn btn-block wd-button-standard text-start" to="#">
-            <FaChartBar /> New Analytics
+            <div className="d-flex align-items-center">
+              <FaChartBar className="me-1" /> New Analytics
+            </div>
           </Link>
           <Link className="btn btn-block wd-button-standard text-start" to="#">
-            <FaBell /> View Course Notifications
+            <div className="d-flex align-items-center">
+              <FaBell className="me-1" /> View Course Notifications
+            </div>
           </Link>
         </div>
       </div>

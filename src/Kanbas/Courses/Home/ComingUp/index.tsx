@@ -8,8 +8,10 @@ function ComingUp() {
       <h2>
         Comming Up
         <div className="wd-h2-link">
-          <FaCalendarAlt className="me-1" />
-          <Link to="#">View Calendar</Link>
+          <div className="d-flex justify-content-center align-items-center">
+            <FaCalendarAlt className="me-1" />
+            <Link to="#">View Calendar</Link>
+          </div>
         </div>
       </h2>
       <ul className="list-group">

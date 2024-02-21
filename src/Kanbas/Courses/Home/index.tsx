@@ -7,41 +7,44 @@ import MiddleContentData from "../../layout/Content/NotLeftSide/MiddleContent/Mi
 import RightSide from "../../layout/Content/NotLeftSide/RightSide";
 import CourseStatus from "./CourseStatus";
 import ComingUp from "./ComingUp";
-import { Link } from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
 
 function CoursesHome() {
   return (
     <>
       <MiddleContent>
         <MiddleContentActions>
-          <Button className="wd-button-standard">Collapse All</Button>
-          <Button className="wd-button-standard">View Progress</Button>
-          <div className="dropdown d-inline-block">
-            <Button
-              className="wd-button-standard dropdown-toggle"
-              type="button"
-              id="modulesActions"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <FaRegCheckCircle className="wd-icon-green" />
-              Publish All
-            </Button>
-            <div className="dropdown-menu" aria-labelledby="modulesActions">
-              <Link className="dropdown-item" to="#">
-                Option 1
-              </Link>
-              <Link className="dropdown-item" to="#">
-                Option 2
-              </Link>
+          <div className="d-inline-flex" style={{ flexWrap: "wrap" }}>
+            <Button className="wd-button-standard">Collapse All</Button>
+            <Button className="wd-button-standard">View Progress</Button>
+            <div className="d-inline-block">
+              <Dropdown>
+                <div>
+                  <Dropdown.Toggle
+                    className=" d-flex wd-button-standard justify-content-center align-items-center"
+                    id="modulesActions"
+                  >
+                    <FaRegCheckCircle className="wd-icon-green me-1" />
+                    Publish All
+                  </Dropdown.Toggle>
+                </div>
+                <Dropdown.Menu>
+                  <Dropdown.Item>Option 1</Dropdown.Item>
+                  <Dropdown.Item>Option 2</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </div>
+            <Button className="wd-button-red">
+              <div className="d-flex justify-content-center align-items-center">
+                <FaPlus className="me-1" /> Module
+              </div>
+            </Button>
+            <Button className="wd-button-standard">
+              <div className="d-flex justify-content-center align-items-center">
+                <FaEllipsisV className="my-1" />
+              </div>
+            </Button>
           </div>
-          <Button className="wd-button-red">
-            <FaPlus /> Module
-          </Button>
-          <Button className="wd-button-standard">
-            <FaEllipsisV />
-          </Button>
         </MiddleContentActions>
         <hr />
         <MiddleContentData>
