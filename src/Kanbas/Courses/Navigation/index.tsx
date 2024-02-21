@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import Collapse from "react-bootstrap/Collapse";
 import "./index.css";
 
 export interface CourseNavigationLink {
@@ -27,27 +28,29 @@ export const courseNavigationLinks: CourseNavigationLink[] = [
   { title: "Settings", link: "Settings" },
 ];
 
-function CourseNavigation() {
+function CourseNavigation(props: { subNavigationOpen: boolean }) {
   const { pathname } = useLocation();
 
   return (
-    <div id="wdSectionNavigation" className="collapse collapse-horizontal show">
-      <ul className="wd-course-navigation">
-        {courseNavigationLinks.map((courseNavigationLink, index) => (
-          <li
-            key={index}
-            className={
-              pathname.includes(courseNavigationLink.link)
-                ? "wd-submenu-active"
-                : ""
-            }
-          >
-            <Link to={courseNavigationLink.link}>
-              {courseNavigationLink.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
+    <div className="wd-course-navigation-container d-none d-md-block pe-0">
+      <Collapse in={props.subNavigationOpen} dimension="width">
+        <ul className="wd-course-navigation">
+          {courseNavigationLinks.map((courseNavigationLink, index) => (
+            <li
+              key={index}
+              className={
+                pathname.includes(courseNavigationLink.link)
+                  ? "wd-submenu-active"
+                  : ""
+              }
+            >
+              <Link to={courseNavigationLink.link}>
+                {courseNavigationLink.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Collapse>
     </div>
   );
 }

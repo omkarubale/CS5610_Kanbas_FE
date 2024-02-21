@@ -6,7 +6,10 @@ import "./index.css";
 import { courseNavigationLinks } from "../../Navigation";
 import { Link } from "react-router-dom";
 
-function Breadcrumb() {
+function Breadcrumb(props: {
+  setSubNavigationOpen: (arg0: boolean) => void;
+  subNavigationOpen: boolean;
+}) {
   const { courseId } = useParams();
   const course = courses.find((course) => course._id === courseId);
   const { pathname } = useLocation();
@@ -26,12 +29,10 @@ function Breadcrumb() {
     <>
       <div className="wd-breadcrumb d-none d-md-inline-flex">
         <Button
-          type="button"
+          onClick={() => props.setSubNavigationOpen(!props.subNavigationOpen)}
           className="btn wd-menu-toggle"
-          data-bs-toggle="collapse"
-          data-bs-target="#wdSectionNavigation"
-          aria-expanded="true"
-          aria-controls="collapseExample"
+          aria-expanded={props.subNavigationOpen}
+          aria-controls="collapse-sub-navigation"
         >
           <FaBars />
         </Button>

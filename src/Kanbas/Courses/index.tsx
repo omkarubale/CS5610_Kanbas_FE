@@ -9,16 +9,21 @@ import CoursesHome from "./Home";
 import Assignments from "./Assignments";
 import AssignmentEditor from "./Assignments/Editor";
 import Grades from "./Grades";
+import { useState } from "react";
 
 function Courses() {
+  const [subNavigationOpen, setSubNavigationOpen] = useState(true);
+
   return (
     <>
-      <Breadcrumb />
+      <Breadcrumb
+        subNavigationOpen={subNavigationOpen}
+        setSubNavigationOpen={setSubNavigationOpen}
+      />
 
       <div className="wd-after-breadcrumb">
-        <div className="wd-course-navigation-container d-none d-md-block">
-          <CourseNavigation />
-        </div>
+        <CourseNavigation subNavigationOpen={subNavigationOpen} />
+
         <NotLeftSide>
           <Routes>
             {/* Inside each, we need this structure:
