@@ -8,6 +8,7 @@ import RightSide from "../../layout/Content/NotLeftSide/RightSide";
 import CourseStatus from "./CourseStatus";
 import ComingUp from "./ComingUp";
 import Dropdown from "react-bootstrap/Dropdown";
+import HomeTodo from "./Todo";
 
 function CoursesHome() {
   return (
@@ -55,6 +56,7 @@ function CoursesHome() {
       <RightSide>
         <CourseStatus />
         <ComingUp />
+        <HomeTodo />
       </RightSide>
     </>
   );
