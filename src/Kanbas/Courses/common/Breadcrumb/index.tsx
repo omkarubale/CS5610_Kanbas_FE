@@ -7,10 +7,20 @@ import { courseNavigationLinks } from "../../Navigation";
 import { Link } from "react-router-dom";
 
 function Breadcrumb() {
-  const { courseId, assignmentId } = useParams();
+  const { courseId } = useParams();
   const course = courses.find((course) => course._id === courseId);
   const { pathname } = useLocation();
-  // console.log("useParams() : ", useParams());
+
+  function getAssignmentId(pathname: string) {
+    if (!pathname.includes("Assignments")) return undefined;
+    const assignmentId = pathname.split("/").pop();
+
+    if (assignmentId === "Assignments") return undefined;
+
+    return assignmentId;
+  }
+
+  const assignmentId = getAssignmentId(pathname);
 
   return (
     <>
@@ -42,20 +52,19 @@ function Breadcrumb() {
                 )
             )}
 
-            {pathname.includes("Assignments") &&
-              typeof assignmentId !== "undefined" && (
-                <li className="breadcrumb-item active">
-                  <Link to={"Assignments/" + assignmentId}>
-                    {assignments
-                      .filter(
-                        (assignment) =>
-                          assignment.course === courseId &&
-                          assignment._id === assignmentId
-                      )
-                      ?.map((a) => a.title)}
-                  </Link>
-                </li>
-              )}
+            {pathname.includes("Assignments") && assignmentId !== undefined && (
+              <li className="breadcrumb-item active">
+                <Link to={"Assignments/" + assignmentId}>
+                  {assignments
+                    .filter(
+                      (assignment) =>
+                        assignment.course === courseId &&
+                        assignment._id === assignmentId
+                    )
+                    ?.map((a) => a.title)}
+                </Link>
+              </li>
+            )}
           </ol>
         </nav>
       </div>
