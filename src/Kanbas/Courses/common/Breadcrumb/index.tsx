@@ -6,6 +6,15 @@ import "./index.css";
 import { courseNavigationLinks } from "../../Navigation";
 import { Link } from "react-router-dom";
 
+export function getAssignmentId(pathname: string) {
+  if (!pathname.includes("Assignments")) return undefined;
+  const assignmentId = pathname.split("/").pop();
+
+  if (assignmentId === "Assignments") return undefined;
+
+  return assignmentId;
+}
+
 function Breadcrumb(props: {
   setSubNavigationOpen: (arg0: boolean) => void;
   subNavigationOpen: boolean;
@@ -13,15 +22,6 @@ function Breadcrumb(props: {
   const { courseId } = useParams();
   const course = courses.find((course) => course._id === courseId);
   const { pathname } = useLocation();
-
-  function getAssignmentId(pathname: string) {
-    if (!pathname.includes("Assignments")) return undefined;
-    const assignmentId = pathname.split("/").pop();
-
-    if (assignmentId === "Assignments") return undefined;
-
-    return assignmentId;
-  }
 
   const assignmentId = getAssignmentId(pathname);
 

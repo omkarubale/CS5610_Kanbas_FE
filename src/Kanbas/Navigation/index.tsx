@@ -9,69 +9,67 @@ import {
   FaTv,
   FaRegQuestionCircle,
   FaLongArrowAltLeft,
-  FaBars,
-  FaGlasses,
   FaInbox,
 } from "react-icons/fa";
 import { FaC } from "react-icons/fa6";
+import KanbasNavigationMobile from "../mobile/Navigation";
 
-import Button from "react-bootstrap/Button";
-import Offcanvas from "react-bootstrap/Offcanvas";
-import { useState } from "react";
+export interface KanbasNavigationLink {
+  label: string;
+  icon: any;
+  mobile_icon: any;
+}
+
+export const kanbasNavigationLinks: KanbasNavigationLink[] = [
+  {
+    label: "Account",
+    icon: <FaRegUserCircle className="wd-icon-white" />,
+    mobile_icon: <FaRegUserCircle />,
+  },
+  {
+    label: "Dashboard",
+    icon: <FaTachometerAlt className="" />,
+    mobile_icon: <FaTachometerAlt className="" />,
+  },
+  {
+    label: "Courses",
+    icon: <FaBook className="" />,
+    mobile_icon: <FaBook className="" />,
+  },
+  {
+    label: "Calendar",
+    icon: <FaRegCalendarAlt className="" />,
+    mobile_icon: <FaRegCalendarAlt className="" />,
+  },
+  {
+    label: "Inbox",
+    icon: <FaInbox className="" />,
+    mobile_icon: <FaInbox className="" />,
+  },
+  {
+    label: "History",
+    icon: <FaHistory className="" />,
+    mobile_icon: <FaHistory className="" />,
+  },
+  {
+    label: "Studio",
+    icon: <FaTv className="" />,
+    mobile_icon: <FaTv className="" />,
+  },
+  {
+    label: "Commons",
+    icon: <FaC className="" />,
+    mobile_icon: <FaC className="" />,
+  },
+  {
+    label: "Help",
+    icon: <FaRegQuestionCircle className="" />,
+    mobile_icon: <FaRegQuestionCircle className="" />,
+  },
+];
 
 function KanbasNavigation() {
-  const links = [
-    {
-      label: "Account",
-      icon: <FaRegUserCircle className="wd-icon-white" />,
-      mobile_icon: <FaRegUserCircle />,
-    },
-    {
-      label: "Dashboard",
-      icon: <FaTachometerAlt className="" />,
-      mobile_icon: <FaTachometerAlt className="" />,
-    },
-    {
-      label: "Courses",
-      icon: <FaBook className="" />,
-      mobile_icon: <FaBook className="" />,
-    },
-    {
-      label: "Calendar",
-      icon: <FaRegCalendarAlt className="" />,
-      mobile_icon: <FaRegCalendarAlt className="" />,
-    },
-    {
-      label: "Inbox",
-      icon: <FaInbox className="" />,
-      mobile_icon: <FaInbox className="" />,
-    },
-    {
-      label: "History",
-      icon: <FaHistory className="" />,
-      mobile_icon: <FaHistory className="" />,
-    },
-    {
-      label: "Studio",
-      icon: <FaTv className="" />,
-      mobile_icon: <FaTv className="" />,
-    },
-    {
-      label: "Commons",
-      icon: <FaC className="" />,
-      mobile_icon: <FaC className="" />,
-    },
-    {
-      label: "Help",
-      icon: <FaRegQuestionCircle className="" />,
-      mobile_icon: <FaRegQuestionCircle className="" />,
-    },
-  ];
-
   const { pathname } = useLocation();
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   return (
     <>
@@ -87,7 +85,7 @@ function KanbasNavigation() {
               />
             </a>
           </li>
-          {links.map((link, index) => (
+          {kanbasNavigationLinks.map((link, index) => (
             <li
               key={index}
               className={
@@ -119,89 +117,7 @@ function KanbasNavigation() {
         </ul>
       </div>
 
-      <div className="wd-mobile-navigation-container d-md-none">
-        <nav className="navbar navbar-dark bg-black">
-          <div className="container-fluid">
-            <div className="col-3 wd-mobile-navigation-left">
-              <Button
-                variant="dark"
-                className="navbar-toggler wd-mobile-navigation-button"
-                onClick={handleShow}
-              >
-                <FaBars />
-              </Button>
-            </div>
-
-            <div
-              className="wd-mobile-navigation-title col-6"
-              data-bs-toggle="collapse"
-              data-bs-target="#NavbarCoursesMobile"
-            >
-              <div>CS4550.12631.202410</div>
-              <div>Modules</div>
-            </div>
-
-            <div className="col-3 wd-mobile-navigation-right">
-              {/* <button
-                className="navbar-toggler wd-mobile-navigation-button"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#NavbarCoursesMobile"
-                aria-controls="NavbarCoursesMobile"
-                aria-expanded="false"
-                aria-label="Toggle Courses Navbar"
-              >
-                <FaChevronDown />
-              </button> */}
-
-              <Button
-                variant="dark"
-                className="navbar-toggler wd-mobile-navigation-button"
-              >
-                <FaGlasses />
-              </Button>
-            </div>
-          </div>
-        </nav>
-
-        <Offcanvas
-          className="wd-kanbas-navigation-mobile-content"
-          show={show}
-          onHide={handleClose}
-        >
-          <Offcanvas.Header className="offcanvas-header">
-            <h5 className="offcanvas-title" id="NavbarKanbasMobileLabel">
-              Kanbas
-            </h5>
-            <Button
-              variant="light"
-              className="btn-close"
-              onClick={handleClose}
-            ></Button>
-          </Offcanvas.Header>
-          <Offcanvas.Body>
-            <ul className="navbar-nav justify-content-end flex-grow-1 px-3 pt-3 wd-kanbas-navigation-mobile">
-              {links.map((link, index) => (
-                <li key={index} className="nav-item">
-                  <Link
-                    className={
-                      "nav-link" +
-                      " " +
-                      (pathname.includes(link.label) ? "wd-active" : "")
-                    }
-                    to={`/Kanbas/${link.label}`}
-                  >
-                    <span>
-                      <div>{link.mobile_icon}</div>
-                    </span>
-                    <span>{link.label}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </Offcanvas.Body>
-        </Offcanvas>
-      </div>
+      <KanbasNavigationMobile />
     </>
   );
 }
