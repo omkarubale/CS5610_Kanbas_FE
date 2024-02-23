@@ -24,47 +24,53 @@ function KanbasNavigation() {
     {
       label: "Account",
       icon: <FaRegUserCircle className="wd-icon-white" />,
+      mobile_icon: <FaRegUserCircle />,
     },
     {
       label: "Dashboard",
       icon: <FaTachometerAlt className="" />,
+      mobile_icon: <FaTachometerAlt className="" />,
     },
     {
       label: "Courses",
       icon: <FaBook className="" />,
+      mobile_icon: <FaBook className="" />,
     },
     {
       label: "Calendar",
       icon: <FaRegCalendarAlt className="" />,
+      mobile_icon: <FaRegCalendarAlt className="" />,
     },
     {
       label: "Inbox",
       icon: <FaInbox className="" />,
+      mobile_icon: <FaInbox className="" />,
     },
     {
       label: "History",
       icon: <FaHistory className="" />,
+      mobile_icon: <FaHistory className="" />,
     },
     {
       label: "Studio",
       icon: <FaTv className="" />,
+      mobile_icon: <FaTv className="" />,
     },
     {
       label: "Commons",
       icon: <FaC className="" />,
+      mobile_icon: <FaC className="" />,
     },
     {
       label: "Help",
       icon: <FaRegQuestionCircle className="" />,
+      mobile_icon: <FaRegQuestionCircle className="" />,
     },
   ];
 
   const { pathname } = useLocation();
-
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
-
   const handleShow = () => setShow(true);
 
   return (
@@ -186,7 +192,7 @@ function KanbasNavigation() {
                     to={`/Kanbas/${link.label}`}
                   >
                     <span>
-                      <div>{link.icon}</div>
+                      <div>{link.mobile_icon}</div>
                     </span>
                     <span>{link.label}</span>
                   </Link>
