@@ -45,7 +45,17 @@ function Breadcrumb(props: {
             {courseNavigationLinks.map(
               (courseNavigationLink) =>
                 pathname.includes(courseNavigationLink.link) && (
-                  <li className="breadcrumb-item active" aria-current="page">
+                  <li
+                    className={
+                      "breadcrumb-item" +
+                      (!pathname.includes("Assignments") ||
+                      (pathname.includes("Assignments") &&
+                        assignmentId === undefined)
+                        ? " active"
+                        : "")
+                    }
+                    aria-current="page"
+                  >
                     <Link to={courseNavigationLink.link}>
                       {courseNavigationLink.title}
                     </Link>
