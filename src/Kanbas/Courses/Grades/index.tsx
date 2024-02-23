@@ -66,52 +66,57 @@ function Grades() {
             </Button>
           </Form>
 
-          <Table responsive="md" bordered className="wd-grades-table" size="sm">
-            <thead className="table-secondary">
-              <tr>
-                <th scope="col" className="text-start fw-bold">
-                  Student Name
-                </th>
-                {courseAssignments.map((assignment) => (
-                  <th scope="col">
-                    <div>{assignment.title}</div>
-                    <div>Out of 100</div>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {courseEnrollments.map((enrollment, index) => (
-                <tr
-                  className={
-                    index % 2 === 0 ? "table-light" : "table-secondary"
-                  }
-                >
-                  <th scope="row">
-                    <Link
-                      to="#"
-                      className="wd-grades-grid-student text-truncate"
-                    >
-                      {users
-                        .filter((user) => user._id === enrollment.user)
-                        .map((u) => u.firstName + " " + u.lastName)}
-                    </Link>
-                  </th>
+          <div className="d-grid overflow-x-auto">
+            <Table
+              responsive="md"
+              bordered
+              className="wd-grades-table"
+              size="sm"
+            >
+              <thead className="table-secondary">
+                <tr>
+                  <th className="text-start fw-bold">Student Name</th>
                   {courseAssignments.map((assignment) => (
-                    <td>
-                      {grades
-                        .filter(
-                          (grade) =>
-                            grade.assignment === assignment._id &&
-                            grade.student === enrollment.user
-                        )
-                        ?.map((g) => g.grade)}
-                    </td>
+                    <th>
+                      <div>{assignment.title}</div>
+                      <div>Out of 100</div>
+                    </th>
                   ))}
                 </tr>
-              ))}
-            </tbody>
-          </Table>
+              </thead>
+              <tbody>
+                {courseEnrollments.map((enrollment, index) => (
+                  <tr
+                    className={
+                      index % 2 === 0 ? "table-light" : "table-secondary"
+                    }
+                  >
+                    <th scope="row">
+                      <Link
+                        to="#"
+                        className="wd-grades-grid-student text-truncate"
+                      >
+                        {users
+                          .filter((user) => user._id === enrollment.user)
+                          .map((u) => u.firstName + " " + u.lastName)}
+                      </Link>
+                    </th>
+                    {courseAssignments.map((assignment) => (
+                      <td>
+                        {grades
+                          .filter(
+                            (grade) =>
+                              grade.assignment === assignment._id &&
+                              grade.student === enrollment.user
+                          )
+                          ?.map((g) => g.grade)}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </div>
         </MiddleContentData>
       </MiddleContent>
     </>
