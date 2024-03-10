@@ -10,6 +10,7 @@ import DateStateVariables from "./DateStateVariables";
 import ObjectStateVariables from "./ObjectStateVariables";
 import ArrayStateVariables from "./ArrayStateVariables";
 import ParentStateComponent from "./ParentStateComponent";
+import ReduxExamples from "./ReduxExamples";
 
 const Assignment4 = () => {
   function sayHello() {
@@ -30,6 +31,7 @@ const Assignment4 = () => {
       <ObjectStateVariables />
       <ArrayStateVariables />
       <ParentStateComponent />
+      <ReduxExamples />
     </>
   );
 };
