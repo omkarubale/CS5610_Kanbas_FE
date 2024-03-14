@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Card, Collapse } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { KanbasState } from "../store";
 import {
@@ -10,6 +10,7 @@ import {
   updateCourse,
 } from "../Courses/reducer";
 import Form from "react-bootstrap/Form";
+import { FaCaretDown } from "react-icons/fa";
 
 function Dashboard() {
   const courses = useSelector(
@@ -19,65 +20,84 @@ function Dashboard() {
     (state: KanbasState) => state.coursesReducer.course
   );
   const dispatch = useDispatch();
+  const [addCourseDrawerOpen, setAddCourseDrawerOpen] = useState(false);
 
   return (
     <div className="p-4">
       <h1>Dashboard</h1>
-      <h5>Add Course</h5>
-      <Form>
-        <div className="row">
-          <Form.Group className="mb-3 col-md col-sm-12">
-            <Form.Control
-              value={course.name}
-              type="text"
-              onChange={(e) =>
-                dispatch(setCourse({ ...course, name: e.target.value }))
-              }
-            />
-          </Form.Group>
-          <Form.Group className="mb-3 col-md col-sm-12">
-            <Form.Control
-              value={course.number}
-              type="text"
-              onChange={(e) =>
-                dispatch(setCourse({ ...course, number: e.target.value }))
-              }
-            />
-          </Form.Group>
-          <Form.Group className="mb-3 col-md col-sm-12">
-            <Form.Control
-              value={course.startDate}
-              type="date"
-              onChange={(e) =>
-                dispatch(setCourse({ ...course, startDate: e.target.value }))
-              }
-            />
-          </Form.Group>
-          <Form.Group className="mb-3 col-md col-sm-12">
-            <Form.Control
-              value={course.endDate}
-              type="date"
-              onChange={(e) =>
-                dispatch(setCourse({ ...course, endDate: e.target.value }))
-              }
-            />
-          </Form.Group>
-          <Form.Group className="d-inline-flex">
-            <Button
-              className="wd-button-standard ms-auto"
-              onClick={(e) => dispatch(addCourse())}
-            >
-              Add
-            </Button>
-            <Button
-              className="wd-button-standard"
-              onClick={(e) => dispatch(updateCourse())}
-            >
-              Update
-            </Button>
-          </Form.Group>
+      <h2>
+        Add Course
+        <FaCaretDown
+          onClick={() => setAddCourseDrawerOpen(!addCourseDrawerOpen)}
+          aria-controls="add-module-drawer-controls"
+          aria-expanded={addCourseDrawerOpen}
+          style={{ transform: addCourseDrawerOpen ? "" : "rotate(-90deg)" }}
+        />
+      </h2>
+      <Collapse in={addCourseDrawerOpen}>
+        <div>
+          <Card className="p-3 mb-3 rounded-0">
+            <Form>
+              <div className="row">
+                <Form.Group className="mb-3 col-md col-sm-12">
+                  <Form.Control
+                    value={course.name}
+                    type="text"
+                    onChange={(e) =>
+                      dispatch(setCourse({ ...course, name: e.target.value }))
+                    }
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3 col-md col-sm-12">
+                  <Form.Control
+                    value={course.number}
+                    type="text"
+                    onChange={(e) =>
+                      dispatch(setCourse({ ...course, number: e.target.value }))
+                    }
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3 col-md col-sm-12">
+                  <Form.Control
+                    value={course.startDate}
+                    type="date"
+                    onChange={(e) =>
+                      dispatch(
+                        setCourse({ ...course, startDate: e.target.value })
+                      )
+                    }
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3 col-md col-sm-12">
+                  <Form.Control
+                    value={course.endDate}
+                    type="date"
+                    onChange={(e) =>
+                      dispatch(
+                        setCourse({ ...course, endDate: e.target.value })
+                      )
+                    }
+                  />
+                </Form.Group>
+                <Form.Group className="d-inline-flex">
+                  <Button
+                    className="wd-button-standard ms-auto"
+                    onClick={(e) => dispatch(addCourse())}
+                  >
+                    Add
+                  </Button>
+                  <Button
+                    className="wd-button-standard"
+                    onClick={(e) => dispatch(updateCourse())}
+                  >
+                    Update
+                  </Button>
+                </Form.Group>
+              </div>
+            </Form>
+          </Card>
         </div>
-      </Form>
+      </Collapse>
       <hr />
       <h2>Published Courses (12)</h2>
       <hr />
