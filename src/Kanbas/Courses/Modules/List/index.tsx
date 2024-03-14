@@ -16,8 +16,8 @@ import { Button } from "react-bootstrap";
 
 function ModuleList() {
   const { courseId } = useParams();
-  const modulesList = useSelector(
-    (state: KanbasState) => state.modulesReducer.modules
+  const modulesList = useSelector((state: KanbasState) =>
+    state.modulesReducer.modules.filter((m) => m.course == courseId)
   );
   const module = useSelector(
     (state: KanbasState) => state.modulesReducer.module
@@ -30,26 +30,30 @@ function ModuleList() {
     <>
       <ul className="list-group wd-modules">
         <li className="list-group-item d-flex">
-          <input
-            value={module.name}
-            onChange={(e) =>
-              dispatch(setModule({ ...module, name: e.target.value }))
-            }
-          />
-          <textarea
-            value={module.description}
-            onChange={(e) =>
-              dispatch(setModule({ ...module, description: e.target.value }))
-            }
-          />
+          <div className="d-inline-flex w-100">
+            <input
+              className=""
+              value={module.name}
+              onChange={(e) =>
+                dispatch(setModule({ ...module, name: e.target.value }))
+              }
+            />
+            <textarea
+              className="ms-1 w-100"
+              value={module.description}
+              onChange={(e) =>
+                dispatch(setModule({ ...module, description: e.target.value }))
+              }
+            />
+          </div>
           <Button
-            className="wd-button-standard"
-            onClick={() => dispatch(addModule({ ...module, course: courseId }))}
+            className="wd-button-standard my-1 ms-0 px-2"
+            onClick={() => dispatch(addModule({ course: courseId }))}
           >
             Add
           </Button>
           <Button
-            className="wd-button-standard"
+            className="wd-button-standard my-1 me-1 px-2"
             onClick={() => dispatch(updateModule(module))}
           >
             Update

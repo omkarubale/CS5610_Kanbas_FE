@@ -17,10 +17,14 @@ const modulesSlice = createSlice({
   initialState,
   reducers: {
     addModule: (state, action) => {
-      state.modules = [
-        ...state.modules,
-        { ...state.module, _id: new Date().getTime().toString() },
-      ];
+      const courseId = action.payload.course;
+      state.module = {
+        ...state.module,
+        course: courseId,
+        _id: new Date().getTime().toString(),
+      };
+
+      state.modules = [...state.modules, state.module];
     },
     deleteModule: (state, action) => {
       state.modules = state.modules.filter(
