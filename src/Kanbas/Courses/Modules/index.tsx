@@ -5,8 +5,17 @@ import Dropdown from "react-bootstrap/Dropdown";
 import MiddleContent from "../../layout/Content/NotLeftSide/MiddleContent";
 import MiddleContentActions from "../../layout/Content/NotLeftSide/MiddleContent/MiddleContentActions";
 import MiddleContentData from "../../layout/Content/NotLeftSide/MiddleContent/MiddleContentData";
+import { useDispatch } from "react-redux";
+import { resetModuleForm, setAddModuleDrawerOpen } from "./reducer";
 
 function Modules() {
+  const dispatch = useDispatch();
+
+  const handleAddModuleButton = function () {
+    dispatch(resetModuleForm());
+    dispatch(setAddModuleDrawerOpen(true));
+  };
+
   return (
     <>
       <MiddleContent>
@@ -26,12 +35,12 @@ function Modules() {
                   </Dropdown.Toggle>
                 </div>
                 <Dropdown.Menu>
-                  <Dropdown.Item>Option 1</Dropdown.Item>
-                  <Dropdown.Item>Option 2</Dropdown.Item>
+                  <Dropdown.Item key="1">Option 1</Dropdown.Item>
+                  <Dropdown.Item key="2">Option 2</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </div>
-            <Button className="wd-button-red">
+            <Button className="wd-button-red" onClick={handleAddModuleButton}>
               <div className="d-flex justify-content-center align-items-center">
                 <FaPlus className="me-1" /> Module
               </div>

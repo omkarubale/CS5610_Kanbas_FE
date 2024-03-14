@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import "./index.css";
 import { useSelector, useDispatch } from "react-redux";
-import { addModule, deleteModule, updateModule, setModule } from "./../reducer";
+import {
+  addModule,
+  deleteModule,
+  updateModule,
+  setModule,
+  setAddModuleDrawerOpen,
+} from "./../reducer";
 import { KanbasState } from "../../../store";
 import {
   FaEllipsisV,
@@ -10,9 +16,11 @@ import {
   FaGripVertical,
   FaPen,
   FaTrash,
+  FaCaretDown,
 } from "react-icons/fa";
 import { useParams } from "react-router";
-import { Button } from "react-bootstrap";
+import { Button, Card, Collapse } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
 
 function ModuleList() {
   const { courseId } = useParams();
@@ -25,42 +33,69 @@ function ModuleList() {
   const dispatch = useDispatch();
 
   const [selectedModuleId, setSelectedModule] = useState(modulesList[0]._id);
+  const addModuleDrawerOpen = useSelector(
+    (state: KanbasState) => state.modulesReducer.addModuleDrawerOpen
+  );
 
   return (
     <>
+      <h5>
+        Add Module
+        <FaCaretDown
+          onClick={() => dispatch(setAddModuleDrawerOpen(!addModuleDrawerOpen))}
+          aria-controls="add-module-drawer-controls"
+          aria-expanded={addModuleDrawerOpen}
+          style={{ transform: addModuleDrawerOpen ? "" : "rotate(-90deg)" }}
+        />
+      </h5>
+      <Collapse in={addModuleDrawerOpen}>
+        <div>
+          <Card className="p-3 mb-3 rounded-0">
+            <Form>
+              <Form.Group>
+                <Form.Control
+                  type="text"
+                  className="mb-3"
+                  value={module.name}
+                  onChange={(e) =>
+                    dispatch(setModule({ ...module, name: e.target.value }))
+                  }
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Control
+                  as="textarea"
+                  className="mb-3"
+                  value={module.description}
+                  onChange={(e) =>
+                    dispatch(
+                      setModule({ ...module, description: e.target.value })
+                    )
+                  }
+                />
+              </Form.Group>
+              <Form.Group className="d-flex">
+                <Button
+                  className="wd-button-standard my-1 ms-auto px-2"
+                  onClick={() => dispatch(addModule({ course: courseId }))}
+                >
+                  Add
+                </Button>
+                <Button
+                  className="wd-button-standard my-1 me-0 px-2"
+                  onClick={() => dispatch(updateModule(module))}
+                >
+                  Update
+                </Button>
+              </Form.Group>
+            </Form>
+          </Card>
+        </div>
+      </Collapse>
       <ul className="list-group wd-modules">
-        <li className="list-group-item d-flex">
-          <div className="d-inline-flex w-100">
-            <input
-              className=""
-              value={module.name}
-              onChange={(e) =>
-                dispatch(setModule({ ...module, name: e.target.value }))
-              }
-            />
-            <textarea
-              className="ms-1 w-100"
-              value={module.description}
-              onChange={(e) =>
-                dispatch(setModule({ ...module, description: e.target.value }))
-              }
-            />
-          </div>
-          <Button
-            className="wd-button-standard my-1 ms-0 px-2"
-            onClick={() => dispatch(addModule({ course: courseId }))}
-          >
-            Add
-          </Button>
-          <Button
-            className="wd-button-standard my-1 me-1 px-2"
-            onClick={() => dispatch(updateModule(module))}
-          >
-            Update
-          </Button>
-        </li>
-        {modulesList.map((module) => (
+        {modulesList.map((module, index) => (
           <li
+            key={index}
             className="list-group-item"
             onClick={() => setSelectedModule(module._id)}
           >
@@ -70,7 +105,10 @@ function ModuleList() {
                 {module.name}{" "}
                 <Button
                   className="d-contents"
-                  onClick={() => dispatch(setModule(module))}
+                  onClick={() => {
+                    dispatch(setModule(module));
+                    dispatch(setAddModuleDrawerOpen(true));
+                  }}
                 >
                   <FaPen className="ms-2" />
                 </Button>

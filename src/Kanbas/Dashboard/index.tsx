@@ -9,6 +9,7 @@ import {
   deleteCourse,
   updateCourse,
 } from "../Courses/reducer";
+import Form from "react-bootstrap/Form";
 
 function Dashboard() {
   const courses = useSelector(
@@ -22,40 +23,61 @@ function Dashboard() {
   return (
     <div className="p-4">
       <h1>Dashboard</h1>
-      <h5>Course</h5>
-      <input
-        value={course.name}
-        className="form-control"
-        onChange={(e) =>
-          dispatch(setCourse({ ...course, name: e.target.value }))
-        }
-      />
-      <input
-        value={course.number}
-        className="form-control"
-        onChange={(e) =>
-          dispatch(setCourse({ ...course, number: e.target.value }))
-        }
-      />
-      <input
-        value={course.startDate}
-        className="form-control"
-        type="date"
-        onChange={(e) =>
-          dispatch(setCourse({ ...course, startDate: e.target.value }))
-        }
-      />
-      <input
-        value={course.endDate}
-        className="form-control"
-        type="date"
-        onChange={(e) =>
-          dispatch(setCourse({ ...course, endDate: e.target.value }))
-        }
-      />
-
-      <Button onClick={(e) => dispatch(addCourse())}>Add</Button>
-      <Button onClick={(e) => dispatch(updateCourse())}>Update</Button>
+      <h5>Add Course</h5>
+      <Form>
+        <div className="row">
+          <Form.Group className="mb-3 col-md col-sm-12">
+            <Form.Control
+              value={course.name}
+              type="text"
+              onChange={(e) =>
+                dispatch(setCourse({ ...course, name: e.target.value }))
+              }
+            />
+          </Form.Group>
+          <Form.Group className="mb-3 col-md col-sm-12">
+            <Form.Control
+              value={course.number}
+              type="text"
+              onChange={(e) =>
+                dispatch(setCourse({ ...course, number: e.target.value }))
+              }
+            />
+          </Form.Group>
+          <Form.Group className="mb-3 col-md col-sm-12">
+            <Form.Control
+              value={course.startDate}
+              type="date"
+              onChange={(e) =>
+                dispatch(setCourse({ ...course, startDate: e.target.value }))
+              }
+            />
+          </Form.Group>
+          <Form.Group className="mb-3 col-md col-sm-12">
+            <Form.Control
+              value={course.endDate}
+              type="date"
+              onChange={(e) =>
+                dispatch(setCourse({ ...course, endDate: e.target.value }))
+              }
+            />
+          </Form.Group>
+          <Form.Group className="d-inline-flex">
+            <Button
+              className="wd-button-standard ms-auto"
+              onClick={(e) => dispatch(addCourse())}
+            >
+              Add
+            </Button>
+            <Button
+              className="wd-button-standard"
+              onClick={(e) => dispatch(updateCourse())}
+            >
+              Update
+            </Button>
+          </Form.Group>
+        </div>
+      </Form>
       <hr />
       <h2>Published Courses (12)</h2>
       <hr />
@@ -85,7 +107,7 @@ function Dashboard() {
                   <p className="card-text">{course.name}</p>
                   <Link
                     to={`/Kanbas/Courses/${course._id}/Home`}
-                    className="btn btn-primary"
+                    className="btn btn-primary wd-button-standard"
                   >
                     Go
                   </Link>
@@ -94,7 +116,7 @@ function Dashboard() {
                       event.preventDefault();
                       dispatch(setCourse(course));
                     }}
-                    className="btn btn-primary"
+                    className="btn btn-primary wd-button-standard"
                   >
                     Edit
                   </Button>
@@ -103,7 +125,7 @@ function Dashboard() {
                       event.preventDefault();
                       dispatch(deleteCourse(course._id));
                     }}
-                    className="btn btn-primary"
+                    className="btn btn-primary wd-button-red"
                   >
                     Delete
                   </Button>

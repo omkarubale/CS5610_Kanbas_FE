@@ -9,8 +9,17 @@ import CourseStatus from "./CourseStatus";
 import ComingUp from "./ComingUp";
 import Dropdown from "react-bootstrap/Dropdown";
 import HomeTodo from "./Todo";
+import { useDispatch } from "react-redux";
+import { resetModuleForm, setAddModuleDrawerOpen } from "../Modules/reducer";
 
 function CoursesHome() {
+  const dispatch = useDispatch();
+
+  const handleAddModuleButton = function () {
+    dispatch(resetModuleForm());
+    dispatch(setAddModuleDrawerOpen(true));
+  };
+
   return (
     <>
       <MiddleContent>
@@ -35,7 +44,7 @@ function CoursesHome() {
                 </Dropdown.Menu>
               </Dropdown>
             </div>
-            <Button className="wd-button-red">
+            <Button className="wd-button-red" onClick={handleAddModuleButton}>
               <div className="d-flex justify-content-center align-items-center">
                 <FaPlus className="me-1" /> Module
               </div>

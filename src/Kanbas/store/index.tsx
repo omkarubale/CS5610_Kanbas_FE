@@ -7,6 +7,7 @@ export interface KanbasState {
   modulesReducer: {
     modules: IKanbasModule[];
     module: IKanbasModule;
+    addModuleDrawerOpen: boolean;
   };
   coursesReducer: {
     courses: IKanbasCourse[];
