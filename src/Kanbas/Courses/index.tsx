@@ -35,7 +35,11 @@ function Courses() {
             <Route path="Assignments" element={<Assignments />} />
             <Route
               path="Assignments/:assignmentId"
-              element={<AssignmentEditor />}
+              element={<AssignmentEditor isCreate={false} />}
+            />
+            <Route
+              path="Assignments/create"
+              element={<AssignmentEditor isCreate={true} />}
             />
             <Route path="Grades" element={<Grades />} />
           </Routes>

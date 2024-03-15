@@ -7,7 +7,7 @@ import Button from "react-bootstrap/Button";
 import { FaEllipsisV, FaPlus, FaCheckCircle } from "react-icons/fa";
 import Form from "react-bootstrap/Form";
 
-function AssignmentEditor() {
+function AssignmentEditor({ isCreate }: { isCreate: boolean }) {
   const { assignmentId } = useParams();
   const assignment = assignments.find(
     (assignment) => assignment._id === assignmentId

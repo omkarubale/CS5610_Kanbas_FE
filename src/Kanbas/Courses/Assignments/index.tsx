@@ -4,8 +4,12 @@ import MiddleContent from "../../layout/Content/NotLeftSide/MiddleContent";
 import MiddleContentActions from "../../layout/Content/NotLeftSide/MiddleContent/MiddleContentActions";
 import MiddleContentData from "../../layout/Content/NotLeftSide/MiddleContent/MiddleContentData";
 import AssignmentList from "./List";
+import { useNavigate, useParams } from "react-router";
 
 function Assignments() {
+  const { courseId } = useParams();
+  const navigate = useNavigate();
+
   return (
     <>
       <MiddleContent>
@@ -21,7 +25,12 @@ function Assignments() {
               <FaPlus className="me-1" /> Group
             </div>
           </Button>
-          <Button className="wd-button-red">
+          <Button
+            className="wd-button-red"
+            onClick={() =>
+              navigate(`/Kanbas/Courses/${courseId}/Assignments/create`)
+            }
+          >
             <div className="d-flex justify-content-center align-items-center">
               <FaPlus className="me-1" /> Assignment
             </div>
