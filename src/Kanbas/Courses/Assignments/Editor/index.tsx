@@ -1,25 +1,54 @@
-import { useNavigate, useParams, Link } from "react-router-dom";
-import { assignments } from "../../../Database";
+import { useNavigate, useParams } from "react-router-dom";
 import MiddleContent from "../../../layout/Content/NotLeftSide/MiddleContent";
 import MiddleContentActions from "../../../layout/Content/NotLeftSide/MiddleContent/MiddleContentActions";
 import MiddleContentData from "../../../layout/Content/NotLeftSide/MiddleContent/MiddleContentData";
 import Button from "react-bootstrap/Button";
 import { FaEllipsisV, FaPlus, FaCheckCircle } from "react-icons/fa";
 import Form from "react-bootstrap/Form";
+import { useDispatch, useSelector } from "react-redux";
+import { KanbasState } from "../../../store";
+import {
+  addAssignment,
+  fetchAssignments,
+  resetAssignment,
+  setAssignment,
+  setAssignmentById,
+  updateAssignment,
+} from "../reducer";
+import { useEffect } from "react";
 
 function AssignmentEditor({ isCreate }: { isCreate: boolean }) {
-  const { assignmentId } = useParams();
-  const assignment = assignments.find(
-    (assignment) => assignment._id === assignmentId
+  const { courseId, assignmentId } = useParams();
+  const assignment = useSelector(
+    (state: KanbasState) => state.assignmentsReducer.assignment
   );
-  const { courseId } = useParams();
   const navigate = useNavigate();
-  console.log("In AssignmentEditor useParams: ", useParams());
+  const dispatch = useDispatch();
+
+  const handleCancel = () => {
+    navigate(`/Kanbas/Courses/${courseId}/Assignments`);
+    dispatch(resetAssignment());
+  };
 
   const handleSave = () => {
-    console.log("Actually saving assignment TBD in later assignments");
-    navigate(`/Kanbas/Courses/${courseId}/Assignments`);
+    if (isCreate) {
+      dispatch(addAssignment({ course: courseId }));
+    } else {
+      dispatch(updateAssignment());
+    }
+    handleCancel();
   };
+
+  useEffect(() => {
+    if (
+      assignment !== undefined &&
+      assignmentId !== undefined &&
+      courseId !== undefined
+    ) {
+      fetchAssignments(dispatch, courseId);
+      dispatch(setAssignmentById(assignmentId));
+    }
+  }, [dispatch]);
 
   return (
     <>
@@ -42,14 +71,30 @@ function AssignmentEditor({ isCreate }: { isCreate: boolean }) {
           <Form>
             <Form.Group className="mb-3" controlId="formAssignmentName">
               <Form.Label>Assignment Name</Form.Label>
-              <Form.Control type="text" value={assignment?.title} />
+              <Form.Control
+                type="text"
+                value={assignment?.title}
+                onChange={(e) =>
+                  dispatch(
+                    setAssignment({ ...assignment, title: e.target.value })
+                  )
+                }
+              />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formAssignmentDescription">
               <Form.Control
                 as="textarea"
                 rows={3}
-                value="This is the assignment description."
+                value={assignment?.description}
+                onChange={(e) =>
+                  dispatch(
+                    setAssignment({
+                      ...assignment,
+                      description: e.target.value,
+                    })
+                  )
+                }
               />
             </Form.Group>
 
@@ -59,7 +104,15 @@ function AssignmentEditor({ isCreate }: { isCreate: boolean }) {
                   <Form.Label className="float-end mt-1">Points</Form.Label>
                 </div>
                 <div className="col-6 mr-auto">
-                  <Form.Control type="number" value="100" />
+                  <Form.Control
+                    type="number"
+                    value={assignment?.points}
+                    onChange={(e) =>
+                      dispatch(
+                        setAssignment({ ...assignment, points: e.target.value })
+                      )
+                    }
+                  />
                 </div>
               </Form.Group>
 
@@ -70,8 +123,8 @@ function AssignmentEditor({ isCreate }: { isCreate: boolean }) {
                   </Form.Label>
                 </div>
                 <div className="col-6 mr-auto">
-                  <Form.Select aria-label="Assignment Group">
-                    <option selected>ASSIGNMENTS</option>
+                  <Form.Select aria-label="Assignment Group" value={0} disabled>
+                    <option value="0">ASSIGNMENTS</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
@@ -89,8 +142,8 @@ function AssignmentEditor({ isCreate }: { isCreate: boolean }) {
                   </Form.Label>
                 </div>
                 <div className="col-6 mr-auto">
-                  <Form.Select aria-label="Display Grade as">
-                    <option selected>Percentage</option>
+                  <Form.Select aria-label="Display Grade as" value={0} disabled>
+                    <option value="0">Percentage</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
@@ -113,7 +166,7 @@ function AssignmentEditor({ isCreate }: { isCreate: boolean }) {
                         controlId="formAssignmentAssignTo"
                       >
                         <Form.Label className="fw-bold">Assign to</Form.Label>
-                        <Form.Control type="text" value="Everyone" />
+                        <Form.Control type="text" value="Everyone" disabled />
                       </Form.Group>
 
                       <Form.Group
@@ -121,7 +174,18 @@ function AssignmentEditor({ isCreate }: { isCreate: boolean }) {
                         controlId="formAssignmentDueDate"
                       >
                         <Form.Label className="fw-bold">Due</Form.Label>
-                        <Form.Control type="date" value="2021-01-01" />
+                        <Form.Control
+                          type="date"
+                          value={assignment?.dueDate}
+                          onChange={(e) =>
+                            dispatch(
+                              setAssignment({
+                                ...assignment,
+                                dueDate: e.target.value,
+                              })
+                            )
+                          }
+                        />
                       </Form.Group>
 
                       <div className="mb-3 row">
@@ -132,14 +196,36 @@ function AssignmentEditor({ isCreate }: { isCreate: boolean }) {
                           <Form.Label className="fw-bold">
                             Available From
                           </Form.Label>
-                          <Form.Control type="date" value="2021-01-01" />
+                          <Form.Control
+                            type="date"
+                            value={assignment?.availableFromDate}
+                            onChange={(e) =>
+                              dispatch(
+                                setAssignment({
+                                  ...assignment,
+                                  availableFromDate: e.target.value,
+                                })
+                              )
+                            }
+                          />
                         </Form.Group>
                         <Form.Group
                           className="col-6 ps-1"
                           controlId="formAssignmentAvailableUntilDate"
                         >
                           <Form.Label className="fw-bold">Until</Form.Label>
-                          <Form.Control type="date" value="2021-01-01" />
+                          <Form.Control
+                            type="date"
+                            value={assignment?.availableToDate}
+                            onChange={(e) =>
+                              dispatch(
+                                setAssignment({
+                                  ...assignment,
+                                  availableUntilDate: e.target.value,
+                                })
+                              )
+                            }
+                          />
                         </Form.Group>
                       </div>
                     </div>
@@ -165,13 +251,10 @@ function AssignmentEditor({ isCreate }: { isCreate: boolean }) {
                 />
               </div>
               <div className="float-end">
-                <Link
-                  className="btn wd-button-standard"
-                  to={`/Kanbas/Courses/${courseId}/Assignments`}
-                >
+                <Button className="wd-button-standard" onClick={handleCancel}>
                   Cancel
-                </Link>
-                <Button className="btn wd-button-red" onClick={handleSave}>
+                </Button>
+                <Button className="wd-button-red" onClick={handleSave}>
                   Save
                 </Button>
               </div>

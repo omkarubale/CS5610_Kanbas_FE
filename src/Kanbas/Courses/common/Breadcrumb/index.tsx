@@ -39,13 +39,14 @@ function Breadcrumb(props: {
 
         <nav aria-label="breadcrumb d-inline-flex">
           <ol className="breadcrumb mb-0">
-            <li className="breadcrumb-item">
+            <li className="breadcrumb-item" key={0}>
               <Link to="Home">{course?.name}</Link>
             </li>
             {courseNavigationLinks.map(
-              (courseNavigationLink) =>
+              (courseNavigationLink, index) =>
                 pathname.includes(courseNavigationLink.link) && (
                   <li
+                    key={index}
                     className={
                       "breadcrumb-item" +
                       (!pathname.includes("Assignments") ||

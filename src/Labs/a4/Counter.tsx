@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 function Counter() {
   const [count, setCount] = useState(7);
-  console.log(count);
+  // console.log(count);
   return (
     <div>
       <h2>Counter: {count}</h2>

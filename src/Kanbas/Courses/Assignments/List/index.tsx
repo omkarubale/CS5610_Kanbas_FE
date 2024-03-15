@@ -1,34 +1,56 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./index.css";
-import { assignments, assignmentSections } from "../../../Database";
 import {
   FaEllipsisV,
   FaCheckCircle,
   FaPlus,
   FaGripVertical,
+  FaPen,
 } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
-import { useParams } from "react-router";
-import { FaFilePen } from "react-icons/fa6";
+import { useNavigate, useParams } from "react-router";
+import { FaFilePen, FaPencil } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { KanbasState } from "../../../store";
+import { fetchAssignments } from "../reducer";
+import { IKanbasAssignment } from "../../../store/interfaces/assignments";
 
 function AssignmentList() {
   const { courseId } = useParams();
-  const assignmentSectionsList = assignmentSections.filter(
-    (assignmentSection) => assignmentSection.course === courseId
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const assignmentSectionsList = useSelector((state: KanbasState) =>
+    state.assignmentsReducer.assignmentSections.filter(
+      (a) => a.course == courseId
+    )
   );
-  const assignmentsList = assignments.filter(
-    (assignment) => assignment.course === courseId
+  const assignmentsList = useSelector((state: KanbasState) =>
+    state.assignmentsReducer.assignments.filter((a) => a.course == courseId)
   );
-  const [selectedSectionId, setSelectedSection] = useState(
-    assignmentSectionsList[0]._id
-  );
+
+  useEffect(() => {
+    if (
+      assignmentSectionsList.length === 0 &&
+      assignmentsList.length === 0 &&
+      courseId !== undefined
+    )
+      fetchAssignments(dispatch, courseId);
+  }, [dispatch]);
+
+  const [selectedSectionId, setSelectedSection] = useState("0");
+
+  function handleAssignmentEditButton(assignment: IKanbasAssignment) {
+    navigate(`/Kanbas/Courses/${courseId}/Assignments/${assignment._id}`);
+  }
 
   return (
     <>
       <ul className="list-group wd-assignments-grid">
-        {assignmentSectionsList.map((assignmentSection) => (
+        {assignmentSectionsList.map((assignmentSection, index) => (
           <li
+            key={index}
             className="list-group-item"
             onClick={() => setSelectedSection(assignmentSection._id)}
           >
@@ -51,21 +73,33 @@ function AssignmentList() {
             {selectedSectionId === assignmentSection._id && (
               <ul className="list-group">
                 {assignmentsList
-                  ?.filter((a) => a.sectionId === assignmentSection._id)
-                  ?.map((assignment) => (
-                    <li className="list-group-item d-flex align-items-center">
+                  ?.filter((a) => a.section?._id === assignmentSection._id)
+                  ?.map((a, aIndex) => (
+                    <li
+                      key={aIndex}
+                      className="list-group-item d-flex align-items-center"
+                    >
                       <FaGripVertical className="me-2" />
                       <FaFilePen className="ms-2 wd-icon-green" />
                       <div className="wd-assignments-grid-content-text flex-fill me-auto">
-                        <Link to={assignment._id} className="wd-event-link">
-                          {assignment.title}
-                        </Link>
+                        <a
+                          onClick={() => handleAssignmentEditButton(a)}
+                          className="wd-event-link"
+                        >
+                          {a.title}
+                        </a>
                         <p className="wd-assignments-grid-content-details">
                           <Link to="#"> Multiple Modules</Link> | Not Available
                           yet
                         </p>
                       </div>
                       <span className="float-end wd-assignments-grid-content-actions d-flex align-items-center">
+                        <Button
+                          className="d-contents"
+                          onClick={() => handleAssignmentEditButton(a)}
+                        >
+                          <FaPen className="ms-2" />
+                        </Button>
                         <FaCheckCircle className="wd-icon-green" />
                         <FaEllipsisV className="ms-2" />
                       </span>

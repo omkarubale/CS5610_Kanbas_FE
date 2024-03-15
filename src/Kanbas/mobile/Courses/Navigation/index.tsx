@@ -31,8 +31,9 @@ function CourseNavigationMobile(props: {
       >
         <div className="bg-white p-4">
           <ul className="wd-course-navigation-mobile">
-            {courseNavigationLinks.map((courseNavigationLink) => (
+            {courseNavigationLinks.map((courseNavigationLink, index) => (
               <li
+                key={index}
                 className={
                   pathname.includes(courseNavigationLink.link)
                     ? "wd-submenu-active-mobile"

@@ -4,7 +4,10 @@ import assignmentsReducer from "../Courses/Assignments/reducer";
 import coursesReducer from "../Courses/reducer";
 import { IKanbasModule } from "./interfaces/modules";
 import { IKanbasCourse } from "./interfaces/courses";
-import { IKanbasAssignment } from "./interfaces/assignments";
+import {
+  IKanbasAssignment,
+  IKanbasAssignmentSection,
+} from "./interfaces/assignments";
 export interface KanbasState {
   modulesReducer: {
     modules: IKanbasModule[];
@@ -16,8 +19,10 @@ export interface KanbasState {
     course: IKanbasCourse;
   };
   assignmentsReducer: {
+    assignmentsAvailable: boolean;
     assignments: IKanbasAssignment[];
     assignment: IKanbasAssignment;
+    assignmentSections: IKanbasAssignmentSection[];
   };
 }
 const store = configureStore({

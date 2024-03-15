@@ -10,6 +10,10 @@ function Assignments() {
   const { courseId } = useParams();
   const navigate = useNavigate();
 
+  const handleAddAssignmentButton = function () {
+    navigate(`/Kanbas/Courses/${courseId}/Assignments/create`);
+  };
+
   return (
     <>
       <MiddleContent>
@@ -25,12 +29,7 @@ function Assignments() {
               <FaPlus className="me-1" /> Group
             </div>
           </Button>
-          <Button
-            className="wd-button-red"
-            onClick={() =>
-              navigate(`/Kanbas/Courses/${courseId}/Assignments/create`)
-            }
-          >
+          <Button className="wd-button-red" onClick={handleAddAssignmentButton}>
             <div className="d-flex justify-content-center align-items-center">
               <FaPlus className="me-1" /> Assignment
             </div>
