@@ -13,6 +13,7 @@ import {
   resetAssignment,
   setAssignment,
   setAssignmentById,
+  setAssignmentEditSectionId,
   updateAssignment,
 } from "../reducer";
 import { useEffect } from "react";
@@ -21,6 +22,9 @@ function AssignmentEditor({ isCreate }: { isCreate: boolean }) {
   const { courseId, assignmentId } = useParams();
   const assignment = useSelector(
     (state: KanbasState) => state.assignmentsReducer.assignment
+  );
+  const assignmentSections = useSelector(
+    (state: KanbasState) => state.assignmentsReducer.assignmentSections
   );
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -38,6 +42,10 @@ function AssignmentEditor({ isCreate }: { isCreate: boolean }) {
     }
     handleCancel();
   };
+
+  useEffect(() => {
+    dispatch(resetAssignment());
+  }, []);
 
   useEffect(() => {
     if (
@@ -123,11 +131,18 @@ function AssignmentEditor({ isCreate }: { isCreate: boolean }) {
                   </Form.Label>
                 </div>
                 <div className="col-6 mr-auto">
-                  <Form.Select aria-label="Assignment Group" value={0} disabled>
-                    <option value="0">ASSIGNMENTS</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                  <Form.Select
+                    aria-label="Assignment Group"
+                    value={assignment.sectionId}
+                    onChange={(e) =>
+                      dispatch(setAssignmentEditSectionId(e.target.value))
+                    }
+                  >
+                    {assignmentSections?.map((as, index) => (
+                      <option key={index} value={as._id}>
+                        {as.title}
+                      </option>
+                    ))}
                   </Form.Select>
                 </div>
               </Form.Group>
@@ -144,9 +159,6 @@ function AssignmentEditor({ isCreate }: { isCreate: boolean }) {
                 <div className="col-6 mr-auto">
                   <Form.Select aria-label="Display Grade as" value={0} disabled>
                     <option value="0">Percentage</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
                   </Form.Select>
                 </div>
               </Form.Group>

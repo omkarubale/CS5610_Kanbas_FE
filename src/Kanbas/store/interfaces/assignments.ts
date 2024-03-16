@@ -7,12 +7,12 @@ export interface IKanbasAssignmentSection {
 
 export interface IKanbasAssignment {
   _id: string;
-  course: string;
+  courseId: string;
   title: string;
   description: string;
   points: number;
   dueDate: string;
   availableFromDate: string;
   availableToDate: string;
-  section?: IKanbasAssignmentSection;
+  sectionId: string;
 }

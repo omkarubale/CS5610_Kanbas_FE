@@ -27,7 +27,7 @@ function AssignmentList() {
     )
   );
   const assignmentsList = useSelector((state: KanbasState) =>
-    state.assignmentsReducer.assignments.filter((a) => a.course == courseId)
+    state.assignmentsReducer.assignments.filter((a) => a.courseId == courseId)
   );
 
   useEffect(() => {
@@ -73,7 +73,7 @@ function AssignmentList() {
             {selectedSectionId === assignmentSection._id && (
               <ul className="list-group">
                 {assignmentsList
-                  ?.filter((a) => a.section?._id === assignmentSection._id)
+                  ?.filter((a) => a.sectionId === assignmentSection._id)
                   ?.map((a, aIndex) => (
                     <li
                       key={aIndex}
@@ -98,7 +98,7 @@ function AssignmentList() {
                           className="d-contents"
                           onClick={() => handleAssignmentEditButton(a)}
                         >
-                          <FaPen className="ms-2" />
+                          <FaPen className="me-2" />
                         </Button>
                         <FaCheckCircle className="wd-icon-green" />
                         <FaEllipsisV className="ms-2" />

@@ -15,14 +15,14 @@ const initialState: {
   assignments: [] as IKanbasAssignment[],
   assignment: {
     _id: "",
-    course: "",
+    courseId: "",
     title: "",
     description: "",
     points: 100,
     dueDate: "2021-01-01",
     availableFromDate: "2021-01-01",
     availableToDate: "2021-01-01",
-    section: undefined,
+    sectionId: "",
   },
   assignmentSections: [] as IKanbasAssignmentSection[],
 };
@@ -45,7 +45,7 @@ const coursesSlice = createSlice({
 
       state.assignment = {
         ...state.assignment,
-        course: courseId,
+        courseId: courseId,
         _id: new Date().getTime().toString(),
       };
       state.assignments = [...state.assignments, state.assignment];
@@ -65,7 +65,6 @@ const coursesSlice = createSlice({
       });
     },
     setAssignment: (state, action) => {
-      console.log("set: ", action.payload);
       state.assignment = action.payload;
     },
     setAssignmentById: (state, action) => {
@@ -74,16 +73,27 @@ const coursesSlice = createSlice({
 
       if (assignment !== undefined) state.assignment = assignment;
     },
+    setAssignmentEditSectionId: (state, action) => {
+      const assignmentSectionId = action.payload;
+      const assignmentSection = state.assignmentSections.find(
+        (as) => as._id == assignmentSectionId
+      );
+      if (assignmentSection !== undefined)
+        state.assignment.sectionId = assignmentSection._id;
+    },
     resetAssignment: (state) => {
       state.assignment._id = "";
       state.assignment.title = "";
-      state.assignment.course = "";
+      state.assignment.courseId = "";
       state.assignment.description = "";
       state.assignment.points = 100;
       state.assignment.dueDate = "2021-01-01";
       state.assignment.availableFromDate = "2021-01-01";
       state.assignment.availableToDate = "2021-01-01";
-      state.assignment.section = undefined;
+
+      const defaultSection = state.assignmentSections.at(0);
+      if (defaultSection !== undefined)
+        state.assignment.sectionId = defaultSection._id;
     },
   },
 });
@@ -96,6 +106,7 @@ export const {
   updateAssignment,
   setAssignment,
   setAssignmentById,
+  setAssignmentEditSectionId,
   resetAssignment,
 } = coursesSlice.actions;
 export default coursesSlice.reducer;
@@ -109,11 +120,9 @@ export const fetchAssignments = async (
     .map((assignment) => {
       return {
         _id: assignment._id,
-        course: assignment.course,
+        courseId: assignment.course,
+        sectionId: assignment.sectionId,
         title: assignment.title,
-        section: assignmentSections.find(
-          (section) => section._id == assignment.sectionId
-        ),
       } as IKanbasAssignment;
     });
   dispatch(setAssignments(_assignments));
