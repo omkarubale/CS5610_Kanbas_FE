@@ -10,6 +10,12 @@ import { useState } from "react";
 import CourseNavigationMobile from "../Courses/Navigation";
 
 import Dashboard from "./../../Dashboard";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setNavigationTitle,
+  setSubNavigationTitle,
+} from "../../Navigation/reducer";
+import { KanbasState } from "../../store";
 
 function KanbasNavigationMobile() {
   const { pathname } = useLocation();
@@ -17,13 +23,18 @@ function KanbasNavigationMobile() {
   const [showMobileSubNav, setShowMobileSubNav] = useState(false);
   const handleCloseMobileNav = () => setShowMobileNav(false);
   const handleShowNav = () => setShowMobileNav(true);
+  const dispatch = useDispatch();
 
-  const [mobileHeaderLine1, setMobileHeaderLine1] = useState("");
-  const [mobileHeaderLine2, setMobileHeaderLine2] = useState("");
+  const navigationTitle = useSelector(
+    (state: KanbasState) => state.navigationReducer.navigationTitle
+  );
+  const subNavigationTitle = useSelector(
+    (state: KanbasState) => state.navigationReducer.subNavigationTitle
+  );
 
   function resetMobileHeader(line2Header: string) {
-    setMobileHeaderLine1("");
-    setMobileHeaderLine2(line2Header);
+    dispatch(setNavigationTitle(""));
+    dispatch(setSubNavigationTitle(line2Header));
   }
 
   return (
@@ -47,8 +58,8 @@ function KanbasNavigationMobile() {
               aria-controls="collapse-sub-navigation-mobile"
               aria-expanded={showMobileSubNav}
             >
-              <div>{mobileHeaderLine1}</div>
-              <div>{mobileHeaderLine2}</div>
+              <div>{navigationTitle}</div>
+              <div>{subNavigationTitle}</div>
             </div>
 
             <div className="col-3 wd-mobile-navigation-right">
@@ -119,11 +130,7 @@ function KanbasNavigationMobile() {
           <Route
             path="Courses/:courseId/*"
             element={
-              <CourseNavigationMobile
-                showMobileSubNav={showMobileSubNav}
-                setMobileHeaderLine1={setMobileHeaderLine1}
-                setMobileHeaderLine2={setMobileHeaderLine2}
-              />
+              <CourseNavigationMobile showMobileSubNav={showMobileSubNav} />
             }
           />
         </Routes>

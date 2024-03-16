@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import modulesReducer from "../Courses/Modules/reducer";
 import assignmentsReducer from "../Courses/Assignments/reducer";
+import navigationReducer from "./../Navigation/reducer";
 import coursesReducer from "../Courses/reducer";
 import { IKanbasModule } from "./interfaces/modules";
 import { IKanbasCourse } from "./interfaces/courses";
@@ -9,6 +10,10 @@ import {
   IKanbasAssignmentSection,
 } from "./interfaces/assignments";
 export interface KanbasState {
+  navigationReducer: {
+    navigationTitle: string;
+    subNavigationTitle: string;
+  };
   modulesReducer: {
     modules: IKanbasModule[];
     module: IKanbasModule;
@@ -27,6 +32,7 @@ export interface KanbasState {
 }
 const store = configureStore({
   reducer: {
+    navigationReducer,
     modulesReducer,
     coursesReducer,
     assignmentsReducer,

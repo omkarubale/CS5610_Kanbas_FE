@@ -64,19 +64,28 @@ function Breadcrumb(props: {
                 )
             )}
 
-            {pathname.includes("Assignments") && assignmentId !== undefined && (
-              <li className="breadcrumb-item active">
-                <Link to={"Assignments/" + assignmentId}>
-                  {assignments
-                    .filter(
-                      (assignment) =>
-                        assignment.course === courseId &&
-                        assignment._id === assignmentId
-                    )
-                    ?.map((a) => a.title)}
-                </Link>
-              </li>
-            )}
+            {pathname.includes("Assignments") &&
+              assignmentId !== undefined &&
+              assignmentId !== "create" && (
+                <li className="breadcrumb-item active">
+                  <Link to={"Assignments/" + assignmentId}>
+                    {assignments
+                      .filter(
+                        (assignment) =>
+                          assignment.course === courseId &&
+                          assignment._id === assignmentId
+                      )
+                      ?.map((a) => a.title)}
+                  </Link>
+                </li>
+              )}
+            {pathname.includes("Assignments") &&
+              assignmentId !== undefined &&
+              assignmentId === "create" && (
+                <li className="breadcrumb-item active">
+                  <Link to="#">New Assignment</Link>
+                </li>
+              )}
           </ol>
         </nav>
       </div>

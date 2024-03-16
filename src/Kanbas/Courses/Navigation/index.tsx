@@ -52,22 +52,24 @@ function CourseNavigation(props: { subNavigationOpen: boolean }) {
   return (
     <div className="wd-course-navigation-container d-none d-md-block pe-0">
       <Collapse in={props.subNavigationOpen} dimension="width">
-        <ul className="wd-course-navigation">
-          {courseNavigationLinks.map((courseNavigationLink, index) => (
-            <li
-              key={index}
-              className={
-                pathname.includes(courseNavigationLink.link)
-                  ? "wd-submenu-active"
-                  : ""
-              }
-            >
-              <Link to={courseNavigationLink.link}>
-                {courseNavigationLink.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div>
+          <ul className="wd-course-navigation">
+            {courseNavigationLinks.map((courseNavigationLink, index) => (
+              <li
+                key={index}
+                className={
+                  pathname.includes(courseNavigationLink.link)
+                    ? "wd-submenu-active"
+                    : ""
+                }
+              >
+                <Link to={courseNavigationLink.link}>
+                  {courseNavigationLink.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </Collapse>
     </div>
   );

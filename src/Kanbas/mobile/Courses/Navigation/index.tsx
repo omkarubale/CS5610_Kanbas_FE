@@ -3,22 +3,24 @@ import "./index.css";
 import { useParams } from "react-router";
 import { Collapse } from "react-bootstrap";
 import { courseNavigationLinks } from "../../../Courses/Navigation";
+import { useDispatch } from "react-redux";
+import {
+  setNavigationTitle,
+  setSubNavigationTitle,
+} from "../../../Navigation/reducer";
 
-function CourseNavigationMobile(props: {
-  setMobileHeaderLine1: (text: string) => void;
-  setMobileHeaderLine2: (text: string) => void;
-  showMobileSubNav: boolean;
-}) {
+function CourseNavigationMobile(props: { showMobileSubNav: boolean }) {
   const { courseId } = useParams();
   const { pathname } = useLocation();
+  const dispatch = useDispatch();
 
   if (courseId != undefined) {
-    props.setMobileHeaderLine1(courseId);
+    dispatch(setNavigationTitle(courseId));
   }
 
   courseNavigationLinks.forEach((link) => {
     if (pathname.includes(link.link)) {
-      props.setMobileHeaderLine2(link.title);
+      dispatch(setSubNavigationTitle(link.title));
     }
   });
 
@@ -44,7 +46,7 @@ function CourseNavigationMobile(props: {
                 <Link
                   to={courseNavigationLink.link}
                   onClick={() =>
-                    props.setMobileHeaderLine2(courseNavigationLink.title)
+                    dispatch(setSubNavigationTitle(courseNavigationLink.title))
                   }
                 >
                   {courseNavigationLink.icon}
