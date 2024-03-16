@@ -6,6 +6,7 @@ import {
   FaPlus,
   FaGripVertical,
   FaPen,
+  FaTrash,
 } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
 import { useNavigate, useParams } from "react-router";
@@ -16,7 +17,11 @@ import { KanbasState } from "../../../store";
 import { fetchAssignments } from "../reducer";
 import { IKanbasAssignment } from "../../../store/interfaces/assignments";
 
-function AssignmentList() {
+function AssignmentList(props: {
+  setDeleteAssignmentName: (arg0: string) => void;
+  setDeleteAssignmentId: (arg0: string) => void;
+  setShowDeleteAssignmentModal: (arg0: boolean) => void;
+}) {
   const { courseId } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -43,6 +48,12 @@ function AssignmentList() {
 
   function handleAssignmentEditButton(assignment: IKanbasAssignment) {
     navigate(`/Kanbas/Courses/${courseId}/Assignments/${assignment._id}`);
+  }
+
+  function handleAssignmentDeleteButton(assignment: IKanbasAssignment) {
+    props.setDeleteAssignmentName(assignment.title);
+    props.setDeleteAssignmentId(assignment._id);
+    props.setShowDeleteAssignmentModal(true);
   }
 
   return (
@@ -99,6 +110,12 @@ function AssignmentList() {
                           onClick={() => handleAssignmentEditButton(a)}
                         >
                           <FaPen className="me-2" />
+                        </Button>
+                        <Button
+                          className="d-contents"
+                          onClick={() => handleAssignmentDeleteButton(a)}
+                        >
+                          <FaTrash className="me-2" />
                         </Button>
                         <FaCheckCircle className="wd-icon-green" />
                         <FaEllipsisV className="ms-2" />

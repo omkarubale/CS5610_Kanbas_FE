@@ -5,13 +5,27 @@ import MiddleContentActions from "../../layout/Content/NotLeftSide/MiddleContent
 import MiddleContentData from "../../layout/Content/NotLeftSide/MiddleContent/MiddleContentData";
 import AssignmentList from "./List";
 import { useNavigate, useParams } from "react-router";
+import { Modal } from "react-bootstrap";
+import { useState } from "react";
+import { deleteAssignment } from "./reducer";
+import { useDispatch } from "react-redux";
 
 function Assignments() {
   const { courseId } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [showDeleteAssignmentModal, setShowDeleteAssignmentModal] =
+    useState(false);
+  const [deleteAssignmentName, setDeleteAssignmentName] = useState("");
+  const [deleteAssignmentId, setDeleteAssignmentId] = useState("");
 
   const handleAddAssignmentButton = function () {
     navigate(`/Kanbas/Courses/${courseId}/Assignments/create`);
+  };
+  const handleDeleteAssignmentButton = function () {
+    dispatch(deleteAssignment(deleteAssignmentId));
+    setShowDeleteAssignmentModal(false);
   };
 
   return (
@@ -42,9 +56,41 @@ function Assignments() {
         </MiddleContentActions>
         <hr />
         <MiddleContentData>
-          <AssignmentList />
+          <AssignmentList
+            setShowDeleteAssignmentModal={setShowDeleteAssignmentModal}
+            setDeleteAssignmentName={setDeleteAssignmentName}
+            setDeleteAssignmentId={setDeleteAssignmentId}
+          />
         </MiddleContentData>
       </MiddleContent>
+
+      <Modal
+        show={showDeleteAssignmentModal}
+        onHide={() => setShowDeleteAssignmentModal(false)}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Delete Assignment</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to delete the Assignment{" "}
+          <b>{deleteAssignmentName}</b>? This action is not reversible, and you
+          will loose all data inside this assignment!
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            className="wd-button-standard"
+            onClick={() => setShowDeleteAssignmentModal(false)}
+          >
+            Close
+          </Button>
+          <Button
+            className="wd-button-red"
+            onClick={handleDeleteAssignmentButton}
+          >
+            Delete Assignment
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }
