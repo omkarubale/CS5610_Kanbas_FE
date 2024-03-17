@@ -8,8 +8,7 @@ function QuizQuestionsEditor() {
 
             {/* On a quiz question edit selection, call QuizQuestionEditor  */}
             <QuizQuestionEditor />
-            <div>
-            </div>
+            <div></div>
         </>
     );
 }
