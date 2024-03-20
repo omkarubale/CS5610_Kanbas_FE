@@ -3,6 +3,8 @@ import RightSide from "../../../layout/Content/NotLeftSide/RightSide";
 import QuizPreviewQuestionLinks from "./QuestionLinks";
 import QuizQuestionPreviewSingle from "./Question/Single";
 import QuizQuestionPreviewList from "./Question/List";
+import MiddleContentActions from "../../../layout/Content/NotLeftSide/MiddleContent/MiddleContentActions";
+import MiddleContentData from "../../../layout/Content/NotLeftSide/MiddleContent/MiddleContentData";
 
 function QuizPreview() {
 
@@ -12,8 +14,14 @@ function QuizPreview() {
     return (
         <>
             <MiddleContent>
-                {isQneQuestionAtATime && QuizQuestionPreviewSingle}
-                {isQneQuestionAtATime && QuizQuestionPreviewList}
+                <MiddleContentActions>
+                    <></>
+                </MiddleContentActions>
+                <hr />
+                <MiddleContentData>
+                    {isQneQuestionAtATime && QuizQuestionPreviewSingle}
+                    {isQneQuestionAtATime && QuizQuestionPreviewList}
+                </MiddleContentData>
             </MiddleContent>
             <RightSide>
                 <QuizPreviewQuestionLinks />
@@ -22,4 +30,4 @@ function QuizPreview() {
     );
 }
 
-export default QuizPreview(); 
+export default QuizPreview; 

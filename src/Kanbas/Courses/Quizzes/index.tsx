@@ -4,16 +4,17 @@ import MiddleContentData from "../../layout/Content/NotLeftSide/MiddleContent/Mi
 import QuizList from "./List";
 
 function Quizzes() {
-    return (<>
-        <MiddleContent>
-            <MiddleContentActions>
-                <></>
-            </MiddleContentActions>
-            <MiddleContentData>
-                <QuizList />
-            </MiddleContentData>
-        </MiddleContent>
-    </>
+    return (
+        <>
+            <MiddleContent>
+                <MiddleContentActions>
+                    <></>
+                </MiddleContentActions>
+                <MiddleContentData>
+                    <QuizList />
+                </MiddleContentData>
+            </MiddleContent>
+        </>
     );
 }
 

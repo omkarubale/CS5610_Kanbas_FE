@@ -12,8 +12,8 @@ function QuizEditor() {
                     <></>
                 </MiddleContentActions>
                 <MiddleContentData>
-                    <QuizDetailsEditor />
-                    <QuizQuestionsEditor />
+                    {/* TODO Use routing links for details and question editor page */}
+                    <></>
                 </MiddleContentData>
             </MiddleContent>
         </>

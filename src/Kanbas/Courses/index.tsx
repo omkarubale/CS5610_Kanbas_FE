@@ -10,6 +10,13 @@ import Assignments from "./Assignments";
 import AssignmentEditor from "./Assignments/Editor";
 import Grades from "./Grades";
 import { useState } from "react";
+import Quizzes from "./Quizzes";
+import QuizDetails from "./Quizzes/Details";
+import QuizEditor from "./Quizzes/Editor";
+import QuizQuestionEditor from "./Quizzes/Editor/Questions/Editor";
+import QuizPreview from "./Quizzes/Preview";
+import QuizDetailsEditor from "./Quizzes/Editor/Details";
+import QuizQuestionsEditor from "./Quizzes/Editor/Questions";
 
 function Courses() {
   const [subNavigationOpen, setSubNavigationOpen] = useState(true);
@@ -42,6 +49,35 @@ function Courses() {
               element={<AssignmentEditor isCreate={true} />}
             />
             <Route path="Grades" element={<Grades />} />
+            <Route path="Quizzes" element={<Quizzes />} />
+            <Route
+              path="Quizzes/:quizId"
+              element={<QuizDetails />}
+            />
+            <Route
+              path="Quizzes/:quizId/edit"
+              element={<QuizEditor />}
+            />
+            <Route
+              path="Quizzes/:quizId/edit/details"
+              element={<QuizDetailsEditor />}
+            />
+            <Route
+              path="Quizzes/:quizId/edit/questions"
+              element={<QuizQuestionsEditor />}
+            />
+            <Route
+              path="Quizzes/:quizId/questions/:questionId"
+              element={<QuizQuestionEditor isCreate={false} />}
+            />
+            <Route
+              path="Quizzes/:quizId/questions/create"
+              element={<QuizQuestionEditor isCreate={true} />}
+            />
+            <Route
+              path="Quizzes/:quizId/preview"
+              element={<QuizPreview />}
+            />
           </Routes>
         </NotLeftSide>
       </div>

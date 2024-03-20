@@ -1,4 +1,4 @@
-function QuizQuestionEditor() {
+function QuizQuestionEditor({ isCreate }: { isCreate: boolean }) {
     return (
         <>
         </>
