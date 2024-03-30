@@ -42,6 +42,10 @@ export interface IKanbasQuizQuestionMCQ extends IKanbasQuizQuestion {
   choices: IKanbasQuizQuestionMCQChoice[];
 }
 
-export interface IKanbasQuizQuestionBlank {
+export interface IKanbasQuizQuestionTrueFalse extends IKanbasQuizQuestion {
+  correctAnswer: boolean;
+}
+
+export interface IKanbasQuizQuestionBlank extends IKanbasQuizQuestion {
   correctAnswers: string[];
 }
