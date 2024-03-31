@@ -11,6 +11,7 @@ import {
 } from "./../../store/interfaces/quizzes";
 import { eAssignmentGroup } from "../../store/enums/eAssignmentGroup";
 import { eQuizQuestionType } from "../../store/enums/eQuizQuestionType";
+import { eQuizType } from "../../store/enums/eQuizType";
 
 const initialState: {
   quizzesAvailable: boolean;
@@ -34,6 +35,9 @@ const initialState: {
     questionsCount: 0,
     isMultipleAvailableDates: false,
     isPublished: false,
+    description: "",
+    quizType: eQuizType.GRADED_QUIZ,
+    accessCode: "",
     isShuffleAnswers: false,
     timeLimit: 0, // minutes
     isMultipleAttempts: false,
@@ -127,6 +131,9 @@ const quizzesSlice = createSlice({
       state.quiz.questionsCount = 0;
       state.quiz.isMultipleAvailableDates = false;
       state.quiz.isPublished = false;
+      state.quiz.description = "";
+      state.quiz.quizType = eQuizType.GRADED_QUIZ;
+      state.quiz.accessCode = "";
       state.quiz.isShuffleAnswers = false;
       state.quiz.timeLimit = 0;
       state.quiz.isMultipleAttempts = false;

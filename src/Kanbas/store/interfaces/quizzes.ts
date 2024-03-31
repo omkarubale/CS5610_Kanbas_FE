@@ -1,5 +1,6 @@
 import { eAssignmentGroup } from "../enums/eAssignmentGroup";
 import { eQuizQuestionType } from "../enums/eQuizQuestionType";
+import { eQuizType } from "../enums/eQuizType";
 
 export interface IKanbasQuiz {
   _id: string;
@@ -15,6 +16,9 @@ export interface IKanbasQuiz {
 }
 
 export interface IKanbasQuizDetails extends IKanbasQuiz {
+  description: string;
+  quizType: eQuizType;
+  accessCode: string;
   isShuffleAnswers: boolean;
   timeLimit: number; // minutes
   isMultipleAttempts: boolean;
