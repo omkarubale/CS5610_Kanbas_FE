@@ -9,6 +9,11 @@ import {
   IKanbasAssignment,
   IKanbasAssignmentSection,
 } from "./interfaces/assignments";
+import {
+  IKanbasQuiz,
+  IKanbasQuizDetails,
+  IKanbasQuizQuestion,
+} from "./interfaces/quizzes";
 export interface KanbasState {
   navigationReducer: {
     navigationTitle: string;
@@ -28,6 +33,14 @@ export interface KanbasState {
     assignments: IKanbasAssignment[];
     assignment: IKanbasAssignment;
     assignmentSections: IKanbasAssignmentSection[];
+  };
+  quizzesReducer: {
+    quizzesAvailable: boolean;
+    quizzes: IKanbasQuiz[];
+    quizzesDetails: IKanbasQuizDetails[]; // TEMP: till Node BE is implemented
+    quiz: IKanbasQuizDetails;
+    quizQuestions: IKanbasQuizQuestion[];
+    quizQuestion: any;
   };
 }
 const store = configureStore({
