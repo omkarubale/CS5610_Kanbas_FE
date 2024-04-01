@@ -32,6 +32,19 @@ function EncodingParametersInURLs() {
       >
         Substract {a} - {b}
       </a>
+      <h3>Query Parameters</h3>
+      <a
+        className="btn btn-primary"
+        href={`http://localhost:4000/a5/calculator?operation=add&a=${a}&b=${b}`}
+      >
+        Add {a} + {b}
+      </a>
+      <a
+        className="btn btn-danger"
+        href={`http://localhost:4000/a5/calculator?operation=subtract&a=${a}&b=${b}`}
+      >
+        Substract {a} - {b}
+      </a>
     </div>
   );
 }
