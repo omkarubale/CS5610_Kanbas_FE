@@ -34,6 +34,10 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
         dispatch(setQuiz({ ...quizDetails, description: newValue }));
     }
 
+    const formatDate = (date: Date) => {
+        return date ? new Date(date).toISOString().split('T')[0] : '';
+    }
+
     const handleCancel = () => {
         navigate(`/Kanbas/Courses/${courseId}/Quizzes`);
         dispatch(resetQuiz());
@@ -164,7 +168,7 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
                                     <Form.Label className="fw-bold">Due</Form.Label>
                                     <Form.Control
                                         type="date"
-                                        value={quizDetails?.dueDate + ""}
+                                        value={formatDate(quizDetails?.dueDate)}
                                         onChange={(e) => dispatch(setQuiz({
                                             ...quizDetails, dueDate: e.target.value
                                         }))}
@@ -181,7 +185,7 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
                                         </Form.Label>
                                         <Form.Control
                                             type="date"
-                                            value={quizDetails?.availableDate + ""}
+                                            value={formatDate(quizDetails?.availableDate)}
                                             onChange={(e) => dispatch(setQuiz({
                                                 ...quizDetails, availableDate: e.target.value
                                             }))}
@@ -194,7 +198,7 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
                                         <Form.Label className="fw-bold">Until</Form.Label>
                                         <Form.Control
                                             type="date"
-                                            value={quizDetails?.availableUntilDate + ""}
+                                            value={formatDate(quizDetails?.availableUntilDate)}
                                             onChange={(e) => dispatch(setQuiz({
                                                 ...quizDetails, availableUntilDate: e.target.value
                                             }))}
