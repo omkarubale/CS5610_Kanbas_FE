@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card, Collapse } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,8 +6,12 @@ import { KanbasState } from "../store";
 import {
   setCourse,
   addCourse,
-  deleteCourse,
+  removeCourse,
   updateCourse,
+  fetchAllCourses,
+  addNewCourse,
+  deleteCourse,
+  putCourse,
 } from "../Courses/reducer";
 import Form from "react-bootstrap/Form";
 import { FaCaretDown } from "react-icons/fa";
@@ -21,6 +25,10 @@ function Dashboard() {
   );
   const dispatch = useDispatch();
   const [addCourseDrawerOpen, setAddCourseDrawerOpen] = useState(false);
+
+  useEffect(() => {
+    fetchAllCourses(dispatch);
+  }, []);
 
   return (
     <div className="p-4">
@@ -82,13 +90,13 @@ function Dashboard() {
                 <Form.Group className="d-inline-flex">
                   <Button
                     className="wd-button-standard ms-auto"
-                    onClick={(e) => dispatch(addCourse())}
+                    onClick={(e) => addNewCourse(dispatch, course)}
                   >
                     Add
                   </Button>
                   <Button
                     className="wd-button-standard"
-                    onClick={(e) => dispatch(updateCourse())}
+                    onClick={(e) => putCourse(dispatch, course)}
                   >
                     Update
                   </Button>
@@ -143,7 +151,7 @@ function Dashboard() {
                   <Button
                     onClick={(event) => {
                       event.preventDefault();
-                      dispatch(deleteCourse(course._id));
+                      deleteCourse(dispatch, course._id);
                     }}
                     className="btn btn-primary wd-button-red"
                   >
