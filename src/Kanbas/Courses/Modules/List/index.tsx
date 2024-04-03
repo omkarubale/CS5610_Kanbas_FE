@@ -3,7 +3,7 @@ import "./index.css";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addModule,
-  deleteModule,
+  removeModule,
   updateModule,
   setModule,
   setAddModuleDrawerOpen,
@@ -22,7 +22,12 @@ import {
 import { useParams } from "react-router";
 import { Button, Card, Collapse } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import { findModulesForCourse } from "../client";
+import {
+  findModulesForCourse,
+  createModule,
+  deleteModule,
+  putModule,
+} from "../client";
 import { IKanbasModule } from "../../../store/interfaces/modules";
 
 interface IModuleExpanded {
@@ -45,6 +50,30 @@ function ModuleList() {
   const addModuleDrawerOpen = useSelector(
     (state: KanbasState) => state.modulesReducer.addModuleDrawerOpen
   );
+  const handleAddModule = () => {
+    if (courseId !== undefined)
+      createModule(courseId, module).then((module) => {
+        dispatch(addModule(module));
+        const moduleExpanded: IModuleExpanded = {
+          _id: module._id,
+          expanded: false,
+        };
+
+        setModuleExpandedList([...moduleExpandedList, moduleExpanded]);
+      });
+  };
+
+  const handleDeleteModule = (moduleId: string) => {
+    if (moduleId !== undefined)
+      deleteModule(moduleId).then(() => {
+        dispatch(removeModule(moduleId));
+      });
+  };
+
+  const handleUpdateModule = async () => {
+    const status = await putModule(module);
+    dispatch(updateModule(module));
+  };
 
   useEffect(() => {
     if (courseId !== undefined)
@@ -127,13 +156,13 @@ function ModuleList() {
               <Form.Group className="d-flex">
                 <Button
                   className="wd-button-standard my-1 ms-auto px-2"
-                  onClick={() => dispatch(addModule({ course: courseId }))}
+                  onClick={handleAddModule}
                 >
                   Add
                 </Button>
                 <Button
                   className="wd-button-standard my-1 me-0 px-2"
-                  onClick={() => dispatch(updateModule(module))}
+                  onClick={handleUpdateModule}
                 >
                   Update
                 </Button>
@@ -166,7 +195,7 @@ function ModuleList() {
                 </Button>
                 <Button
                   className="d-contents"
-                  onClick={() => dispatch(deleteModule(module._id))}
+                  onClick={() => handleDeleteModule(module._id)}
                 >
                   <FaTrash className="ms-2" />
                 </Button>

@@ -24,16 +24,10 @@ const modulesSlice = createSlice({
       state.modules = action.payload;
     },
     addModule: (state, action) => {
-      const courseId = action.payload.course;
-      state.module = {
-        ...state.module,
-        course: courseId,
-        _id: new Date().getTime().toString(),
-      };
-
-      state.modules = [...state.modules, state.module];
+      const module = action.payload;
+      state.modules = [...state.modules, module];
     },
-    deleteModule: (state, action) => {
+    removeModule: (state, action) => {
       state.modules = state.modules.filter(
         (module) => module._id !== action.payload
       );
@@ -65,7 +59,7 @@ const modulesSlice = createSlice({
 export const {
   setModules,
   addModule,
-  deleteModule,
+  removeModule,
   updateModule,
   setModule,
   setAddModuleDrawerOpen,
