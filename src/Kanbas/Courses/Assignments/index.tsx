@@ -7,8 +7,9 @@ import AssignmentList from "./List";
 import { useNavigate, useParams } from "react-router";
 import { Modal } from "react-bootstrap";
 import { useState } from "react";
-import { deleteAssignment } from "./reducer";
+import { removeAssignment } from "./reducer";
 import { useDispatch } from "react-redux";
+import { deleteAssignment } from "./client";
 
 function Assignments() {
   const { courseId } = useParams();
@@ -24,8 +25,11 @@ function Assignments() {
     navigate(`/Kanbas/Courses/${courseId}/Assignments/create`);
   };
   const handleDeleteAssignmentButton = function () {
-    dispatch(deleteAssignment(deleteAssignmentId));
-    setShowDeleteAssignmentModal(false);
+    if (deleteAssignmentId !== undefined && deleteAssignmentId !== "")
+      deleteAssignment(deleteAssignmentId).then(() => {
+        dispatch(removeAssignment(deleteAssignmentId));
+        setShowDeleteAssignmentModal(false);
+      });
   };
 
   return (

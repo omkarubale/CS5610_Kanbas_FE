@@ -9,14 +9,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { KanbasState } from "../../../store";
 import {
   addAssignment,
-  fetchAssignments,
   resetAssignment,
   setAssignment,
-  setAssignmentById,
   setAssignmentEditSectionId,
   updateAssignment,
 } from "../reducer";
 import { useEffect } from "react";
+import { createAssignment, getAssignment, putAssignment } from "../client";
 
 function AssignmentEditor({ isCreate }: { isCreate: boolean }) {
   const { courseId, assignmentId } = useParams();
@@ -35,12 +34,18 @@ function AssignmentEditor({ isCreate }: { isCreate: boolean }) {
   };
 
   const handleSave = () => {
-    if (isCreate) {
-      dispatch(addAssignment({ course: courseId }));
-    } else {
-      dispatch(updateAssignment());
+    if (courseId !== undefined) {
+      if (isCreate) {
+        createAssignment(courseId, assignment).then((assignment) => {
+          dispatch(addAssignment(assignment));
+        });
+      } else {
+        putAssignment(assignment).then(() => {
+          dispatch(updateAssignment(assignment));
+        });
+      }
+      handleCancel();
     }
-    handleCancel();
   };
 
   useEffect(() => {
@@ -53,8 +58,9 @@ function AssignmentEditor({ isCreate }: { isCreate: boolean }) {
       assignmentId !== undefined &&
       courseId !== undefined
     ) {
-      fetchAssignments(dispatch, courseId);
-      dispatch(setAssignmentById(assignmentId));
+      getAssignment(assignmentId).then((assignment) => {
+        dispatch(setAssignment(assignment));
+      });
     }
   }, [dispatch]);
 

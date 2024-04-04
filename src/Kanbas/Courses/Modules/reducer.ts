@@ -9,7 +9,7 @@ const initialState: {
   modules: [],
   module: {
     _id: "",
-    course: "",
+    courseId: "",
     name: "New Module",
     description: "New Module Description",
   },
@@ -46,7 +46,7 @@ const modulesSlice = createSlice({
     },
     resetModuleForm: (state) => {
       state.module._id = "";
-      state.module.course = "";
+      state.module.courseId = "";
       state.module.name = "New Module";
       state.module.description = "New Module Description";
     },

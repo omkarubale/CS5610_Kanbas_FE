@@ -1,5 +1,4 @@
 import { createSlice, Dispatch, UnknownAction } from "@reduxjs/toolkit";
-import { assignments, assignmentSections } from "../../Database";
 import {
   IKanbasAssignment,
   IKanbasAssignmentSection,
@@ -32,33 +31,24 @@ const coursesSlice = createSlice({
   initialState,
   reducers: {
     setAssignments: (state, action) => {
-      if (!state.assignmentsAvailable) {
-        state.assignments = action.payload;
-        state.assignmentsAvailable = true;
-      }
+      state.assignments = action.payload;
     },
     setAssignmentSections: (state, action) => {
       state.assignmentSections = action.payload;
     },
     addAssignment: (state, action) => {
-      const courseId = action.payload.course;
-
-      state.assignment = {
-        ...state.assignment,
-        courseId: courseId,
-        _id: new Date().getTime().toString(),
-      };
-      state.assignments = [...state.assignments, state.assignment];
+      const assignment = action.payload;
+      state.assignments = [...state.assignments, assignment];
     },
-    deleteAssignment: (state, action) => {
+    removeAssignment: (state, action) => {
       state.assignments = state.assignments.filter(
         (assignment) => assignment._id !== action.payload
       );
     },
-    updateAssignment: (state) => {
+    updateAssignment: (state, action) => {
       state.assignments = state.assignments.map((assignment) => {
-        if (assignment._id === state.assignment._id) {
-          return state.assignment;
+        if (assignment._id === action.payload._id) {
+          return action.payload;
         } else {
           return assignment;
         }
@@ -102,7 +92,7 @@ export const {
   setAssignments,
   setAssignmentSections,
   addAssignment,
-  deleteAssignment,
+  removeAssignment,
   updateAssignment,
   setAssignment,
   setAssignmentById,
@@ -110,32 +100,3 @@ export const {
   resetAssignment,
 } = coursesSlice.actions;
 export default coursesSlice.reducer;
-
-export const fetchAssignments = async (
-  dispatch: Dispatch<UnknownAction>,
-  courseId: string
-) => {
-  const _assignments = assignments
-    .filter((a) => a.course == courseId)
-    .map((assignment) => {
-      return {
-        _id: assignment._id,
-        courseId: assignment.course,
-        sectionId: assignment.sectionId,
-        title: assignment.title,
-      } as IKanbasAssignment;
-    });
-  dispatch(setAssignments(_assignments));
-
-  const _assignmentSections = assignmentSections
-    .filter((as) => as.course == courseId)
-    .map((assignmentSection) => {
-      return {
-        _id: assignmentSection._id,
-        course: assignmentSection.course,
-        title: assignmentSection.title,
-        weightage: assignmentSection.weightage,
-      } as IKanbasAssignmentSection;
-    });
-  dispatch(setAssignmentSections(_assignmentSections));
-};

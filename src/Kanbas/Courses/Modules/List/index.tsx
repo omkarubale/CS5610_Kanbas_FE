@@ -29,23 +29,19 @@ import {
   putModule,
 } from "../client";
 import { IKanbasModule } from "../../../store/interfaces/modules";
-
-interface IModuleExpanded {
-  _id: string;
-  expanded: boolean;
-}
+import { ISectionExpanded } from "../../common/interfaces/sectionExpanded";
 
 function ModuleList() {
   const { courseId } = useParams();
-  const modulesList = useSelector((state: KanbasState) =>
-    state.modulesReducer.modules.filter((m) => m.course == courseId)
+  const modulesList = useSelector(
+    (state: KanbasState) => state.modulesReducer.modules
   );
   const module = useSelector(
     (state: KanbasState) => state.modulesReducer.module
   );
   const dispatch = useDispatch();
   const [moduleExpandedList, setModuleExpandedList] = useState(
-    [] as IModuleExpanded[]
+    [] as ISectionExpanded[]
   );
   const addModuleDrawerOpen = useSelector(
     (state: KanbasState) => state.modulesReducer.addModuleDrawerOpen
@@ -54,7 +50,7 @@ function ModuleList() {
     if (courseId !== undefined)
       createModule(courseId, module).then((module) => {
         dispatch(addModule(module));
-        const moduleExpanded: IModuleExpanded = {
+        const moduleExpanded: ISectionExpanded = {
           _id: module._id,
           expanded: false,
         };
@@ -81,7 +77,7 @@ function ModuleList() {
         dispatch(setModules(modules));
 
         const _modulesExpandedList = modules.map((m: IKanbasModule) => {
-          const moduleExpanded: IModuleExpanded = {
+          const moduleExpanded: ISectionExpanded = {
             _id: m._id,
             expanded: false,
           };
@@ -104,7 +100,7 @@ function ModuleList() {
     setModuleExpandedList(
       moduleExpandedList.map((me, index) => {
         if (me._id == moduleId) {
-          const moduleExpanded: IModuleExpanded = {
+          const moduleExpanded: ISectionExpanded = {
             _id: me._id,
             expanded: !_expanded,
           };

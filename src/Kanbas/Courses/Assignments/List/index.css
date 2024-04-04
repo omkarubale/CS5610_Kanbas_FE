@@ -22,7 +22,11 @@
   border-left: 1px solid #c7cdd1 !important;
 }
 
-.wd-assignments-grid > li > ul > li {
+.wd-assignments-grid > li > div.wd-assignment-section-collapse {
+  padding: 0;
+}
+
+.wd-assignments-grid > li > div.wd-assignment-section-collapse > ul > li {
   padding: 12px 5px 12px 5px;
   border-top: 1px solid #c7cdd1 !important;
   border-left: 4px solid green;
@@ -31,12 +35,12 @@
   display: inline-flex;
   align-items: center;
 }
-.wd-assignments-grid > li > ul > li .wd-assignments-grid-content-text {
+.wd-assignments-grid > li > div.wd-assignment-section-collapse > ul > li .wd-assignments-grid-content-text {
   display: block;
   padding-left: 12px;
 }
 
-.wd-assignments-grid > li > ul > li .wd-assignments-grid-content-details {
+.wd-assignments-grid > li > div.wd-assignment-section-collapse > ul > li .wd-assignments-grid-content-details {
   display: block;
   color: rgb(45, 59, 69);
   font-size: 0.875rem;

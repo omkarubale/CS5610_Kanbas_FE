@@ -1,6 +1,6 @@
 export interface IKanbasAssignmentSection {
   _id: string;
-  course: string;
+  courseId: string;
   title: string;
   weightage: string;
 }

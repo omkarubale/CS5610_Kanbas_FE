@@ -85,7 +85,7 @@ function Breadcrumb(props: {
                     {assignments
                       .filter(
                         (assignment) =>
-                          assignment.course === courseId &&
+                          assignment.courseId === courseId &&
                           assignment._id === assignmentId
                       )
                       ?.map((a) => a.title)}
