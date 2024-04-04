@@ -5,12 +5,10 @@ import {
 } from "../../store/interfaces/assignments";
 
 const initialState: {
-  assignmentsAvailable: boolean;
   assignments: IKanbasAssignment[];
   assignment: IKanbasAssignment;
   assignmentSections: IKanbasAssignmentSection[];
 } = {
-  assignmentsAvailable: false,
   assignments: [] as IKanbasAssignment[],
   assignment: {
     _id: "",
@@ -57,12 +55,6 @@ const coursesSlice = createSlice({
     setAssignment: (state, action) => {
       state.assignment = action.payload;
     },
-    setAssignmentById: (state, action) => {
-      const assignmentId = action.payload;
-      const assignment = state.assignments.find((a) => a._id == assignmentId);
-
-      if (assignment !== undefined) state.assignment = assignment;
-    },
     setAssignmentEditSectionId: (state, action) => {
       const assignmentSectionId = action.payload;
       const assignmentSection = state.assignmentSections.find(
@@ -95,7 +87,6 @@ export const {
   removeAssignment,
   updateAssignment,
   setAssignment,
-  setAssignmentById,
   setAssignmentEditSectionId,
   resetAssignment,
 } = coursesSlice.actions;

@@ -1,13 +1,16 @@
 import axios from "axios";
-import { IKanbasAssignment } from "../../store/interfaces/assignments";
+import {
+  IKanbasAssignment,
+  IKanbasAssignmentSection,
+} from "../../store/interfaces/assignments";
 const COURSES_API = "http://localhost:4000/api/courses";
 const ASSIGNMENTS_API = "http://localhost:4000/api/assignments";
 
-export const getAssignmentsForCourse = async (courseId: string) => {
+export const getCourseAssignments = async (courseId: string) => {
   const response = await axios.get(`${COURSES_API}/${courseId}/assignments`);
   return response.data;
 };
-export const getAssignmentSectionsForCourse = async (courseId: string) => {
+export const getCourseAssignmentSections = async (courseId: string) => {
   const response = await axios.get(
     `${COURSES_API}/${courseId}/assignmentSections`
   );

@@ -7,8 +7,10 @@ import { courseNavigationLinks } from "../../Navigation";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { KanbasState } from "../../../store";
-import { getCourse } from "../../reducer";
+import { setCourse } from "../../reducer";
 import { useEffect } from "react";
+import { IKanbasCourse } from "../../../store/interfaces/courses";
+import { getCourse } from "../../client";
 
 export function getAssignmentId(pathname: string) {
   if (!pathname.includes("Assignments")) return undefined;
@@ -35,7 +37,11 @@ function Breadcrumb(props: {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (courseId !== undefined) getCourse(dispatch, courseId);
+    if (courseId !== undefined) {
+      getCourse(courseId).then((course: IKanbasCourse) => {
+        dispatch(setCourse(course));
+      });
+    }
   }, [courseId]);
 
   return (

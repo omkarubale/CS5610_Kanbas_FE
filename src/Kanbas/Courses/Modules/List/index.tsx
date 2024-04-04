@@ -8,6 +8,7 @@ import {
   setModule,
   setAddModuleDrawerOpen,
   setModules,
+  resetModuleForm,
 } from "./../reducer";
 import { KanbasState } from "../../../store";
 import {
@@ -23,7 +24,7 @@ import { useParams } from "react-router";
 import { Button, Card, Collapse } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import {
-  findModulesForCourse,
+  getCourseModules,
   createModule,
   deleteModule,
   putModule,
@@ -46,10 +47,11 @@ function ModuleList() {
   const addModuleDrawerOpen = useSelector(
     (state: KanbasState) => state.modulesReducer.addModuleDrawerOpen
   );
-  const handleAddModule = () => {
+  const handleAddModule = async () => {
     if (courseId !== undefined)
       createModule(courseId, module).then((module) => {
         dispatch(addModule(module));
+        dispatch(setModule(module));
         const moduleExpanded: ISectionExpanded = {
           _id: module._id,
           expanded: false,
@@ -59,7 +61,7 @@ function ModuleList() {
       });
   };
 
-  const handleDeleteModule = (moduleId: string) => {
+  const handleDeleteModule = async (moduleId: string) => {
     if (moduleId !== undefined)
       deleteModule(moduleId).then(() => {
         dispatch(removeModule(moduleId));
@@ -72,8 +74,12 @@ function ModuleList() {
   };
 
   useEffect(() => {
+    dispatch(resetModuleForm());
+  }, []);
+
+  useEffect(() => {
     if (courseId !== undefined)
-      findModulesForCourse(courseId).then((modules) => {
+      getCourseModules(courseId).then((modules) => {
         dispatch(setModules(modules));
 
         const _modulesExpandedList = modules.map((m: IKanbasModule) => {

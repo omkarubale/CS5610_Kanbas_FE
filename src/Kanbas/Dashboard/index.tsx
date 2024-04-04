@@ -8,13 +8,17 @@ import {
   addCourse,
   removeCourse,
   updateCourse,
-  fetchAllCourses,
-  addNewCourse,
-  deleteCourse,
-  putCourse,
+  setCourses,
 } from "../Courses/reducer";
 import Form from "react-bootstrap/Form";
 import { FaCaretDown } from "react-icons/fa";
+import {
+  getCourses,
+  createCourse,
+  deleteCourse,
+  putCourse,
+} from "../Courses/client";
+import { IKanbasCourse } from "../store/interfaces/courses";
 
 function Dashboard() {
   const courses = useSelector(
@@ -27,8 +31,29 @@ function Dashboard() {
   const [addCourseDrawerOpen, setAddCourseDrawerOpen] = useState(false);
 
   useEffect(() => {
-    fetchAllCourses(dispatch);
+    getCourses().then((courses) => {
+      dispatch(setCourses(courses));
+    });
   }, []);
+
+  const handleAddCourse = async () => {
+    createCourse(course).then((course: IKanbasCourse) => {
+      dispatch(addCourse(course));
+      dispatch(setCourse(course));
+    });
+  };
+
+  const handleUpdateCourse = async () => {
+    putCourse(course).then(() => {
+      dispatch(updateCourse());
+    });
+  };
+
+  const handleDeleteCourse = async (courseId: string) => {
+    deleteCourse(courseId).then(() => {
+      dispatch(removeCourse(course));
+    });
+  };
 
   return (
     <div className="p-4">
@@ -90,13 +115,13 @@ function Dashboard() {
                 <Form.Group className="d-inline-flex">
                   <Button
                     className="wd-button-standard ms-auto"
-                    onClick={(e) => addNewCourse(dispatch, course)}
+                    onClick={handleAddCourse}
                   >
                     Add
                   </Button>
                   <Button
                     className="wd-button-standard"
-                    onClick={(e) => putCourse(dispatch, course)}
+                    onClick={handleUpdateCourse}
                   >
                     Update
                   </Button>
@@ -151,7 +176,7 @@ function Dashboard() {
                   <Button
                     onClick={(event) => {
                       event.preventDefault();
-                      deleteCourse(dispatch, course._id);
+                      handleDeleteCourse(course._id);
                     }}
                     className="btn btn-primary wd-button-red"
                   >

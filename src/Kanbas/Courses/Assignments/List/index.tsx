@@ -19,10 +19,7 @@ import {
   IKanbasAssignment,
   IKanbasAssignmentSection,
 } from "../../../store/interfaces/assignments";
-import {
-  getAssignmentSectionsForCourse,
-  getAssignmentsForCourse,
-} from "../client";
+import { getCourseAssignmentSections, getCourseAssignments } from "../client";
 import { setAssignmentSections, setAssignments } from "../reducer";
 import { ISectionExpanded } from "../../common/interfaces/sectionExpanded";
 import { Collapse } from "react-bootstrap";
@@ -48,36 +45,40 @@ function AssignmentList(props: {
 
   useEffect(() => {
     if (courseId !== undefined) {
-      getAssignmentsForCourse(courseId).then((assignments) => {
-        dispatch(setAssignments(assignments));
-      });
-      getAssignmentSectionsForCourse(courseId).then((assignmentSections) => {
-        dispatch(setAssignmentSections(assignmentSections));
+      getCourseAssignments(courseId).then(
+        (assignments: IKanbasAssignment[]) => {
+          dispatch(setAssignments(assignments));
+        }
+      );
+      getCourseAssignmentSections(courseId).then(
+        (assignmentSections: IKanbasAssignmentSection[]) => {
+          dispatch(setAssignmentSections(assignmentSections));
 
-        const _assignmentSectionsExpandedList = assignmentSections.map(
-          (as: IKanbasAssignmentSection) => {
-            const assignmentSectionExpanded: ISectionExpanded = {
-              _id: as._id,
-              expanded: false,
-            };
-            return assignmentSectionExpanded;
-          }
-        );
+          const _assignmentSectionsExpandedList = assignmentSections.map(
+            (as: IKanbasAssignmentSection) => {
+              const assignmentSectionExpanded: ISectionExpanded = {
+                _id: as._id,
+                expanded: false,
+              };
+              return assignmentSectionExpanded;
+            }
+          );
 
-        setAssignmentSectionExpandedList(_assignmentSectionsExpandedList);
-      });
+          setAssignmentSectionExpandedList(_assignmentSectionsExpandedList);
+        }
+      );
     }
   }, [dispatch]);
 
-  function handleAssignmentEditButton(assignment: IKanbasAssignment) {
+  const handleAssignmentEditButton = (assignment: IKanbasAssignment) => {
     navigate(`/Kanbas/Courses/${courseId}/Assignments/${assignment._id}`);
-  }
+  };
 
-  function handleAssignmentDeleteButton(assignment: IKanbasAssignment) {
+  const handleAssignmentDeleteButton = (assignment: IKanbasAssignment) => {
     props.setDeleteAssignmentName(assignment.title);
     props.setDeleteAssignmentId(assignment._id);
     props.setShowDeleteAssignmentModal(true);
-  }
+  };
 
   const isAssignmentSectionExpanded = (assignmentSectionId: string) => {
     return (
@@ -90,7 +91,7 @@ function AssignmentList(props: {
       assignmentSectionsExpandedList.find((as) => as._id == assignmentSectionId)
         ?.expanded ?? false;
     setAssignmentSectionExpandedList(
-      assignmentSectionsExpandedList.map((as, index) => {
+      assignmentSectionsExpandedList.map((as) => {
         if (as._id == assignmentSectionId) {
           const assignmentSectionExpanded: ISectionExpanded = {
             _id: as._id,

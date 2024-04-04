@@ -21,10 +21,10 @@ function Assignments() {
   const [deleteAssignmentName, setDeleteAssignmentName] = useState("");
   const [deleteAssignmentId, setDeleteAssignmentId] = useState("");
 
-  const handleAddAssignmentButton = function () {
+  const handleAddAssignmentButton = () => {
     navigate(`/Kanbas/Courses/${courseId}/Assignments/create`);
   };
-  const handleDeleteAssignmentButton = function () {
+  const handleDeleteAssignmentButton = async () => {
     if (deleteAssignmentId !== undefined && deleteAssignmentId !== "")
       deleteAssignment(deleteAssignmentId).then(() => {
         dispatch(removeAssignment(deleteAssignmentId));
