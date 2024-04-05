@@ -1,10 +1,16 @@
-import { courses, assignments } from "../../../Database";
+import { assignments } from "../../../Database";
 import { useParams, useLocation } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { FaBars } from "react-icons/fa6";
 import "./index.css";
 import { courseNavigationLinks } from "../../Navigation";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { KanbasState } from "../../../store";
+import { setCourse } from "../../reducer";
+import { useEffect } from "react";
+import { IKanbasCourse } from "../../../store/interfaces/courses";
+import { getCourse } from "../../client";
 
 export function getAssignmentId(pathname: string) {
   if (!pathname.includes("Assignments")) return undefined;
@@ -20,10 +26,23 @@ function Breadcrumb(props: {
   subNavigationOpen: boolean;
 }) {
   const { courseId } = useParams();
-  const course = courses.find((course) => course._id === courseId);
   const { pathname } = useLocation();
 
+  const course = useSelector(
+    (state: KanbasState) => state.coursesReducer.course
+  );
+
   const assignmentId = getAssignmentId(pathname);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (courseId !== undefined) {
+      getCourse(courseId).then((course: IKanbasCourse) => {
+        dispatch(setCourse(course));
+      });
+    }
+  }, [courseId]);
 
   return (
     <>
@@ -72,7 +91,7 @@ function Breadcrumb(props: {
                     {assignments
                       .filter(
                         (assignment) =>
-                          assignment.course === courseId &&
+                          assignment.courseId === courseId &&
                           assignment._id === assignmentId
                       )
                       ?.map((a) => a.title)}

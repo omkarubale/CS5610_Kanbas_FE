@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card, Collapse } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,11 +6,19 @@ import { KanbasState } from "../store";
 import {
   setCourse,
   addCourse,
-  deleteCourse,
+  removeCourse,
   updateCourse,
+  setCourses,
 } from "../Courses/reducer";
 import Form from "react-bootstrap/Form";
 import { FaCaretDown } from "react-icons/fa";
+import {
+  getCourses,
+  createCourse,
+  deleteCourse,
+  putCourse,
+} from "../Courses/client";
+import { IKanbasCourse } from "../store/interfaces/courses";
 
 function Dashboard() {
   const courses = useSelector(
@@ -21,6 +29,31 @@ function Dashboard() {
   );
   const dispatch = useDispatch();
   const [addCourseDrawerOpen, setAddCourseDrawerOpen] = useState(false);
+
+  useEffect(() => {
+    getCourses().then((courses) => {
+      dispatch(setCourses(courses));
+    });
+  }, []);
+
+  const handleAddCourse = async () => {
+    createCourse(course).then((course: IKanbasCourse) => {
+      dispatch(addCourse(course));
+      dispatch(setCourse(course));
+    });
+  };
+
+  const handleUpdateCourse = async () => {
+    putCourse(course).then(() => {
+      dispatch(updateCourse());
+    });
+  };
+
+  const handleDeleteCourse = async (courseId: string) => {
+    deleteCourse(courseId).then(() => {
+      dispatch(removeCourse(course));
+    });
+  };
 
   return (
     <div className="p-4">
@@ -82,13 +115,13 @@ function Dashboard() {
                 <Form.Group className="d-inline-flex">
                   <Button
                     className="wd-button-standard ms-auto"
-                    onClick={(e) => dispatch(addCourse())}
+                    onClick={handleAddCourse}
                   >
                     Add
                   </Button>
                   <Button
                     className="wd-button-standard"
-                    onClick={(e) => dispatch(updateCourse())}
+                    onClick={handleUpdateCourse}
                   >
                     Update
                   </Button>
@@ -99,7 +132,7 @@ function Dashboard() {
         </div>
       </Collapse>
       <hr />
-      <h2>Published Courses (12)</h2>
+      <h2>Published Courses ({courses.length})</h2>
       <hr />
       <div className="row">
         <div className="row row-cols-1 row-cols-md-5 g-4">
@@ -143,7 +176,7 @@ function Dashboard() {
                   <Button
                     onClick={(event) => {
                       event.preventDefault();
-                      dispatch(deleteCourse(course._id));
+                      handleDeleteCourse(course._id);
                     }}
                     className="btn btn-primary wd-button-red"
                   >

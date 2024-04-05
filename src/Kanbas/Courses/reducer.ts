@@ -1,13 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { courses } from "../Database";
+import { Dispatch, UnknownAction, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 import { IKanbasCourse } from "../store/interfaces/courses";
 
-const initialState: { courses: IKanbasCourse[]; course: IKanbasCourse } = {
-  courses: courses,
+const initialState: {
+  coursesAvailable: boolean;
+  courses: IKanbasCourse[];
+  course: IKanbasCourse;
+} = {
+  coursesAvailable: false,
+  courses: [] as IKanbasCourse[],
   course: {
-    _id: "1234",
-    name: "New Course",
-    number: "New Number",
+    _id: "",
+    name: "",
+    number: "",
     startDate: "2023-09-10",
     endDate: "2023-12-15",
     image: "",
@@ -18,13 +23,17 @@ const coursesSlice = createSlice({
   name: "courses",
   initialState,
   reducers: {
-    addCourse: (state) => {
-      state.courses = [
-        ...state.courses,
-        { ...state.course, _id: new Date().getTime().toString() },
-      ];
+    setCourses: (state, action) => {
+      if (!state.coursesAvailable) {
+        state.courses = action.payload;
+        state.coursesAvailable = true;
+      }
     },
-    deleteCourse: (state, action) => {
+    addCourse: (state, action) => {
+      const course = action.payload;
+      state.courses = [...state.courses, course];
+    },
+    removeCourse: (state, action) => {
       state.courses = state.courses.filter(
         (course) => course._id !== action.payload
       );
@@ -44,6 +53,6 @@ const coursesSlice = createSlice({
   },
 });
 
-export const { addCourse, deleteCourse, updateCourse, setCourse } =
+export const { setCourses, addCourse, removeCourse, updateCourse, setCourse } =
   coursesSlice.actions;
 export default coursesSlice.reducer;

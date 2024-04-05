@@ -29,7 +29,6 @@ export interface KanbasState {
     course: IKanbasCourse;
   };
   assignmentsReducer: {
-    assignmentsAvailable: boolean;
     assignments: IKanbasAssignment[];
     assignment: IKanbasAssignment;
     assignmentSections: IKanbasAssignmentSection[];

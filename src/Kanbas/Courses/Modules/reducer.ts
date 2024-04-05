@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { modules } from "../../Database";
 import { IKanbasModule } from "../../store/interfaces/modules";
 
 const initialState: {
@@ -7,10 +6,10 @@ const initialState: {
   module: IKanbasModule;
   addModuleDrawerOpen: boolean;
 } = {
-  modules: modules,
+  modules: [],
   module: {
     _id: "",
-    course: "",
+    courseId: "",
     name: "New Module",
     description: "New Module Description",
   },
@@ -21,17 +20,14 @@ const modulesSlice = createSlice({
   name: "modules",
   initialState,
   reducers: {
-    addModule: (state, action) => {
-      const courseId = action.payload.course;
-      state.module = {
-        ...state.module,
-        course: courseId,
-        _id: new Date().getTime().toString(),
-      };
-
-      state.modules = [...state.modules, state.module];
+    setModules: (state, action) => {
+      state.modules = action.payload;
     },
-    deleteModule: (state, action) => {
+    addModule: (state, action) => {
+      const module = action.payload;
+      state.modules = [...state.modules, module];
+    },
+    removeModule: (state, action) => {
       state.modules = state.modules.filter(
         (module) => module._id !== action.payload
       );
@@ -50,7 +46,7 @@ const modulesSlice = createSlice({
     },
     resetModuleForm: (state) => {
       state.module._id = "";
-      state.module.course = "";
+      state.module.courseId = "";
       state.module.name = "New Module";
       state.module.description = "New Module Description";
     },
@@ -61,8 +57,9 @@ const modulesSlice = createSlice({
 });
 
 export const {
+  setModules,
   addModule,
-  deleteModule,
+  removeModule,
   updateModule,
   setModule,
   setAddModuleDrawerOpen,

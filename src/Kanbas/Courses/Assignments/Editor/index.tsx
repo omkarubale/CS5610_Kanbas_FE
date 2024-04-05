@@ -9,14 +9,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { KanbasState } from "../../../store";
 import {
   addAssignment,
-  fetchAssignments,
   resetAssignment,
   setAssignment,
-  setAssignmentById,
   setAssignmentEditSectionId,
+  setAssignmentSections,
   updateAssignment,
 } from "../reducer";
 import { useEffect } from "react";
+import {
+  createAssignment,
+  getAssignment,
+  getCourseAssignmentSections,
+  putAssignment,
+} from "../client";
+import {
+  IKanbasAssignment,
+  IKanbasAssignmentSection,
+} from "../../../store/interfaces/assignments";
 
 function AssignmentEditor({ isCreate }: { isCreate: boolean }) {
   const { courseId, assignmentId } = useParams();
@@ -34,29 +43,44 @@ function AssignmentEditor({ isCreate }: { isCreate: boolean }) {
     dispatch(resetAssignment());
   };
 
-  const handleSave = () => {
-    if (isCreate) {
-      dispatch(addAssignment({ course: courseId }));
-    } else {
-      dispatch(updateAssignment());
+  const handleSave = async () => {
+    if (courseId !== undefined) {
+      if (isCreate) {
+        createAssignment(courseId, assignment).then(
+          (assignment: IKanbasAssignment) => {
+            dispatch(addAssignment(assignment));
+          }
+        );
+      } else {
+        putAssignment(assignment).then(() => {
+          dispatch(updateAssignment(assignment));
+        });
+      }
+      handleCancel();
     }
-    handleCancel();
   };
 
   useEffect(() => {
     dispatch(resetAssignment());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
-    if (
-      assignment !== undefined &&
-      assignmentId !== undefined &&
-      courseId !== undefined
-    ) {
-      fetchAssignments(dispatch, courseId);
-      dispatch(setAssignmentById(assignmentId));
+    if (assignmentId !== undefined && courseId !== undefined) {
+      getAssignment(assignmentId).then((assignment: IKanbasAssignment) => {
+        dispatch(setAssignment(assignment));
+      });
     }
-  }, [dispatch]);
+  }, [dispatch, assignmentId, courseId]);
+
+  useEffect(() => {
+    if (assignmentSections.length === 0 && courseId !== undefined) {
+      getCourseAssignmentSections(courseId).then(
+        (assignmentSections: IKanbasAssignmentSection[]) => {
+          dispatch(setAssignmentSections(assignmentSections));
+        }
+      );
+    }
+  });
 
   return (
     <>

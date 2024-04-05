@@ -9,6 +9,6 @@ export interface IKanbasModule {
   _id: string;
   name: string;
   description: string;
-  course: string;
+  courseId: string;
   lessons?: IKanbasModuleLesson[];
 }
