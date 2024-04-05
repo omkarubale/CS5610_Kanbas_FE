@@ -8,6 +8,7 @@ export interface IKanbasQuiz {
   title: string;
   assignmentGroup: eAssignmentGroup;
   availableDate: Date;
+  availableUntilDate: Date;
   dueDate: Date;
   points: number;
   questionsCount: number;

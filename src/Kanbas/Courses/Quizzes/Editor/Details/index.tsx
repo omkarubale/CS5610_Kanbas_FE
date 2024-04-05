@@ -1,12 +1,11 @@
 import { Form } from "react-bootstrap";
 
-function QuizDetailsEditor() {
-    return (
-        <>
-            <Form>
-            </Form>
-        </>
-    );
+function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
+  return (
+    <>
+      <Form></Form>
+    </>
+  );
 }
 
-export default QuizDetailsEditor; 
+export default QuizDetailsEditor;

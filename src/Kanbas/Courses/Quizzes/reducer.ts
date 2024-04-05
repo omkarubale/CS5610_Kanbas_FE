@@ -30,6 +30,7 @@ const initialState: {
     title: "New Quiz",
     assignmentGroup: eAssignmentGroup.Quizzes,
     availableDate: new Date("2021-01-01"),
+    availableUntilDate: new Date("2021-01-02"),
     dueDate: new Date("2021-01-01"),
     points: 0,
     questionsCount: 0,
@@ -69,22 +70,8 @@ const quizzesSlice = createSlice({
         state.quizzesAvailable = true;
       }
     },
-    setQuizzes: (state) => {
-      state.quizzes = state.quizzesDetails.map((q) => {
-        const quiz = {
-          _id: q._id,
-          courseId: q.courseId,
-          title: q.title,
-          assignmentGroup: q.assignmentGroup,
-          availableDate: q.availableDate,
-          dueDate: q.dueDate,
-          points: q.points,
-          questionsCount: q.questionsCount,
-          isMultipleAvailableDates: q.isMultipleAvailableDates,
-          isPublished: q.isPublished,
-        };
-        return quiz;
-      });
+    setQuizzes: (state, action) => {
+      state.quizzes = action.payload;
     },
     addQuiz: (state, action) => {
       const courseId = action.payload.course;
@@ -126,6 +113,7 @@ const quizzesSlice = createSlice({
       state.quiz.title = "New Quiz";
       state.quiz.assignmentGroup = eAssignmentGroup.Quizzes;
       state.quiz.availableDate = new Date("2021-01-01");
+      state.quiz.availableUntilDate = new Date("2021-01-02");
       state.quiz.dueDate = new Date("2021-01-01");
       state.quiz.points = 0;
       state.quiz.questionsCount = 0;

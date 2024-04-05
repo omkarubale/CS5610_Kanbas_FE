@@ -1,8 +1,5 @@
 import axios from "axios";
-import {
-  IKanbasAssignment,
-  IKanbasAssignmentSection,
-} from "../../store/interfaces/assignments";
+import { IKanbasAssignment } from "../../store/interfaces/assignments";
 const API_BASE = process.env.REACT_APP_API_BASE;
 
 const COURSES_API = `${API_BASE}/api/courses`;

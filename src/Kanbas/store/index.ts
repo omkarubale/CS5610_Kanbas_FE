@@ -3,6 +3,7 @@ import modulesReducer from "../Courses/Modules/reducer";
 import assignmentsReducer from "../Courses/Assignments/reducer";
 import navigationReducer from "./../Navigation/reducer";
 import coursesReducer from "../Courses/reducer";
+import quizzesReducer from "../Courses/Quizzes/reducer";
 import { IKanbasModule } from "./interfaces/modules";
 import { IKanbasCourse } from "./interfaces/courses";
 import {
@@ -48,6 +49,7 @@ const store = configureStore({
     modulesReducer,
     coursesReducer,
     assignmentsReducer,
+    quizzesReducer,
   },
 });
 
