@@ -3,7 +3,6 @@ import MiddleContentActions from "../../layout/Content/NotLeftSide/MiddleContent
 import MiddleContentData from "../../layout/Content/NotLeftSide/MiddleContent/MiddleContentData";
 import QuizList from "./List";
 import { FaEllipsisV, FaPlus } from "react-icons/fa";
-import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import { Button } from "react-bootstrap";
 

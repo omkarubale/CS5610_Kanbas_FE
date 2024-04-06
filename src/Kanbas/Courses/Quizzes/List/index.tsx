@@ -3,19 +3,16 @@ import { useNavigate, useParams } from "react-router";
 import { KanbasState } from "../../../store";
 import { useEffect, useState } from "react";
 import { IKanbasQuiz } from "../../../store/interfaces/quizzes";
-import { setQuizzes } from "../reducer";
+import { setQuizzes, toggleQuizPublished } from "../reducer";
 import {
   FaBan,
   FaCaretDown,
   FaCheckCircle,
   FaEllipsisV,
-  FaGripVertical,
   FaRocket,
 } from "react-icons/fa";
 import { Collapse } from "react-bootstrap";
-import { FaFilePen } from "react-icons/fa6";
-import { Link } from "react-router-dom";
-import { getCourseQuizzes } from "../client";
+import { getCourseQuizzes, postQuizSetPublish } from "../client";
 import "./index.css";
 
 function QuizList() {
@@ -31,6 +28,15 @@ function QuizList() {
 
   const handleQuizSelection = (quizId: string) => {
     navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quizId}`);
+  };
+
+  const handlePublishToggle = (quizId: string) => {
+    const _isPublished =
+      quizzesList.find((q) => q._id == quizId)?.isPublished ?? false;
+
+    postQuizSetPublish(quizId, !_isPublished).then(() => {
+      dispatch(toggleQuizPublished(quizId));
+    });
   };
 
   const getDateDisplay = (date: Date) => {
@@ -112,9 +118,17 @@ function QuizList() {
                     </div>
                     <span className="float-end wd-quizzes-grid-content-actions d-flex align-items-center">
                       {q.isPublished && (
-                        <FaCheckCircle className="wd-icon-green" />
+                        <FaCheckCircle
+                          onClick={() => handlePublishToggle(q._id)}
+                          className="me-1 wd-icon-green"
+                        />
                       )}
-                      {!q.isPublished && <FaBan className="me-1" />}
+                      {!q.isPublished && (
+                        <FaBan
+                          onClick={() => handlePublishToggle(q._id)}
+                          className="me-1"
+                        />
+                      )}
                       <FaEllipsisV className="ms-2" />
                     </span>
                   </li>

@@ -73,6 +73,16 @@ const quizzesSlice = createSlice({
     setQuizzes: (state, action) => {
       state.quizzes = action.payload;
     },
+    toggleQuizPublished: (state, action) => {
+      const quizId = action.payload;
+      state.quizzes = state.quizzes.map((quiz) => {
+        if (quiz._id === quizId) {
+          return { ...quiz, isPublished: !quiz.isPublished };
+        } else {
+          return quiz;
+        }
+      });
+    },
     addQuiz: (state, action) => {
       const courseId = action.payload.course;
 
@@ -185,6 +195,7 @@ const quizzesSlice = createSlice({
 
 export const {
   setQuizzes,
+  toggleQuizPublished,
   setQuizzesDetails,
   addQuiz,
   deleteQuiz,

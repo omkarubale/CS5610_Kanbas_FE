@@ -1,0 +1,13 @@
+.wd-quiz-details-item {
+    padding-bottom: 4px;
+}
+
+.wd-quiz-details-item .wd-quiz-details-label {
+    text-align: end;
+    font-weight: 550;
+    padding-right: 0;
+}
+
+.wd-quiz-details-th * {
+    font-weight: 550;
+}
