@@ -1,6 +1,6 @@
 import { Editor } from '@tinymce/tinymce-react';
 import { useEffect, useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Card, CardBody, Form } from "react-bootstrap";
 import { FaPlus } from 'react-icons/fa';
 import "./index.css"
 import { useNavigate, useParams } from 'react-router-dom';
@@ -9,10 +9,10 @@ import { KanbasState } from '../../../../store';
 import { setQuiz, addQuiz, resetQuiz, updateQuiz, fetchQuizzes } from '../../reducer';
 import { eQuizType } from '../../../../store/enums/eQuizType';
 import { eAssignmentGroup } from '../../../../store/enums/eAssignmentGroup';
+import { formatDate, formatToTitleCase } from '../../../common/Utils';
+import TinyMCEEditor from '../../../common/Editor/TinyMCEEditor';
 
 function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
-    // TODO move this later to env file
-    const API_KEY = "mhgsbn0hpoxglrhp0i5yksi6m4rk8nkutj2fn8qxn9cn7s9i";
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -25,18 +25,8 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
     const quizTypes = Object.keys(eQuizType).filter(key => isNaN(Number(key)));
     const assignmentGroup = Object.keys(eAssignmentGroup).filter(key => isNaN(Number(key)));
 
+    // Use for updating quiz instructions
     const [value, setValue] = useState("");
-    const [text, setText] = useState("");
-
-    const onEditorInputChange = (newValue: any, editor: any) => {
-        setValue(newValue);
-        setText(editor.getContent({ format: "text" }));
-        dispatch(setQuiz({ ...quizDetails, description: newValue }));
-    }
-
-    const formatDate = (date: Date) => {
-        return date ? new Date(date).toISOString().split('T')[0] : '';
-    }
 
     const handleCancel = () => {
         navigate(`/Kanbas/Courses/${courseId}/Quizzes`);
@@ -57,6 +47,11 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
         handleCancel();
     }
 
+    const handleGetEditorContent = (content: string) => {
+        setValue(content);
+        dispatch(setQuiz({ ...quizDetails, description: content }));
+    }
+
     return (
         <Form>
             <Form.Group className='mb-3 w-50' controlId="formQuizName">
@@ -68,33 +63,17 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
                     onChange={(e) => dispatch(setQuiz({
                         ...quizDetails, title: e.target.value
                     }))}
-                    onFocus={(e) => e.target.style.textAlign = 'left'}
                 />
             </Form.Group>
 
             <Form.Group className='mb-3' controlId='formQuizDescription'>
-                <Editor
-                    apiKey={API_KEY}
-                    onEditorChange={(newValue, editor) => onEditorInputChange(newValue, editor)}
-                    onInit={(evt, editor) => setText(editor.getContent({ format: "text" }))}
-                    value={value}
-                    initialValue={quizDetails.description === null || quizDetails.description === ""
-                        ? "Write quiz instructions here..."
-                        : quizDetails.description}
-                    init={{
-                        height: 500,
-                        plugins: [
-                            'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
-                            'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-                            'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
-                        ],
-                        toolbar: 'undo redo | blocks | ' +
-                            'bold italic forecolor | alignleft aligncenter ' +
-                            'alignright alignjustify | bullist numlist outdent indent | ' +
-                            'removeformat | help',
-                        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-                    }}
-                />
+                <div className='d-flex flex-column'>
+                    <Form.Label className="ms-1">Quiz Instructions</Form.Label>
+                    <TinyMCEEditor
+                        initialValue={quizDetails.description}
+                        onGetContent={handleGetEditorContent}
+                    />
+                </div>
             </Form.Group>
             <div>
                 <Form.Group className="row mb-3" controlId="formQuizType">
@@ -113,7 +92,7 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
                         >
                             {quizTypes.map((key, index) => (
                                 <option key={index} value={eQuizType[key as keyof typeof eQuizType]}>
-                                    {key}
+                                    {formatToTitleCase(key.replace(/_/g, ' '))}
                                 </option>
                             ))}
                         </Form.Select>
@@ -151,8 +130,8 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
                         <Form.Label className="float-end mt-1">Assign</Form.Label>
                     </div>
                     <div className="col-6 mr-auto">
-                        <div className="card">
-                            <div className="card-body">
+                        <Card>
+                            <Card.Body>
                                 <Form.Group
                                     className="mb-3"
                                     controlId="formAssignmentAssignTo"
@@ -160,7 +139,6 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
                                     <Form.Label className="fw-bold">Assign to</Form.Label>
                                     <Form.Control type="text" value="Everyone" disabled />
                                 </Form.Group>
-
                                 <Form.Group
                                     className="mb-3"
                                     controlId="formAssignmentDueDate"
@@ -174,7 +152,6 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
                                         }))}
                                     />
                                 </Form.Group>
-
                                 <div className="mb-3 row">
                                     <Form.Group
                                         className="col-6 pe-1"
@@ -205,16 +182,16 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
                                         />
                                     </Form.Group>
                                 </div>
-                            </div>
-                            <div className="card-footer text-center">
+                            </Card.Body>
+                            <Card.Footer>
                                 <div className="d-flex justify-content-center align-items-center">
                                     <FaPlus className="me-1" /> Add
                                 </div>
-                            </div>
-                        </div>
+                            </Card.Footer>
+                        </Card>
                     </div>
                 </Form.Group>
-            </div>
+            </div >
             <hr />
 
             <div className='form-check-buttons-container'>
@@ -226,7 +203,7 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
                         className="ps-0"
                     />
                 </div>
-                <div className="float-end">
+                <div className="float-end me-2">
                     <Button className="wd-button-standard" onClick={() => handleCancel()}>
                         Cancel
                     </Button>
@@ -239,7 +216,7 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
                 </div>
             </div>
             <hr />
-        </Form>
+        </Form >
     );
 }
 

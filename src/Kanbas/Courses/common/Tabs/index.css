@@ -1,7 +1,3 @@
-.wd-tabs .nav-item {
-    color: green;
-}
-
 .wd-tabs .nav-link:not(.active) {
     color: rgb(181, 40, 40);
 }
