@@ -26,7 +26,7 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
     const assignmentGroup = Object.keys(eAssignmentGroup).filter(key => isNaN(Number(key)));
 
     // Use for updating quiz instructions
-    const [value, setValue] = useState("");
+    const [description, setDescription] = useState(quizDetails?.description);
 
     const handleCancel = () => {
         navigate(`/Kanbas/Courses/${courseId}/Quizzes`);
@@ -48,7 +48,7 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
     }
 
     const handleGetEditorContent = (content: string) => {
-        setValue(content);
+        setDescription(content);
         dispatch(setQuiz({ ...quizDetails, description: content }));
     }
 
@@ -70,7 +70,7 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
                 <div className='d-flex flex-column'>
                     <Form.Label className="ms-1">Quiz Instructions</Form.Label>
                     <TinyMCEEditor
-                        initialValue={quizDetails.description}
+                        initialValue={description}
                         onGetContent={handleGetEditorContent}
                     />
                 </div>
@@ -124,7 +124,7 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
 
                 <Form.Group
                     className="row mb-3"
-                    controlId="formAssignmentAssignList"
+                    controlId="formQuizAssignList"
                 >
                     <div className="col-3">
                         <Form.Label className="float-end mt-1">Assign</Form.Label>
@@ -134,14 +134,14 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
                             <Card.Body>
                                 <Form.Group
                                     className="mb-3"
-                                    controlId="formAssignmentAssignTo"
+                                    controlId="formQuizAssignTo"
                                 >
                                     <Form.Label className="fw-bold">Assign to</Form.Label>
                                     <Form.Control type="text" value="Everyone" disabled />
                                 </Form.Group>
                                 <Form.Group
                                     className="mb-3"
-                                    controlId="formAssignmentDueDate"
+                                    controlId="formQuizDueDate"
                                 >
                                     <Form.Label className="fw-bold">Due</Form.Label>
                                     <Form.Control
@@ -155,7 +155,7 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
                                 <div className="mb-3 row">
                                     <Form.Group
                                         className="col-6 pe-1"
-                                        controlId="formAssignmentAvailableFromDate"
+                                        controlId="formQuizAvailableFromDate"
                                     >
                                         <Form.Label className="fw-bold">
                                             Available From
@@ -170,7 +170,7 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
                                     </Form.Group>
                                     <Form.Group
                                         className="col-6 ps-1"
-                                        controlId="formAssignmentAvailableUntilDate"
+                                        controlId="formQuizAvailableUntilDate"
                                     >
                                         <Form.Label className="fw-bold">Until</Form.Label>
                                         <Form.Control
