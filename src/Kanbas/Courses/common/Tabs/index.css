@@ -1,0 +1,3 @@
+.wd-tabs .nav-link:not(.active) {
+    color: rgb(181, 40, 40);
+}

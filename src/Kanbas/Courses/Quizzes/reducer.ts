@@ -32,6 +32,7 @@ const initialState: {
     availableDate: new Date("2021-01-01"),
     availableUntilDate: new Date("2021-01-02"),
     dueDate: new Date("2021-01-01"),
+    availableUntilDate: new Date("2021-04-10"),
     points: 0,
     questionsCount: 0,
     isMultipleAvailableDates: false,
