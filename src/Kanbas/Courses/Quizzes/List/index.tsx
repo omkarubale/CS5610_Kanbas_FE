@@ -43,6 +43,16 @@ function QuizList() {
     return "";
   };
 
+  const getIsQuizClosed = (availableUntilDate: Date): boolean => {
+    const today = new Date();
+
+    if (today < availableUntilDate) {
+      return false;
+    }
+
+    return true;
+  };
+
   const getAvailableDateDisplay = (
     availableFromDate: Date,
     availableUntilDate: Date
@@ -82,9 +92,7 @@ function QuizList() {
             aria-controls={"quiz-section-collapse"}
             aria-expanded={quizzesExpanded}
           >
-            <FaCaretDown
-              style={{ transform: quizzesExpanded ? "" : "rotate(-90deg)" }}
-            />
+            <FaCaretDown className={quizzesExpanded ? "" : "caret-rotate"} />
             <div className="ms-1 me-auto">Assignment Quizzes</div>
           </div>
 
@@ -117,18 +125,22 @@ function QuizList() {
                       </p>
                     </div>
                     <span className="float-end wd-quizzes-grid-content-actions d-flex align-items-center">
-                      {q.isPublished && (
+                      {q.isPublished ? (
                         <FaCheckCircle
                           onClick={() => handlePublishToggle(q._id)}
-                          className="me-1 wd-icon-green"
+                          className={`me-1 ${
+                            getIsQuizClosed(q.availableUntilDate)
+                              ? "wd-icon-green-muted"
+                              : "wd-icon-green"
+                          }`}
                         />
-                      )}
-                      {!q.isPublished && (
+                      ) : (
                         <FaBan
                           onClick={() => handlePublishToggle(q._id)}
                           className="me-1"
                         />
                       )}
+
                       <FaEllipsisV className="ms-2" />
                     </span>
                   </li>

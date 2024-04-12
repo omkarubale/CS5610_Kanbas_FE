@@ -13,6 +13,7 @@ import { getQuizDetails, postQuizSetPublish } from "../client";
 import { FaBan, FaCheckCircle, FaEllipsisV } from "react-icons/fa";
 import "./index.css";
 import { eQuizType } from "../../../store/enums/eQuizType";
+import { formatSnakeCaseToTitleCase } from "../../common/Utils";
 
 function QuizDetails() {
   const { courseId, quizId } = useParams();
@@ -21,7 +22,7 @@ function QuizDetails() {
 
   const quiz = useSelector((state: KanbasState) => state.quizzesReducer.quiz);
 
-  const handleEdit = async () => {
+  const handleEdit = () => {
     navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quizId}/edit`);
   };
 
@@ -39,7 +40,6 @@ function QuizDetails() {
   useEffect(() => {
     if (quizId !== undefined && courseId !== undefined) {
       getQuizDetails(quizId).then((quiz: IKanbasQuizDetails) => {
-        console.log(quiz);
         dispatch(setQuiz(quiz));
       });
     }
@@ -56,12 +56,11 @@ function QuizDetails() {
             onClick={handlePublishToggle}
           >
             <div className="d-flex justify-content-center align-items-center">
-              {quiz.isPublished && (
+              {quiz.isPublished ? (
                 <>
                   <FaCheckCircle className="me-1" /> Published
                 </>
-              )}
-              {!quiz.isPublished && (
+              ) : (
                 <>
                   <FaBan className="me-1" /> Publish
                 </>
@@ -92,7 +91,7 @@ function QuizDetails() {
             <div className="row wd-quiz-details-item">
               <div className="col-4 wd-quiz-details-label">Quiz Type</div>
               <div className="col-8 wd-quix-details-value">
-                {eQuizType[quiz.quizType]}
+                {formatSnakeCaseToTitleCase(eQuizType[quiz.quizType])}
               </div>
             </div>
             <div className="row wd-quiz-details-item">

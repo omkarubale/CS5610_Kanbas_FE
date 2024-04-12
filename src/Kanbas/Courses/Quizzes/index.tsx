@@ -21,7 +21,7 @@ function Quizzes() {
           <input
             className="form-control w-25 float-start"
             type="text"
-            id="assignment-search-input"
+            id="quiz-search-input"
             placeholder="Search for Quiz"
           />
           <Button className="wd-button-red" onClick={handleAddQuizButton}>

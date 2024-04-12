@@ -32,3 +32,11 @@
 svg.wd-icon-green * {
   color: green;
 }
+
+svg.wd-icon-green-muted * {
+  color: #93C3A6;
+}
+
+.caret-rotate {
+  transform: rotate(-90deg)
+}
