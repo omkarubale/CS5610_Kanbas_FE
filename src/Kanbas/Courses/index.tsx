@@ -60,7 +60,7 @@ function Courses() {
             />
             <Route
               path="Quizzes/:quizId/edit/details"
-              element={<QuizDetailsEditor />}
+              element={<QuizDetailsEditor isCreate={false} />}
             />
             <Route
               path="Quizzes/:quizId/edit/questions"
