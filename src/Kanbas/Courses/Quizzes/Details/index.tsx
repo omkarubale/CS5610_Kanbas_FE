@@ -26,6 +26,10 @@ function QuizDetails() {
     navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quizId}/edit`);
   };
 
+  const handlePreview = () => {
+    navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quizId}/preview`);
+  };
+
   const renderBooleanValue = (val: boolean) => {
     if (val) return <>Yes</>;
     else return <>No</>;
@@ -67,7 +71,7 @@ function QuizDetails() {
               )}
             </div>
           </Button>
-          <Button className="wd-button-standard me-2">
+          <Button className="wd-button-standard me-2" onClick={handlePreview}>
             <div className="d-flex justify-content-center align-items-center">
               Preview
             </div>

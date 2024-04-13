@@ -94,4 +94,5 @@
 
 .wd-quizzes-grid.list-group .list-group-item:hover {
   background-color: #f5f5f5;
+  cursor: pointer;
 }
