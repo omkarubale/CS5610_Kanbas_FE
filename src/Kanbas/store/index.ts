@@ -49,7 +49,7 @@ const store = configureStore({
     modulesReducer,
     coursesReducer,
     assignmentsReducer,
-    quizzesReducer
+    quizzesReducer,
   },
 });
 

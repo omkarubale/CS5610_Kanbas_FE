@@ -50,14 +50,12 @@ function Courses() {
             />
             <Route path="Grades" element={<Grades />} />
             <Route path="Quizzes" element={<Quizzes />} />
+            <Route path="Quizzes/:quizId" element={<QuizDetails />} />
             <Route
-              path="Quizzes/:quizId"
-              element={<QuizDetails />}
+              path="Quizzes/create"
+              element={<QuizDetailsEditor isCreate={true} />}
             />
-            <Route
-              path="Quizzes/:quizId/edit"
-              element={<QuizEditor />}
-            />
+            <Route path="Quizzes/:quizId/edit" element={<QuizEditor />} />
             <Route
               path="Quizzes/:quizId/edit/details"
               element={<QuizDetailsEditor isCreate={false} />}
@@ -74,10 +72,7 @@ function Courses() {
               path="Quizzes/:quizId/questions/create"
               element={<QuizQuestionEditor isCreate={true} />}
             />
-            <Route
-              path="Quizzes/:quizId/preview"
-              element={<QuizPreview />}
-            />
+            <Route path="Quizzes/:quizId/preview" element={<QuizPreview />} />
           </Routes>
         </NotLeftSide>
       </div>
