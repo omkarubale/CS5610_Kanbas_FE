@@ -1,7 +1,7 @@
 import * as client from "./client";
 import { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import moment from "moment";
 
 export default function Profile() {
@@ -106,6 +106,13 @@ export default function Profile() {
             <Button onClick={save} className="w-100">
               Save
             </Button>
+
+            <Link
+              to="/Kanbas/Account/Admin/Users"
+              className="btn btn-warning w-100"
+            >
+              Users
+            </Link>
           </div>
         )}
       </div>
