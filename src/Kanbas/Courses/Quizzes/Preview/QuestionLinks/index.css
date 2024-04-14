@@ -1,0 +1,26 @@
+.button-sidebar-wide {
+    color: #2d3b45;
+    text-decoration: none;
+}
+
+.wd-questions {
+    margin: 0 0 13px;
+    padding: 0 0 0 20px;
+    list-style: none;
+}
+
+.wd-questions .list-group-item {
+    padding: 0 0 0 20px;
+    border: none;
+    color: rgb(181, 40, 40);
+}
+
+.wd-questions .list-group-item:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.wd-questions .list-group-item.active {
+    font-weight: bold;
+    background-color: transparent;
+}
