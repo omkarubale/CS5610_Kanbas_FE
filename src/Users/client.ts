@@ -9,7 +9,7 @@ export interface User {
   role: string;
   firstName: string;
   lastName: string;
-  dob: Date;
+  dob: string;
   email: string;
 }
 

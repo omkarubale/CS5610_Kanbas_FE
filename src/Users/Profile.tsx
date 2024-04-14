@@ -2,6 +2,8 @@ import * as client from "./client";
 import { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
+
 export default function Profile() {
   const [profile, setProfile] = useState<client.User>({
     _id: "",
@@ -9,7 +11,7 @@ export default function Profile() {
     password: "",
     firstName: "",
     lastName: "",
-    dob: new Date(),
+    dob: "2021-01-01",
     email: "",
     role: "USER",
   });
@@ -70,11 +72,14 @@ export default function Profile() {
             </Form.Group>
             <Form.Group className="mb-2">
               <Form.Control
-                value={profile.dob.toDateString()}
+                value={profile.dob}
                 placeholder="Date of Birth"
                 type="date"
                 onChange={(e) =>
-                  setProfile({ ...profile, dob: new Date(e.target.value) })
+                  setProfile({
+                    ...profile,
+                    dob: e.target.value,
+                  })
                 }
               />
             </Form.Group>

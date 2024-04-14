@@ -10,7 +10,7 @@ export default function Signin() {
     password: "",
     firstName: "",
     lastName: "",
-    dob: new Date(),
+    dob: "2021-01-01",
     email: "",
     role: "USER",
   });
