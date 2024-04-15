@@ -52,3 +52,13 @@ export const findUsersByRole = async (role: string) => {
   const response = await axios.get(`${USERS_API_URL}?role=${role}`);
   return response.data;
 };
+
+export const signup = async (user: any) => {
+  const response = await axios.post(`${USERS_API_URL}/signup`, user);
+  return response.data;
+};
+
+export const signout = async () => {
+  const response = await axios.post(`${USERS_API_URL}/signout`);
+  return response.data;
+};

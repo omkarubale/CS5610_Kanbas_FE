@@ -20,6 +20,9 @@ export default function Signin() {
     await client.signin(credentials);
     navigate("/Kanbas/Account/Profile");
   };
+  const signup = async () => {
+    navigate("/Kanbas/Account/Signup");
+  };
 
   return (
     <div className="d-flex justify-content-center">
@@ -45,8 +48,11 @@ export default function Signin() {
             }
           />
         </Form.Group>
-        <Button className="w-100" onClick={signin}>
+        <Button className="w-100 mb-1" onClick={signin}>
           Sign In
+        </Button>
+        <Button className="w-100" onClick={signup}>
+          Sign Up
         </Button>
       </div>
     </div>
