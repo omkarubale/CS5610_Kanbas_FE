@@ -1,5 +1,4 @@
-import { Dispatch, UnknownAction, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice } from "@reduxjs/toolkit";
 import { IKanbasCourse } from "../store/interfaces/courses";
 
 const initialState: {
