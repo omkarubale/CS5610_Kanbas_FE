@@ -24,3 +24,10 @@
     font-weight: bold;
     background-color: transparent;
 }
+
+.wd-questions .list-group-item .flag-icon {
+    margin-bottom: 4px;
+    font-size: 10px;
+    margin-left: -15px;
+    margin-right: 5px;
+}

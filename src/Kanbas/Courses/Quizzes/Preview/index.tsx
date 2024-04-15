@@ -6,21 +6,45 @@ import QuizQuestionPreviewList from "./Question/List";
 import MiddleContentActions from "../../../layout/Content/NotLeftSide/MiddleContent/MiddleContentActions";
 import MiddleContentData from "../../../layout/Content/NotLeftSide/MiddleContent/MiddleContentData";
 import { IoAlertCircleOutline } from "react-icons/io5";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { KanbasState } from "../../../store";
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import "./index.css";
+import { useEffect, useRef } from "react";
+import { IKanbasQuizQuestion } from "../../../store/interfaces/quizzes";
+import { useParams } from "react-router";
+import { getQuizQuestions } from "../client";
+import { setQuizQuestions } from "../reducer";
 
 function QuizPreview() {
+
+    const { quizId } = useParams();
+    const dispatch = useDispatch();
+    const questionRefs = useRef<(HTMLElement | null)[]>([]);
 
     const quizDetails = useSelector(
         (state: KanbasState) => state.quizzesReducer.quiz
     );
 
-    const handleSubmit = () => {
+    const quizQuestions: IKanbasQuizQuestion[] = useSelector(
+        (state: KanbasState) => state.quizzesReducer.quizQuestions
+    );
 
+    const scrollToQuestion = (index: number) => {
+        const questionRef = questionRefs.current[index];
+        questionRef?.scrollIntoView({ behavior: 'smooth' });
     }
 
+    const handleSubmit = () => {
+    }
+
+    useEffect(() => {
+        if (quizId !== undefined) {
+            getQuizQuestions(quizId).then((questions: IKanbasQuizQuestion[]) => {
+                dispatch(setQuizQuestions(questions));
+            });
+        }
+    }, [dispatch]);
 
     return (
         <>
@@ -42,19 +66,21 @@ function QuizPreview() {
                 </MiddleContentActions>
                 <hr />
                 <MiddleContentData>
-                    {quizDetails?.isOneQuestionAtATime
-                        ? <QuizQuestionPreviewSingle />
-                        : <QuizQuestionPreviewList />}
+                    <Form>
+                        {quizDetails?.isOneQuestionAtATime
+                            ? <QuizQuestionPreviewSingle />
+                            : <QuizQuestionPreviewList questionRefs={questionRefs} />}
 
-                    <div className="form-actions">
-                        <Button type="submit" className="wd-button-standard" onClick={() => handleSubmit()}>
-                            Submit Quiz
-                        </Button>
-                    </div>
+                        <div className="form-actions mb-5">
+                            <Button type="submit" className="wd-button-standard" onClick={() => handleSubmit()}>
+                                Submit Quiz
+                            </Button>
+                        </div>
+                    </Form>
                 </MiddleContentData>
             </MiddleContent>
             <RightSide>
-                <QuizPreviewQuestionLinks />
+                <QuizPreviewQuestionLinks scrollToQuestion={scrollToQuestion} />
             </RightSide>
         </>
     );

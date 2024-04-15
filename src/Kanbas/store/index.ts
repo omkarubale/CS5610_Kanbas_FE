@@ -41,6 +41,7 @@ export interface KanbasState {
     quiz: IKanbasQuizDetails;
     quizQuestions: IKanbasQuizQuestion[];
     quizQuestion: any;
+    flaggedQuestions: boolean[]
   };
 }
 const store = configureStore({

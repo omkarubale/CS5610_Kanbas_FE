@@ -20,6 +20,7 @@ const initialState: {
   quiz: IKanbasQuizDetails;
   quizQuestions: IKanbasQuizQuestion[];
   quizQuestion: any; // Type interpreted at save call based on questionType
+  flaggedQuestions: boolean[]; // To store flag status of each question for preview
 } = {
   quizzesAvailable: false,
   quizzes: [] as IKanbasQuiz[],
@@ -57,6 +58,7 @@ const initialState: {
     quizQuestionType: eQuizQuestionType.TrueOrFalse,
     correctAnswer: true,
   },
+  flaggedQuestions: []
 };
 
 const quizzesSlice = createSlice({
@@ -181,6 +183,10 @@ const quizzesSlice = createSlice({
 
       if (quizQuestion !== undefined) state.quizQuestion = quizQuestion;
     },
+    toggleFlagQuestion: (state, action) => {
+      const questionIndex = action.payload;
+      state.flaggedQuestions[questionIndex] = !state.flaggedQuestions[questionIndex];
+    },
     resetQuizQuestion: (state) => {
       state.quizQuestion._id = "123";
       state.quizQuestion.quizId = "0";
@@ -211,6 +217,7 @@ export const {
   updateQuizQuestion,
   setQuizQuestion,
   setQuizQuestionById,
+  toggleFlagQuestion
 } = quizzesSlice.actions;
 export default quizzesSlice.reducer;
 

@@ -1,0 +1,21 @@
+.text {
+    padding: 5px 20px 20px;
+}
+
+.text .question-text {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+.answers .answer {
+    padding: 5px;
+    margin: 0px;
+}
+
+.question.multiple-choice-question .answer {
+    border-top: 1px solid #ddd;
+}
+
+.question.true-false-question .answer {
+    border-top: 1px solid #ddd;
+}
