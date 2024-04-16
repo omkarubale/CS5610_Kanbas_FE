@@ -15,10 +15,11 @@ import { IKanbasQuizQuestion } from "../../../store/interfaces/quizzes";
 import { useParams } from "react-router";
 import { getQuizQuestions } from "../client";
 import { setQuizQuestions } from "../reducer";
+import { Link } from "react-router-dom";
 
 function QuizPreview() {
 
-    const { quizId } = useParams();
+    const { courseId, quizId } = useParams();
     const dispatch = useDispatch();
     const questionRefs = useRef<(HTMLElement | null)[]>([]);
 
@@ -26,7 +27,7 @@ function QuizPreview() {
         (state: KanbasState) => state.quizzesReducer.quiz
     );
 
-    const quizQuestions: IKanbasQuizQuestion[] = useSelector(
+    const questions: IKanbasQuizQuestion[] = useSelector(
         (state: KanbasState) => state.quizzesReducer.quizQuestions
     );
 
@@ -80,7 +81,10 @@ function QuizPreview() {
                 </MiddleContentData>
             </MiddleContent>
             <RightSide>
-                <QuizPreviewQuestionLinks scrollToQuestion={scrollToQuestion} />
+                {quizDetails?.isOneQuestionAtATime
+                    ? <QuizPreviewQuestionLinks />
+                    : <QuizPreviewQuestionLinks scrollToQuestion={scrollToQuestion} />
+                }
             </RightSide>
         </>
     );

@@ -1,15 +1,9 @@
 import { IKanbasQuizQuestion } from "../../../../../store/interfaces/quizzes";
 import "./index.css";
-import { eQuizQuestionType } from "../../../../../store/enums/eQuizQuestionType";
-import QuizQuestionHeader from "../Common/Header";
-import MultipleChoice from "../Common/MultipleChoice";
-import ShortAnswer from "../Common/ShortAnswers";
-import { useState } from "react";
-import { FaFlag } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleFlagQuestion } from "../../../reducer";
-import Kanbas from "../../../../..";
 import { KanbasState } from "../../../../../store";
+import QuizQuestion from "..";
 
 function QuizQuestionPreviewList({ questionRefs }:
     { questionRefs: React.MutableRefObject<(HTMLElement | null)[]> }) {
@@ -36,31 +30,14 @@ function QuizQuestionPreviewList({ questionRefs }:
         <>
             <div className="assessing">
                 {questions?.map((question: any, index: number) => (
-                    <div
+                    <QuizQuestion
                         key={index}
-                        className="question-holder"
-                        ref={(ele) => setQuestionRef(index, ele)}
-                    >
-                        <div>
-                            <button className="flag-question" onClick={() => handleFlagClick(index)}>
-                                <FaFlag className={flaggedQuestions[index] ? 'flagged-icon' : 'default-icon'} />
-                            </button>
-                        </div>
-                        {(question.quizQuestionType === eQuizQuestionType.MCQ || question.quizQuestionType === eQuizQuestionType.TrueOrFalse) &&
-                            <div className="question multiple-choice-question">
-                                <QuizQuestionHeader index={index} points={question.points} />
-                                <MultipleChoice question={question} />
-                            </div>
-                        }
-
-                        {question.quizQuestionType === eQuizQuestionType.FillInTheBlank &&
-                            <div className="question short-answer-question">
-                                <QuizQuestionHeader index={index} points={question.points} />
-                                <ShortAnswer question={question} />
-                            </div>
-                        }
-
-                    </div>
+                        question={question}
+                        index={index}
+                        flaggedQuestions={flaggedQuestions}
+                        handleFlagClick={handleFlagClick}
+                        setRef={setQuestionRef}
+                    />
                 ))}
             </div>
         </>
