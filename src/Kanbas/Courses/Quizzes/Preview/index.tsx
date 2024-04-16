@@ -14,21 +14,16 @@ import { useEffect, useRef } from "react";
 import { IKanbasQuizQuestion } from "../../../store/interfaces/quizzes";
 import { useParams } from "react-router";
 import { getQuizQuestions } from "../client";
-import { setQuizQuestions } from "../reducer";
-import { Link } from "react-router-dom";
+import { resetPreview, setQuizQuestions } from "../reducer";
 
 function QuizPreview() {
 
-    const { courseId, quizId } = useParams();
+    const { quizId } = useParams();
     const dispatch = useDispatch();
     const questionRefs = useRef<(HTMLElement | null)[]>([]);
 
     const quizDetails = useSelector(
         (state: KanbasState) => state.quizzesReducer.quiz
-    );
-
-    const questions: IKanbasQuizQuestion[] = useSelector(
-        (state: KanbasState) => state.quizzesReducer.quizQuestions
     );
 
     const scrollToQuestion = (index: number) => {
@@ -43,6 +38,7 @@ function QuizPreview() {
         if (quizId !== undefined) {
             getQuizQuestions(quizId).then((questions: IKanbasQuizQuestion[]) => {
                 dispatch(setQuizQuestions(questions));
+                dispatch(resetPreview());
             });
         }
     }, [dispatch]);
