@@ -52,7 +52,7 @@ function QuizPreview() {
         }, 1000); // update every second
 
         return () => clearInterval(id);
-    }, [])
+    }, []);
 
     return (
         <>
