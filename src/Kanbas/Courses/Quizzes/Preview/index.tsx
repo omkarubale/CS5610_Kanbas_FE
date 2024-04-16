@@ -10,17 +10,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { KanbasState } from "../../../store";
 import { Button, Form } from "react-bootstrap";
 import "./index.css";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IKanbasQuizQuestion } from "../../../store/interfaces/quizzes";
 import { useParams } from "react-router";
 import { getQuizQuestions } from "../client";
 import { resetPreview, setQuizQuestions } from "../reducer";
+import { getCurrentHumanReadableDate } from "../../common/Utils";
 
 function QuizPreview() {
 
     const { quizId } = useParams();
     const dispatch = useDispatch();
     const questionRefs = useRef<(HTMLElement | null)[]>([]);
+
+    const [lastSavedTime, setLastSavedTime] = useState(new Date());
 
     const quizDetails = useSelector(
         (state: KanbasState) => state.quizzesReducer.quiz
@@ -40,8 +43,16 @@ function QuizPreview() {
                 dispatch(setQuizQuestions(questions));
                 dispatch(resetPreview());
             });
-        }
+        };
     }, [dispatch]);
+
+    useEffect(() => {
+        const id = setInterval(() => {
+            setLastSavedTime(new Date());
+        }, 1000); // update every second
+
+        return () => clearInterval(id);
+    }, [])
 
     return (
         <>
@@ -55,7 +66,7 @@ function QuizPreview() {
                         This is a preview of the published version of the quiz
                     </div>
                     <div className="d-flex justify-content-start">
-                        Started:
+                        Started: {getCurrentHumanReadableDate(new Date())}
                     </div>
                     <div className="d-flex justify-content-start">
                         <h3 className="fw-bold">Quiz Instructions</h3>
@@ -69,6 +80,7 @@ function QuizPreview() {
                             : <QuizQuestionPreviewList questionRefs={questionRefs} />}
 
                         <div className="form-actions mb-5">
+                            <span className="pe-3">Quiz saved at {getCurrentHumanReadableDate(lastSavedTime)}</span>
                             <Button type="submit" className="wd-button-standard" onClick={() => handleSubmit()}>
                                 Submit Quiz
                             </Button>
