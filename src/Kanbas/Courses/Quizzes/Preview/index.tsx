@@ -16,16 +16,19 @@ import { useParams } from "react-router";
 import { getQuizQuestions } from "../client";
 import { resetPreview, setQuizQuestions } from "../reducer";
 import { getCurrentHumanReadableDate } from "../../common/Utils";
+import { updateLastSavedTime } from "./reducer";
 
 function QuizPreview() {
 
     const { quizId } = useParams();
     const dispatch = useDispatch();
 
-    const [lastSavedTime, setLastSavedTime] = useState(new Date());
-
     const quizDetails = useSelector(
         (state: KanbasState) => state.quizzesReducer.quiz
+    );
+
+    const lastSavedTime = useSelector(
+        (state: KanbasState) => state.quizPreviewReducer.lastSavedTime
     );
 
     const handleSubmit = () => {
@@ -36,16 +39,9 @@ function QuizPreview() {
             getQuizQuestions(quizId).then((questions: IKanbasQuizQuestion[]) => {
                 dispatch(resetPreview());
                 dispatch(setQuizQuestions(questions));
+                dispatch(updateLastSavedTime(new Date()));
             });
         };
-    }, [dispatch]);
-
-    useEffect(() => {
-        const id = setInterval(() => {
-            setLastSavedTime(new Date());
-        });
-
-        return () => clearInterval(id);
     }, [dispatch]);
 
     return (

@@ -5,7 +5,7 @@ import { IKanbasQuizQuestion } from "../../../../../store/interfaces/quizzes";
 import { goToQuestion } from "../../../reducer";
 import QuizQuestion from "..";
 import { MdArrowLeft, MdArrowRight } from "react-icons/md";
-import { toggleFlagQuestion } from "../../reducer";
+import { toggleFlagQuestion, updateLastSavedTime } from "../../reducer";
 
 function QuizQuestionPreviewSingle() {
     const dispatch = useDispatch();
@@ -24,10 +24,12 @@ function QuizQuestionPreviewSingle() {
 
     const handleFlagClick = (index: number) => {
         dispatch(toggleFlagQuestion(index));
+        dispatch(updateLastSavedTime(new Date()));
     };
 
     const handleGoToQuestion = (index: number) => {
         dispatch(goToQuestion(index));
+        dispatch(updateLastSavedTime(new Date()));
     }
 
     return (

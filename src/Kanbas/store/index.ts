@@ -46,7 +46,8 @@ export interface KanbasState {
   };
   quizPreviewReducer: {
     flaggedQuestions: boolean[],
-    scrollToQuestion: any
+    scrollToQuestion: any,
+    lastSavedTime: Date,
   }
 }
 const store = configureStore({

@@ -9,6 +9,7 @@ import { IKanbasQuizQuestion } from "../../../../store/interfaces/quizzes";
 import { FaFlag } from "react-icons/fa";
 import { setActiveQuestion } from "../../reducer";
 import { useRef } from "react";
+import { updateLastSavedTime } from "../reducer";
 
 function QuizPreviewQuestionLinks() {
 
@@ -39,6 +40,7 @@ function QuizPreviewQuestionLinks() {
 
     const handleQuestionClick = (index: any) => {
         dispatch(setActiveQuestion(index));
+        dispatch(updateLastSavedTime(new Date()));
 
         if (scrollToQuestionIndex !== undefined) {
             scrollToQuestion(scrollToQuestionIndex);

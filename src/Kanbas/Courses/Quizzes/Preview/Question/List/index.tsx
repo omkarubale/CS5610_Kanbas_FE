@@ -3,7 +3,7 @@ import "./index.css";
 import { useDispatch, useSelector } from "react-redux";
 import { KanbasState } from "../../../../../store";
 import QuizQuestion from "..";
-import { toggleFlagQuestion } from "../../reducer";
+import { toggleFlagQuestion, updateLastSavedTime } from "../../reducer";
 
 function QuizQuestionPreviewList() {
 
@@ -19,6 +19,7 @@ function QuizQuestionPreviewList() {
 
     const handleFlagClick = (index: number) => {
         dispatch(toggleFlagQuestion(index));
+        dispatch(updateLastSavedTime(new Date()));
     }
 
     return (
