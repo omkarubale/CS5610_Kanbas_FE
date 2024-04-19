@@ -3,29 +3,29 @@
     text-decoration: none;
 }
 
-.wd-questions {
+.wd-quiz-questions {
     margin: 0 0 13px;
     padding: 0 0 0 20px;
     list-style: none;
 }
 
-.wd-questions .list-group-item {
+.wd-quiz-questions .list-group-item {
     padding: 0 0 0 20px;
     border: none;
     color: rgb(181, 40, 40);
 }
 
-.wd-questions .list-group-item:hover {
+.wd-quiz-questions .list-group-item:hover {
     cursor: pointer;
     text-decoration: underline;
 }
 
-.wd-questions .list-group-item.active {
+.wd-quiz-questions .list-group-item.active {
     font-weight: bold;
     background-color: transparent;
 }
 
-.wd-questions .list-group-item .flag-icon {
+.wd-quiz-questions .list-group-item .wd-quiz-question-flag-icon {
     margin-bottom: 4px;
     font-size: 10px;
     margin-left: -15px;

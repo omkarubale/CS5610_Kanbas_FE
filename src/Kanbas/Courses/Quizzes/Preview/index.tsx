@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { KanbasState } from "../../../store";
 import { Button, Form } from "react-bootstrap";
 import "./index.css";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { IKanbasQuizQuestion } from "../../../store/interfaces/quizzes";
 import { useParams } from "react-router";
 import { getQuizQuestions } from "../client";
@@ -21,7 +21,6 @@ function QuizPreview() {
 
     const { quizId } = useParams();
     const dispatch = useDispatch();
-    const questionRefs = useRef<(HTMLElement | null)[]>([]);
 
     const [lastSavedTime, setLastSavedTime] = useState(new Date());
 
@@ -29,19 +28,14 @@ function QuizPreview() {
         (state: KanbasState) => state.quizzesReducer.quiz
     );
 
-    const scrollToQuestion = (index: number) => {
-        const questionRef = questionRefs.current[index];
-        questionRef?.scrollIntoView({ behavior: 'smooth' });
-    }
-
     const handleSubmit = () => {
     }
 
     useEffect(() => {
         if (quizId !== undefined) {
             getQuizQuestions(quizId).then((questions: IKanbasQuizQuestion[]) => {
-                dispatch(setQuizQuestions(questions));
                 dispatch(resetPreview());
+                dispatch(setQuizQuestions(questions));
             });
         };
     }, [dispatch]);
@@ -49,10 +43,10 @@ function QuizPreview() {
     useEffect(() => {
         const id = setInterval(() => {
             setLastSavedTime(new Date());
-        }, 1000); // update every second
+        });
 
         return () => clearInterval(id);
-    }, []);
+    }, [dispatch]);
 
     return (
         <>
@@ -77,9 +71,9 @@ function QuizPreview() {
                     <Form>
                         {quizDetails?.isOneQuestionAtATime
                             ? <QuizQuestionPreviewSingle />
-                            : <QuizQuestionPreviewList questionRefs={questionRefs} />}
+                            : <QuizQuestionPreviewList />}
 
-                        <div className="form-actions mb-5">
+                        <div className="wd-quiz-preview form-actions mb-5">
                             <span className="pe-3">Quiz saved at {getCurrentHumanReadableDate(lastSavedTime)}</span>
                             <Button type="submit" className="wd-button-standard" onClick={() => handleSubmit()}>
                                 Submit Quiz
@@ -89,10 +83,7 @@ function QuizPreview() {
                 </MiddleContentData>
             </MiddleContent>
             <RightSide>
-                {quizDetails?.isOneQuestionAtATime
-                    ? <QuizPreviewQuestionLinks />
-                    : <QuizPreviewQuestionLinks scrollToQuestion={scrollToQuestion} />
-                }
+                <QuizPreviewQuestionLinks />
             </RightSide>
         </>
     );

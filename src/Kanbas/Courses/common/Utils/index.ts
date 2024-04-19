@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import moment from "moment";
 
 export const formatDate = (date: Date) => {
   return date ? new Date(date).toISOString().split("T")[0] : "";
@@ -16,5 +16,5 @@ export const formatSnakeCaseToTitleCase = (input: string) => {
 };
 
 export const getCurrentHumanReadableDate = (date: Date) => {
-  return format(date, "MMM d 'at' h:mmaaa");
+  return moment(date).format("MMM d 'at' h:mmaaa");
 }

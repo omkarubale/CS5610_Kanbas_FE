@@ -20,7 +20,6 @@ const initialState: {
   quiz: IKanbasQuizDetails;
   quizQuestions: IKanbasQuizQuestion[];
   quizQuestion: any; // Type interpreted at save call based on questionType
-  flaggedQuestions: boolean[]; // To store flag status of each question for preview
   currentQuestionIndex: number; // Index of current question being viewed
 } = {
   quizzesAvailable: false,
@@ -59,7 +58,6 @@ const initialState: {
     quizQuestionType: eQuizQuestionType.TrueOrFalse,
     correctAnswer: true,
   },
-  flaggedQuestions: [],
   currentQuestionIndex: 0,
 };
 
@@ -185,10 +183,6 @@ const quizzesSlice = createSlice({
 
       if (quizQuestion !== undefined) state.quizQuestion = quizQuestion;
     },
-    toggleFlagQuestion: (state, action) => {
-      const questionIndex = action.payload;
-      state.flaggedQuestions[questionIndex] = !state.flaggedQuestions[questionIndex];
-    },
     goToQuestion: (state, action) => {
       const newIndex = state.currentQuestionIndex + action.payload;
       state.currentQuestionIndex = Math.min(Math.max(newIndex, 0), state.quizQuestions.length - 1);
@@ -207,7 +201,6 @@ const quizzesSlice = createSlice({
     },
     resetPreview: (state) => {
       state.currentQuestionIndex = 0;
-      state.flaggedQuestions = [];
     }
   },
 });
@@ -230,7 +223,6 @@ export const {
   updateQuizQuestion,
   setQuizQuestion,
   setQuizQuestionById,
-  toggleFlagQuestion,
   goToQuestion,
   setActiveQuestion,
   resetPreview,

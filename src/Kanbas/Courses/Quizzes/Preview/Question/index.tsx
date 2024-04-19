@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import { IKanbasQuizQuestion } from "../../../../store/interfaces/quizzes";
 import { FaFlag } from "react-icons/fa";
 import QuizQuestionHeader from "./Common/Header";
@@ -10,47 +9,35 @@ import "./index.css";
 function QuizQuestion({
     question,
     index,
-    flaggedQuestions,
-    handleFlagClick,
-    setRef }:
+    isQuestionFlagged,
+    handleFlagClick }:
     {
         question: IKanbasQuizQuestion,
         index: number,
-        flaggedQuestions: boolean[],
+        isQuestionFlagged: boolean,
         handleFlagClick: (index: number) => void,
-        setRef?: (index: number, ref: HTMLDivElement | null) => void
     }
 ) {
-
-    const ref = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        if (setRef) {
-            setRef(index, ref.current);
-        }
-    }, [index, ref, setRef])
-
     return (
         <div
             key={index}
             id={`question-${index}`}
-            className="question-holder"
-            ref={ref}
+            className="wd-quiz-question-holder"
         >
             <div>
-                <button className="flag-question" onClick={() => handleFlagClick(index)}>
-                    <FaFlag className={flaggedQuestions[index] ? 'flagged-icon' : 'default-icon'} />
+                <button className="wd-quiz-flag-question" onClick={() => handleFlagClick(index)}>
+                    <FaFlag className={isQuestionFlagged ? 'wd-quiz-flagged-icon' : 'wd-quiz-default-icon'} />
                 </button>
             </div>
             {(question.quizQuestionType === eQuizQuestionType.MCQ || question.quizQuestionType === eQuizQuestionType.TrueOrFalse) &&
-                <div className="question multiple-choice-question">
+                <div className="wd-quiz-question multiple-choice-question">
                     <QuizQuestionHeader index={index} points={question.points} />
                     <MultipleChoice question={question} />
                 </div>
             }
 
             {question.quizQuestionType === eQuizQuestionType.FillInTheBlank &&
-                <div className="question short-answer-question">
+                <div className="wd-quiz-question short-answer-question">
                     <QuizQuestionHeader index={index} points={question.points} />
                     <ShortAnswers question={question} />
                 </div>

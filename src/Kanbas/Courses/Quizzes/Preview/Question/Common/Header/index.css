@@ -1,4 +1,4 @@
-.header {
+.wd-quiz-question-header {
     font-size: 1.2em;
     font-weight: bold;
     border-bottom: 1px solid #aaa;
@@ -7,7 +7,7 @@
     margin: 0;
 }
 
-.header .question-points {
+.wd-quiz-question-header .wd-quiz-question-points {
     float: right;
     font-size: 0.9em;
     font-weight: bold;

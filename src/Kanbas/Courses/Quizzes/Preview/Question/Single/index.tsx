@@ -2,15 +2,16 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { KanbasState } from "../../../../../store";
 import { IKanbasQuizQuestion } from "../../../../../store/interfaces/quizzes";
-import { goToQuestion, toggleFlagQuestion } from "../../../reducer";
+import { goToQuestion } from "../../../reducer";
 import QuizQuestion from "..";
 import { MdArrowLeft, MdArrowRight } from "react-icons/md";
+import { toggleFlagQuestion } from "../../reducer";
 
 function QuizQuestionPreviewSingle() {
     const dispatch = useDispatch();
 
     const flaggedQuestions = useSelector(
-        (state: KanbasState) => state.quizzesReducer.flaggedQuestions
+        (state: KanbasState) => state.quizPreviewReducer.flaggedQuestions
     );
 
     const questions: IKanbasQuizQuestion[] = useSelector(
@@ -31,12 +32,12 @@ function QuizQuestionPreviewSingle() {
 
     return (
         <>
-            <div className="assessing">
+            <div className="wd-quiz-assessing">
                 <QuizQuestion
                     key={currentQuestionIndex}
                     question={questions[currentQuestionIndex]}
                     index={currentQuestionIndex}
-                    flaggedQuestions={flaggedQuestions}
+                    isQuestionFlagged={flaggedQuestions[currentQuestionIndex]}
                     handleFlagClick={handleFlagClick}
                 />
             </div>

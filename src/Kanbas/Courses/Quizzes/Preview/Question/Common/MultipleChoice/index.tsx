@@ -1,15 +1,19 @@
 import { eQuizQuestionType } from "../../../../../../store/enums/eQuizQuestionType";
-import { eTrueOrFalse } from "../../../../../../store/enums/eTrueOrFalse";
+import { eBooleanChoices } from "../../../../../../store/enums/eBooleanChoices";
 import "./index.css";
 
 function MultipleChoice({ question }: { question: any }) {
+
+    const renderTrueFalseOptions = () => {
+        const eTrueOrFalseTypes = Object.keys(eBooleanChoices).filter((key) => isNaN(Number(key)));
+        return renderChoices(eTrueOrFalseTypes.map((key: string) => ({ choiceText: key })));
+    }
 
     const renderAnswerOptions = () => {
         if (question.quizQuestionType === eQuizQuestionType.MCQ) {
             return renderChoices(question.choices);
         } else if (question.quizQuestionType === eQuizQuestionType.TrueOrFalse) {
-            const eTrueOrFalseTypes = Object.keys(eTrueOrFalse).filter((key) => isNaN(Number(key)));
-            return renderChoices(eTrueOrFalseTypes.map((key: string) => ({ choiceText: key })));
+            return renderTrueFalseOptions();
         } else {
             return null;
         }
@@ -20,16 +24,16 @@ function MultipleChoice({ question }: { question: any }) {
             <>
                 {
                     choices.map((choice: any, index: number) => (
-                        <div className="answer" key={index}>
+                        <div className="wd-quiz-question-answer" key={index}>
                             <label className="d-flex justify-content-start">
-                                <span className="answer-input">
+                                <span className="wd-quiz-answer-input">
                                     <input
                                         type="radio"
                                         name={`question_${question._id}`}
                                         value={choice.choiceText}
                                     ></input>
                                 </span>
-                                <div className="answer-label ps-2">
+                                <div className="wd-quiz-answer-label ps-2">
                                     <p>{choice.choiceText}</p>
                                 </div>
                             </label>
@@ -41,11 +45,11 @@ function MultipleChoice({ question }: { question: any }) {
     };
 
     return (
-        <div className="text">
-            <div className="question-text">
+        <div className="wd-quiz-text">
+            <div className="wd-quiz-question-text">
                 <p>{question.questionText}</p>
             </div>
-            <div className="answers">
+            <div className="wd-quiz-question-answers">
                 {renderAnswerOptions()}
             </div>
         </div>

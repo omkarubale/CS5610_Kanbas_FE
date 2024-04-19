@@ -8,15 +8,16 @@ import { KanbasState } from "../../../../store";
 import { IKanbasQuizQuestion } from "../../../../store/interfaces/quizzes";
 import { FaFlag } from "react-icons/fa";
 import { setActiveQuestion } from "../../reducer";
+import { useRef } from "react";
 
-function QuizPreviewQuestionLinks({ scrollToQuestion }:
-    { scrollToQuestion?: any }) {
+function QuizPreviewQuestionLinks() {
 
     const { courseId, quizId } = useParams();
     const dispatch = useDispatch();
+    const questionRefs = useRef<(HTMLElement | null)[]>([]);
 
     const flaggedQuestions = useSelector(
-        (state: KanbasState) => state.quizzesReducer.flaggedQuestions
+        (state: KanbasState) => state.quizPreviewReducer.flaggedQuestions
     );
 
     const questions: IKanbasQuizQuestion[] = useSelector(
@@ -27,11 +28,20 @@ function QuizPreviewQuestionLinks({ scrollToQuestion }:
         (state: KanbasState) => state.quizzesReducer.currentQuestionIndex
     );
 
+    const scrollToQuestionIndex = useSelector(
+        (state: KanbasState) => state.quizPreviewReducer.scrollToQuestion
+    )
+
+    const scrollToQuestion = (index: number) => {
+        const questionRef = questionRefs.current[index];
+        questionRef?.scrollIntoView({ behavior: 'smooth' });
+    }
+
     const handleQuestionClick = (index: any) => {
         dispatch(setActiveQuestion(index));
 
-        if (scrollToQuestion) {
-            scrollToQuestion(index);
+        if (scrollToQuestionIndex !== undefined) {
+            scrollToQuestion(scrollToQuestionIndex);
         }
     }
 
@@ -45,13 +55,13 @@ function QuizPreviewQuestionLinks({ scrollToQuestion }:
             </Button>
             <br /><br />
             <h3>Questions</h3>
-            <ul className="list-group wd-questions">
+            <ul className="list-group wd-quiz-questions">
                 {questions?.map((question: any, index: number) => (
                     <li
                         className={`list-group-item ${index === currentQuestionIndex ? 'active' : ''}`}
                         key={index}
                         onClick={() => handleQuestionClick(index)}>
-                        {flaggedQuestions[index] && <FaFlag className="flag-icon" />}
+                        {flaggedQuestions[index] && <FaFlag className="wd-quiz-question-flag-icon" />}
                         <GoQuestion className="mb-1 me-1" color="#595959" />
                         Question {index + 1}
                     </li>
