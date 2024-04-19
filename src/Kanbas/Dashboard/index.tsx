@@ -51,7 +51,7 @@ function Dashboard() {
 
   const handleDeleteCourse = async (courseId: string) => {
     deleteCourse(courseId).then(() => {
-      dispatch(removeCourse(course));
+      dispatch(removeCourse(courseId));
     });
   };
 
