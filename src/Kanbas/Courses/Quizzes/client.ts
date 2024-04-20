@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   IKanbasQuiz,
   IKanbasQuizDetails,
+  IKanbasQuizQuestion,
 } from "../../store/interfaces/quizzes";
 
 const API_BASE = process.env.REACT_APP_API_BASE;
@@ -36,3 +37,11 @@ export const postQuizSetPublish = async (
   });
   return response.data;
 };
+
+export const getQuizQuestions = async (quizId: string) => {
+  const response = await axios.get<IKanbasQuizQuestion[]>(
+    `${QUIZZES_API}/${quizId}/questions`
+  );
+
+  return response.data;
+}

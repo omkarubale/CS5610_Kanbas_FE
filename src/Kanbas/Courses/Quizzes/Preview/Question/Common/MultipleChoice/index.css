@@ -1,0 +1,17 @@
+.wd-quiz-text {
+    padding: 5px 20px 20px;
+}
+
+.wd-quiz-text .wd-quiz-question-text {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+.wd-quiz-question-answers .wd-quiz-question-answer {
+    padding: 5px;
+    margin: 0px;
+}
+
+.wd-quiz-question.multiple-choice-question .wd-quiz-question-answer {
+    border-top: 1px solid #ddd;
+}

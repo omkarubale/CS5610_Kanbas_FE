@@ -1,0 +1,36 @@
+.wd-quiz-question-holder {
+    position: relative;
+}
+
+.wd-quiz-question-holder .wd-quiz-question {
+    margin: 0.7em 30px 30px;
+    border: 1px solid #aaa;
+    background-color: #fff;
+    position: relative;
+    min-height: 50px;
+    margin: .7em auto 30px;
+    _height: 10px;
+}
+
+.wd-quiz-question-holder .wd-quiz-flag-question {
+    cursor: pointer;
+    position: absolute;
+    left: -30px;
+    margin-top: 8px;
+    height: 16px;
+    width: 20px;
+    background: transparent;
+    border: none;
+}
+
+.wd-quiz-question-holder .wd-quiz-flag-question:hover svg {
+    fill: rgb(181, 40, 40);
+}
+
+.wd-quiz-question-holder .wd-quiz-flag-question .wd-quiz-flagged-icon {
+    color: rgb(181, 40, 40);
+}
+
+.wd-quiz-question-holder .wd-quiz-flag-question .wd-quiz-default-icon {
+    color: gray;
+}
