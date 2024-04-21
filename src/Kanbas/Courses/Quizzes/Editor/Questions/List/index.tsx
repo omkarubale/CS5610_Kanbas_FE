@@ -3,12 +3,13 @@ import { KanbasState } from "../../../../../store";
 import QuizQuestionHeader from "../../../Preview/Question/Common/Header";
 import "./index.css";
 import { useParams } from "react-router";
-import { addQuestion, setQuizQuestions } from "../reducer";
+import { addQuestion, removeQuestion, setQuizQuestions } from "../reducer";
 import { Button } from "react-bootstrap";
-import { FaPlus } from "react-icons/fa6";
+import { FaPen, FaPlus, FaTrash } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import { getQuizQuestions } from "../../../client";
-import QuizQuestion from "../../../Preview/Question";
+import QuizQuestionEditor from "../Editor";
+import { IKanbasQuizQuestion } from "../../../../../store/interfaces/quizzes";
 
 interface IQuizQuestionEditMode {
   quizQuestionId: string;
@@ -26,8 +27,32 @@ function QuizQuestionList() {
     [] as IQuizQuestionEditMode[]
   );
 
+  const isQuestionEditMode = (quizQuestionId: string) => {
+    const quizEditMode = quizEditModes.find(
+      (qem) => qem.quizQuestionId == quizQuestionId
+    );
+    if (quizEditMode === undefined) return false;
+    return quizEditMode.isEditMode;
+  };
+
+  const setQuestionEditMode = (quizQuestionId: string, isEditMode: boolean) => {
+    const editModes = quizEditModes.map((qem) => {
+      if (qem.quizQuestionId === quizQuestionId) {
+        return {
+          isEditMode: isEditMode,
+          quizQuestionId: quizQuestionId,
+        } as IQuizQuestionEditMode;
+      } else return qem;
+    });
+    setQuizEditModes(editModes);
+  };
+
   const handleAddQuestion = () => {
     if (quizId !== undefined) dispatch(addQuestion(quizId));
+  };
+
+  const handleRemoveQuestion = (quizQuestion: IKanbasQuizQuestion) => {
+    dispatch(removeQuestion(quizQuestion));
   };
 
   useEffect(() => {
@@ -55,15 +80,31 @@ function QuizQuestionList() {
             id={`quiz-question-${index}`}
             className="wd-quiz-question-container"
           >
-            <div className="wd-quiz-question">
-              <QuizQuestionHeader
-                questionTitle={quizQuestion.title}
-                points={quizQuestion.points}
-              />
-              <div className="wd-quiz-question-text">
-                {quizQuestion.questionText}
+            {isQuestionEditMode(quizQuestion._id) ? (
+              <QuizQuestionEditor quizQuestion={quizQuestion} />
+            ) : (
+              <div className="wd-quiz-question">
+                <QuizQuestionHeader
+                  questionTitle={quizQuestion.title}
+                  points={quizQuestion.points}
+                />
+                <div className="wd-quiz-question-text d-flex">
+                  <div className="flex-fill">{quizQuestion.questionText}</div>
+                  <div className="ms-2">
+                    <FaPen
+                      onClick={() =>
+                        setQuestionEditMode(quizQuestion._id, true)
+                      }
+                    />
+
+                    <FaTrash
+                      className="ms-1"
+                      onClick={() => handleRemoveQuestion(quizQuestion)}
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         ))}
       </div>

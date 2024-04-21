@@ -1,17 +1,11 @@
 import { Button, Form } from "react-bootstrap";
-import { FaPlus } from "react-icons/fa";
+
 import QuizQuestionList from "./List";
 import { useNavigate, useParams } from "react-router";
 import { setQuizPublished } from "../../reducer";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getQuizQuestions,
-  postQuizQuestions,
-  postQuizSetPublish,
-} from "../../client";
+import { postQuizQuestions, postQuizSetPublish } from "../../client";
 import { KanbasState } from "../../../../store";
-import { addQuestion, setQuizQuestions } from "./reducer";
-import { useEffect } from "react";
 
 function QuizQuestionsEditor() {
   const { courseId, quizId } = useParams();
