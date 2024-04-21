@@ -22,11 +22,6 @@ function QuizQuestionsEditor() {
     (state: KanbasState) => state.quizQuestionsReducer.questions
   );
 
-  // TODO pass in the quiz object later and update the path
-  const handleAddQuestion = () => {
-    if (quizId !== undefined) dispatch(addQuestion(quizId));
-  };
-
   const handleCancel = () => {
     navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quizId}`);
   };
@@ -45,29 +40,10 @@ function QuizQuestionsEditor() {
     handleCancel();
   };
 
-  useEffect(() => {
-    if (quizId !== undefined) {
-      getQuizQuestions(quizId).then((quizQuestions) => {
-        dispatch(setQuizQuestions(quizQuestions));
-      });
-    }
-  }, [dispatch]);
-
   return (
     <>
       <Form>
         <QuizQuestionList />
-
-        <div className="d-flex justify-content-center">
-          <Button
-            className="wd-button-standard"
-            onClick={() => handleAddQuestion()}
-          >
-            <div className="d-flex justify-content-center align-items-center">
-              <FaPlus className="me-1" /> New Question
-            </div>
-          </Button>
-        </div>
 
         <hr />
 
