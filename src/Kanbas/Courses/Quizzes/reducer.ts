@@ -97,9 +97,9 @@ const quizzesSlice = createSlice({
       state.quizzesDetails = [...state.quizzesDetails, state.quiz];
     },
     deleteQuiz: (state, action) => {
-      state.quizzesDetails = state.quizzesDetails.filter(
+      state.quizzes = state.quizzes.filter(
         (quiz) => quiz._id !== action.payload
-      );
+      )
     },
     updateQuiz: (state) => {
       state.quizzesDetails = state.quizzesDetails.map((quiz) => {

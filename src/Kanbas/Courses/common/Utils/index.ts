@@ -16,5 +16,5 @@ export const formatSnakeCaseToTitleCase = (input: string) => {
 };
 
 export const getCurrentHumanReadableDate = (date: Date) => {
-  return moment(date).format("MMM d 'at' h:mmaaa");
+  return moment(date).format('MMMM Do YYYY [at] h:mm:ss a');
 }
