@@ -12,13 +12,17 @@ const quizQuestionsSlice = createSlice({
   name: "quizQuestions",
   initialState,
   reducers: {
-    addQuestion: (state) => {
+    setQuizQuestions: (state, action) => {
+      state.questions = action.payload;
+    },
+    addQuestion: (state, action) => {
+      const quizId = action.payload;
       state.questions.push({
         _id: new Date().toUTCString(),
         points: 1,
-        title: "",
-        questionText: "",
-        quizId: "",
+        title: "New Question",
+        questionText: "New Question Text",
+        quizId: quizId,
         quizQuestionType: eQuizQuestionType.MCQ,
       } as IKanbasQuizQuestion);
     },
@@ -42,6 +46,6 @@ const quizQuestionsSlice = createSlice({
   },
 });
 
-export const { addQuestion, setQuestion, removeQuestion } =
+export const { setQuizQuestions, addQuestion, setQuestion, removeQuestion } =
   quizQuestionsSlice.actions;
 export default quizQuestionsSlice.reducer;

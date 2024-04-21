@@ -1,15 +1,13 @@
 .wd-quiz-question-header {
     font-size: 1.2em;
-    font-weight: bold;
+    font-weight: 500;
     border-bottom: 1px solid #aaa;
     background-color: #f5f5f5;
-    padding: 8px 20px;
-    margin: 0;
+    padding: 8px 12px;
 }
 
 .wd-quiz-question-header .wd-quiz-question-points {
     float: right;
-    font-size: 0.9em;
-    font-weight: bold;
-    margin-top: 0.1em;
+    font-size: medium;
+    margin-top: 2px;
 }

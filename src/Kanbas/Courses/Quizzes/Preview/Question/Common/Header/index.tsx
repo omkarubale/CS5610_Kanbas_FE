@@ -1,16 +1,18 @@
 import "./index.css";
 
-function QuizQuestionHeader({ index, points }: { index: number, points: number }) {
-    return (
-        <div className="wd-quiz-question-header">
-            <span className="wd-quiz-question-name">
-                Question {index + 1}
-            </span>
-            <span className="wd-quiz-question-points">
-                {points} pts
-            </span>
-        </div>
-    )
+function QuizQuestionHeader({
+  questionTitle,
+  points,
+}: {
+  questionTitle: string;
+  points: number;
+}) {
+  return (
+    <div className="wd-quiz-question-header d-flex">
+      <div className="wd-quiz-question-name flex-fill">{questionTitle}</div>
+      <div className="wd-quiz-question-points">{points} pts</div>
+    </div>
+  );
 }
 
-export default QuizQuestionHeader; 
+export default QuizQuestionHeader;

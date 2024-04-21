@@ -4,9 +4,14 @@ import QuizQuestionList from "./List";
 import { useNavigate, useParams } from "react-router";
 import { setQuizPublished } from "../../reducer";
 import { useDispatch, useSelector } from "react-redux";
-import { postQuizQuestions, postQuizSetPublish } from "../../client";
+import {
+  getQuizQuestions,
+  postQuizQuestions,
+  postQuizSetPublish,
+} from "../../client";
 import { KanbasState } from "../../../../store";
-import { addQuestion } from "./reducer";
+import { addQuestion, setQuizQuestions } from "./reducer";
+import { useEffect } from "react";
 
 function QuizQuestionsEditor() {
   const { courseId, quizId } = useParams();
@@ -19,7 +24,7 @@ function QuizQuestionsEditor() {
 
   // TODO pass in the quiz object later and update the path
   const handleAddQuestion = () => {
-    dispatch(addQuestion());
+    if (quizId !== undefined) dispatch(addQuestion(quizId));
   };
 
   const handleCancel = () => {
@@ -39,6 +44,14 @@ function QuizQuestionsEditor() {
 
     handleCancel();
   };
+
+  useEffect(() => {
+    if (quizId !== undefined) {
+      getQuizQuestions(quizId).then((quizQuestions) => {
+        dispatch(setQuizQuestions(quizQuestions));
+      });
+    }
+  }, [dispatch]);
 
   return (
     <>

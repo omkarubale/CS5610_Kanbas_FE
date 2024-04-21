@@ -39,6 +39,27 @@ export const postQuizSetPublish = async (
   return response.data;
 };
 
+export const createQuiz = async (courseId: string, quiz: IKanbasQuiz) => {
+  const response = await api.post<IKanbasQuiz[]>(
+    `${COURSES_API}/${courseId}/quizzes`,
+    quiz
+  );
+  return response.data;
+};
+
+export const putQuiz = async (quiz: IKanbasQuiz) => {
+  const response = await api.put<IKanbasQuiz[]>(
+    `${QUIZZES_API}/${quiz._id}`,
+    quiz
+  );
+  return response.data;
+};
+
+export const removeQuiz = async (quizId: string) => {
+  const response = await api.delete(`${QUIZZES_API}/${quizId}`);
+  return response.data;
+};
+
 // Quiz Questions
 export const getQuizQuestions = async (quizId: string) => {
   const response = await axios.get<IKanbasQuizQuestion[]>(
@@ -82,31 +103,10 @@ export const deleteQuizQuestion = async (quizQuestionId: string) => {
   return response.data;
 };
 
-export const putModule = async (quizQuestion: IKanbasQuizQuestion) => {
+export const putQuizQuestion = async (quizQuestion: IKanbasQuizQuestion) => {
   const response = await api.put(
     `${QUIZ_QUESTIONS_API}/${quizQuestion._id}`,
     quizQuestion
   );
-  return response.data;
-};
-
-export const createQuiz = async (courseId: string, quiz: IKanbasQuiz) => {
-  const response = await api.post<IKanbasQuiz[]>(
-    `${COURSES_API}/${courseId}/quizzes`,
-    quiz
-  );
-  return response.data;
-}
-
-export const putQuiz = async (quiz: IKanbasQuiz) => {
-  const response = await api.put<IKanbasQuiz[]>(
-    `${QUIZZES_API}/${quiz._id}`,
-    quiz
-  );
-  return response.data;
-}
-
-export const removeQuiz = async (quizId: string) => {
-  const response = await api.delete(`${QUIZZES_API}/${quizId}`);
   return response.data;
 };
