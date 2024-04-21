@@ -39,11 +39,23 @@ export const postQuizSetPublish = async (
   return response.data;
 };
 
+// Quiz Questions
 export const getQuizQuestions = async (quizId: string) => {
   const response = await axios.get<IKanbasQuizQuestion[]>(
     `${QUIZZES_API}/${quizId}/questions`
   );
 
+  return response.data;
+};
+
+export const postQuizQuestions = async (
+  quizId: string,
+  quizQuestions: IKanbasQuizQuestion[]
+) => {
+  const response = await api.post(
+    `${QUIZZES_API}/${quizId}/quizQuestions/bulkEdit`,
+    quizQuestions
+  );
   return response.data;
 };
 

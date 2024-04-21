@@ -1,8 +1,11 @@
+import { useSelector } from "react-redux";
+import { KanbasState } from "../../../../../store";
+
 function QuizQuestionList() {
-    return (
-        <>
-        </>
-    );
+  const quizQuestions = useSelector(
+    (state: KanbasState) => state.quizQuestionsReducer.questions
+  );
+  return <></>;
 }
 
 export default QuizQuestionList;

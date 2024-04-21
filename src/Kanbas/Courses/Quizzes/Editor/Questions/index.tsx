@@ -1,29 +1,94 @@
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
 import QuizQuestionList from "./List";
 import { useNavigate, useParams } from "react-router";
+import { setQuizPublished } from "../../reducer";
+import { useDispatch, useSelector } from "react-redux";
+import { postQuizQuestions, postQuizSetPublish } from "../../client";
+import { KanbasState } from "../../../../store";
+import { addQuestion } from "./reducer";
 
 function QuizQuestionsEditor() {
-    const { courseId } = useParams();
-    const navigate = useNavigate();
+  const { courseId, quizId } = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    // TODO pass in the quiz object later and update the path
-    const handleCreateQuestion = () => {
-        navigate(`/Kanbas/Courses/${courseId}/Quizzes/quizId/questions/create`);
+  const quizQuestions = useSelector(
+    (state: KanbasState) => state.quizQuestionsReducer.questions
+  );
+
+  // TODO pass in the quiz object later and update the path
+  const handleAddQuestion = () => {
+    dispatch(addQuestion());
+  };
+
+  const handleCancel = () => {
+    navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quizId}`);
+  };
+
+  const handleSave = (isPublish: boolean) => {
+    if (quizId !== undefined) {
+      postQuizQuestions(quizId, quizQuestions).then(() => {
+        if (isPublish) {
+          postQuizSetPublish(quizId, true).then(() => {
+            dispatch(setQuizPublished({ quizId, isPublish: true }));
+          });
+        }
+      });
     }
 
-    return (
-        <>
-            <QuizQuestionList />
+    handleCancel();
+  };
 
-            <Button className="wd-button-red" onClick={() => handleCreateQuestion()}>
-                <div className="d-flex justify-content-center align-items-center">
-                    <FaPlus className="me-1" /> Edit
-                </div>
+  return (
+    <>
+      <Form>
+        <QuizQuestionList />
+
+        <div className="d-flex justify-content-center">
+          <Button
+            className="wd-button-standard"
+            onClick={() => handleAddQuestion()}
+          >
+            <div className="d-flex justify-content-center align-items-center">
+              <FaPlus className="me-1" /> New Question
+            </div>
+          </Button>
+        </div>
+
+        <hr />
+
+        <div className="d-flex">
+          <div className="form-check float-start ms-2 mt-2 d-block flex-fill">
+            <Form.Check
+              type="checkbox"
+              label="Notify users that this content has changed"
+              id="formNotifyChangeCb"
+              className="ps-0"
+            />
+          </div>
+          <div className="float-end me-2">
+            <Button
+              className="wd-button-standard"
+              onClick={() => handleCancel()}
+            >
+              Cancel
             </Button>
-            <div></div>
-        </>
-    );
+            <Button
+              className="wd-button-standard"
+              onClick={() => handleSave(true)}
+            >
+              Save & Publish
+            </Button>
+            <Button className="wd-button-red" onClick={() => handleSave(false)}>
+              Save
+            </Button>
+          </div>
+        </div>
+        <hr />
+      </Form>
+    </>
+  );
 }
 
-export default QuizQuestionsEditor; 
+export default QuizQuestionsEditor;
