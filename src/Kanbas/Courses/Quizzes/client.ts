@@ -9,6 +9,7 @@ const API_BASE = process.env.REACT_APP_API_BASE;
 
 const COURSES_API = `${API_BASE}/api/courses`;
 const QUIZZES_API = `${API_BASE}/api/quizzes`;
+const QUIZ_QUESTIONS_API = `${API_BASE}/api/quizQuestions`;
 
 const api = axios.create({
   withCredentials: true,
@@ -44,4 +45,35 @@ export const getQuizQuestions = async (quizId: string) => {
   );
 
   return response.data;
-}
+};
+
+export const getQuizQuestion = async (quizQuestionId: string) => {
+  const response = await api.get<IKanbasQuizQuestion>(
+    `${QUIZ_QUESTIONS_API}/${quizQuestionId}`
+  );
+  return response.data;
+};
+
+export const createQuizQuestion = async (
+  quizId: string,
+  quizQuestion: IKanbasQuizQuestion
+) => {
+  const response = await api.post(
+    `${QUIZZES_API}/${quizId}/quizQuestions`,
+    quizQuestion
+  );
+  return response.data;
+};
+
+export const deleteQuizQuestion = async (quizQuestionId: string) => {
+  const response = await api.delete(`${QUIZ_QUESTIONS_API}/${quizQuestionId}`);
+  return response.data;
+};
+
+export const putModule = async (quizQuestion: IKanbasQuizQuestion) => {
+  const response = await api.put(
+    `${QUIZ_QUESTIONS_API}/${quizQuestion._id}`,
+    quizQuestion
+  );
+  return response.data;
+};
