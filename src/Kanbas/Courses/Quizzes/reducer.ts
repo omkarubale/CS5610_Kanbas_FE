@@ -20,6 +20,7 @@ const initialState: {
   quiz: IKanbasQuizDetails;
   quizQuestions: IKanbasQuizQuestion[];
   quizQuestion: any; // Type interpreted at save call based on questionType
+  currentQuestionIndex: number; // Index of current question being viewed
 } = {
   quizzesAvailable: false,
   quizzes: [] as IKanbasQuiz[],
@@ -57,6 +58,7 @@ const initialState: {
     quizQuestionType: eQuizQuestionType.TrueOrFalse,
     correctAnswer: true,
   },
+  currentQuestionIndex: 0,
 };
 
 const quizzesSlice = createSlice({
@@ -73,11 +75,11 @@ const quizzesSlice = createSlice({
     setQuizzes: (state, action) => {
       state.quizzes = action.payload;
     },
-    toggleQuizPublished: (state, action) => {
-      const quizId = action.payload;
+    setQuizPublished: (state, action) => {
+      const { quizId, isPublish } = action.payload;
       state.quizzes = state.quizzes.map((quiz) => {
         if (quiz._id === quizId) {
-          return { ...quiz, isPublished: !quiz.isPublished };
+          return { ...quiz, isPublished: isPublish };
         } else {
           return quiz;
         }
@@ -181,6 +183,16 @@ const quizzesSlice = createSlice({
 
       if (quizQuestion !== undefined) state.quizQuestion = quizQuestion;
     },
+    goToQuestion: (state, action) => {
+      const newIndex = state.currentQuestionIndex + action.payload;
+      state.currentQuestionIndex = Math.min(
+        Math.max(newIndex, 0),
+        state.quizQuestions.length - 1
+      );
+    },
+    setActiveQuestion: (state, action) => {
+      state.currentQuestionIndex = action.payload;
+    },
     resetQuizQuestion: (state) => {
       state.quizQuestion._id = "123";
       state.quizQuestion.quizId = "0";
@@ -190,12 +202,15 @@ const quizzesSlice = createSlice({
       state.quizQuestion.quizQuestionType = eQuizQuestionType.TrueOrFalse;
       state.quizQuestion.correctAnswer = true;
     },
+    resetPreview: (state) => {
+      state.currentQuestionIndex = 0;
+    },
   },
 });
 
 export const {
   setQuizzes,
-  toggleQuizPublished,
+  setQuizPublished,
   setQuizzesDetails,
   addQuiz,
   deleteQuiz,
@@ -211,6 +226,9 @@ export const {
   updateQuizQuestion,
   setQuizQuestion,
   setQuizQuestionById,
+  goToQuestion,
+  setActiveQuestion,
+  resetPreview,
 } = quizzesSlice.actions;
 export default quizzesSlice.reducer;
 
