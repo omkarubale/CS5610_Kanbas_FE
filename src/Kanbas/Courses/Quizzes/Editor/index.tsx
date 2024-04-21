@@ -10,16 +10,16 @@ import { KanbasState } from "../../../store";
 import CustomTabs from "../../common/Tabs";
 import { ITabs } from "../../../store/interfaces/tabs";
 
-export const tabs: ITabs[] = [
-    { eventKey: "Details", title: "Details", component: <QuizDetailsEditor isCreate={true} /> },
-    { eventKey: "Questions", title: "Questions", component: <QuizQuestionsEditor /> }
-];
-
-function QuizEditor() {
+function QuizEditor({ isCreate }: { isCreate: boolean }) {
 
     const quizDetails = useSelector(
         (state: KanbasState) => state.quizzesReducer.quiz
     );
+
+    const tabs: ITabs[] = [
+        { eventKey: "Details", title: "Details", component: <QuizDetailsEditor isCreate={isCreate} /> },
+        { eventKey: "Questions", title: "Questions", component: <QuizQuestionsEditor /> }
+    ];
 
     return (
         <>

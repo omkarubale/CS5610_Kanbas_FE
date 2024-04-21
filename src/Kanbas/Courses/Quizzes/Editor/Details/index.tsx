@@ -1,6 +1,5 @@
-import { Editor } from "@tinymce/tinymce-react";
-import { useEffect, useState } from "react";
-import { Button, Card, CardBody, Form } from "react-bootstrap";
+import { useState } from "react";
+import { Button, Card, Form } from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
 import "./index.css";
 import { useNavigate, useParams } from "react-router-dom";
@@ -11,12 +10,13 @@ import {
   addQuiz,
   resetQuiz,
   updateQuiz,
-  fetchQuizzes,
 } from "../../reducer";
 import { eQuizType } from "../../../../store/enums/eQuizType";
 import { eAssignmentGroup } from "../../../../store/enums/eAssignmentGroup";
 import { formatDate, formatSnakeCaseToTitleCase } from "../../../common/Utils";
 import TinyMCEEditor from "../../../common/Editor/TinyMCEEditor";
+import { createQuiz, putQuiz } from "../../client";
+import { eQuizEditCheckedOptions } from "../../../../store/enums/eQuizEditCheckedOptions";
 
 function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
   const dispatch = useDispatch();
@@ -36,7 +36,11 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
   const [description, setDescription] = useState(quizDetails?.description);
 
   const handleCancel = () => {
-    navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quizId}`);
+    if (quizId !== undefined) {
+      navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quizId}`);
+    } else {
+      navigate(`/Kanbas/Courses/${courseId}/Quizzes`);
+    }
     dispatch(resetQuiz());
   };
 
@@ -45,19 +49,50 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
       dispatch(setQuiz({ ...quizDetails, isPublish: isPublish }));
     }
 
-    if (isCreate) {
-      dispatch(addQuiz({ course: courseId }));
-    } else {
-      dispatch(updateQuiz());
-    }
+    if (courseId !== undefined) {
+      if (isCreate) {
+        createQuiz(courseId, quizDetails).then(() => {
+          dispatch(addQuiz(courseId));
+        })
+      } else {
+        putQuiz(quizDetails).then(() => {
+          dispatch(updateQuiz());
+        })
+      }
 
-    handleCancel();
+      handleCancel();
+    }
   };
 
   const handleGetEditorContent = (content: string) => {
     setDescription(content);
     dispatch(setQuiz({ ...quizDetails, description: content }));
   };
+
+  const handleOptionChange = (option: eQuizEditCheckedOptions) => {
+    switch (option) {
+      case eQuizEditCheckedOptions.SHUFFLE_ANSWERS:
+        dispatch(setQuiz({
+          ...quizDetails,
+          isShuffleAnswers: !quizDetails.isShuffleAnswers
+        }));
+        break;
+      case eQuizEditCheckedOptions.MULTIPLE_ATTEMPS:
+        dispatch(setQuiz({
+          ...quizDetails,
+          isMultipleAttempts: !quizDetails.isMultipleAttempts
+        }));
+        break;
+      case eQuizEditCheckedOptions.TIME_LIMIT:
+        dispatch(setQuiz({
+          ...quizDetails,
+          timeLimit: quizDetails.timeLimit
+            ? undefined
+            : 20
+        }));
+        break;
+    }
+  }
 
   return (
     <Form>
@@ -117,6 +152,28 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
           </div>
         </Form.Group>
 
+        <Form.Group className="row mb-3" controlId="formQuizType">
+          <div className="col-3">
+            <Form.Label className="float-end mt-1">Points</Form.Label>
+          </div>
+          <div className="col-6 mr-auto">
+            <Form.Control
+              type="text"
+              className="form-control"
+              value={quizDetails.points}
+              placeholder="Quiz Points"
+              onChange={(e) =>
+                dispatch(
+                  setQuiz({
+                    ...quizDetails,
+                    points: e.target.value,
+                  })
+                )
+              }
+            />
+          </div>
+        </Form.Group>
+
         <Form.Group className="row mb-3" controlId="formAssignmentGroup">
           <div className="col-3">
             <Form.Label className="float-end mt-1">Assignment Group</Form.Label>
@@ -143,6 +200,41 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
                 </option>
               ))}
             </Form.Select>
+            <div className="mt-4 col-6 mr-auto">
+              <h6 className="fw-bold">Options</h6>
+              <Form.Check
+                label="Shuffle Answers"
+                checked={quizDetails.isShuffleAnswers}
+                onChange={() => handleOptionChange(eQuizEditCheckedOptions.SHUFFLE_ANSWERS)}
+              />
+              <Form.Check
+                label={
+                  <div>
+                    Time Limit
+                    <input
+                      type="text"
+                      value={quizDetails.timeLimit}
+                      onChange={(e) =>
+                        dispatch(
+                          setQuiz({
+                            ...quizDetails,
+                            timeLimit: e.target.value,
+                          })
+                        )
+                      }
+                      min="0"
+                    />
+                  </div>
+                }
+                checked={quizDetails.timeLimit !== undefined}
+                onChange={() => handleOptionChange(eQuizEditCheckedOptions.TIME_LIMIT)}
+              />
+              <Form.Check
+                label="Allow Multiple Attempts"
+                checked={quizDetails.isMultipleAttempts}
+                onChange={() => handleOptionChange(eQuizEditCheckedOptions.MULTIPLE_ATTEMPS)}
+              />
+            </div>
           </div>
         </Form.Group>
 

@@ -138,6 +138,14 @@ function QuizDetails() {
             </div>
             <div className="row wd-quiz-details-item">
               <div className="col-4 wd-quiz-details-label">
+                Access Code
+              </div>
+              <div className="col-8 wd-quix-details-value">
+                {quiz.accessCode}
+              </div>
+            </div>
+            <div className="row wd-quiz-details-item">
+              <div className="col-4 wd-quiz-details-label">
                 One Question at a Time
               </div>
               <div className="col-8 wd-quix-details-value">

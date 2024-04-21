@@ -52,9 +52,9 @@ function Courses() {
             <Route path="Quizzes/:quizId" element={<QuizDetails />} />
             <Route
               path="Quizzes/create"
-              element={<QuizDetailsEditor isCreate={true} />}
+              element={<QuizEditor isCreate={true} />}
             />
-            <Route path="Quizzes/:quizId/edit" element={<QuizEditor />} />
+            <Route path="Quizzes/:quizId/edit" element={<QuizEditor isCreate={false} />} />
             <Route
               path="Quizzes/:quizId/edit/details"
               element={<QuizDetailsEditor isCreate={false} />}
