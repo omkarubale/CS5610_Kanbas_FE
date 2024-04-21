@@ -2,7 +2,7 @@ export interface IKanbasModuleLesson {
   _id: string;
   name: string;
   description: string;
-  moduleId: string;
+  module: string;
 }
 
 export interface IKanbasModule {

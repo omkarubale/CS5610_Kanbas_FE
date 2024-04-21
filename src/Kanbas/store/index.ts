@@ -4,7 +4,6 @@ import assignmentsReducer from "../Courses/Assignments/reducer";
 import navigationReducer from "./../Navigation/reducer";
 import coursesReducer from "../Courses/reducer";
 import quizzesReducer from "../Courses/Quizzes/reducer";
-import quizPreviewReducer from "../Courses/Quizzes/Preview/reducer";
 import { IKanbasModule } from "./interfaces/modules";
 import { IKanbasCourse } from "./interfaces/courses";
 import {
@@ -42,13 +41,7 @@ export interface KanbasState {
     quiz: IKanbasQuizDetails;
     quizQuestions: IKanbasQuizQuestion[];
     quizQuestion: any;
-    currentQuestionIndex: number;
   };
-  quizPreviewReducer: {
-    flaggedQuestions: boolean[],
-    scrollToQuestion: any,
-    lastSavedTime: Date,
-  }
 }
 const store = configureStore({
   reducer: {
@@ -57,7 +50,6 @@ const store = configureStore({
     coursesReducer,
     assignmentsReducer,
     quizzesReducer,
-    quizPreviewReducer
   },
 });
 

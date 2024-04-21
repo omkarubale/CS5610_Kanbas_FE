@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom";
+
 import "./index.css";
 import CourseNavigation from "./Navigation";
 import Modules from "./Modules";

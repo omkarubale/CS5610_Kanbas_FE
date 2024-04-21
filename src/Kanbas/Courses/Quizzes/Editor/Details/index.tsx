@@ -36,7 +36,7 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
   const [description, setDescription] = useState(quizDetails?.description);
 
   const handleCancel = () => {
-    navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quizId}`);
+    navigate(`/Kanbas/Courses/${courseId}/Quizzes`);
     dispatch(resetQuiz());
   };
 
@@ -222,8 +222,8 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
       </div>
       <hr />
 
-      <div className="d-flex">
-        <div className="form-check float-start ms-2 mt-2 d-block flex-fill">
+      <div className="form-check-buttons-container">
+        <div className="form-check float-start mt-2">
           <Form.Check
             type="checkbox"
             label="Notify users that this content has changed"

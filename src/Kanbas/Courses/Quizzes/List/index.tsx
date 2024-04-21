@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router";
 import { KanbasState } from "../../../store";
 import { useEffect, useState } from "react";
 import { IKanbasQuiz } from "../../../store/interfaces/quizzes";
-import { setQuizzes, setQuizPublished } from "../reducer";
+import { setQuizzes, toggleQuizPublished } from "../reducer";
 import {
   FaBan,
   FaCaretDown,
@@ -14,7 +14,6 @@ import {
 import { Collapse } from "react-bootstrap";
 import { getCourseQuizzes, postQuizSetPublish } from "../client";
 import "./index.css";
-import moment from "moment";
 
 function QuizList() {
   const { courseId } = useParams();
@@ -36,12 +35,12 @@ function QuizList() {
       quizzesList.find((q) => q._id == quizId)?.isPublished ?? false;
 
     postQuizSetPublish(quizId, !_isPublished).then(() => {
-      dispatch(setQuizPublished({ quizId, isPublish: !_isPublished }));
+      dispatch(toggleQuizPublished(quizId));
     });
   };
 
   const getDateDisplay = (date: Date) => {
-    return moment(date).calendar();
+    return "";
   };
 
   const getIsQuizClosed = (availableUntilDate: Date): boolean => {
@@ -63,7 +62,7 @@ function QuizList() {
     if (today < availableFromDate) {
       return (
         <>
-          <b>Not Available until</b> {getDateDisplay(availableFromDate)}{" "}
+          <b>Not Available until</b> {availableFromDate.toDateString()}{" "}
         </>
       );
     }
@@ -121,7 +120,7 @@ function QuizList() {
                           q.availableDate,
                           q.availableUntilDate
                         )}{" "}
-                        | Due {getDateDisplay(q.dueDate)} | {q.points} Points |{" "}
+                        | Due {q.dueDate.toString()} | {q.points} Points |{" "}
                         {q.questionsCount} Questions
                       </p>
                     </div>
