@@ -1,13 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import { KanbasState } from "../../../store";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IKanbasQuiz } from "../../../store/interfaces/quizzes";
-import { setQuizzes, setQuizPublished } from "../reducer";
+import { setQuiz, setQuizzes, setQuizPublished } from "../reducer";
 import {
   FaBan,
   FaCaretDown,
   FaCheckCircle,
+  FaEdit,
   FaEllipsisV,
   FaRocket,
 } from "react-icons/fa";
@@ -15,6 +16,13 @@ import { Collapse } from "react-bootstrap";
 import { getCourseQuizzes, postQuizSetPublish } from "../client";
 import "./index.css";
 import moment from "moment";
+import { MdDelete } from "react-icons/md";
+import DeleteQuiz from "./Delete";
+
+export const quizzesDropDownEllipsisOption = [
+  { item: "Edit", icon: <FaEdit className="me-1" /> },
+  { item: "Delete", icon: <MdDelete className="me-1" /> }
+]
 
 function QuizList() {
   const { courseId } = useParams();
@@ -26,6 +34,8 @@ function QuizList() {
   );
 
   const [quizzesExpanded, setQuizzesExpanded] = useState(true);
+  const [showDropdowns, setShowDropdowns] = useState(Array(quizzesList.length).fill(false));
+  const [showDeleteQuizModal, setShowDeleteQuizModal] = useState(false);
 
   const handleQuizSelection = (quizId: string) => {
     navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quizId}`);
@@ -74,6 +84,26 @@ function QuizList() {
 
     return <b>Closed</b>;
   };
+
+  const toggleDropdown = (index: number) => {
+    setShowDropdowns(prevState =>
+      prevState.map((value, idx) => idx === index ? !value : value)
+    );
+  }
+
+  const handleDropdownSelectedOption = async (selectedItem: string, quiz: IKanbasQuiz) => {
+    dispatch(setQuiz(quiz));
+    setShowDropdowns(Array(quizzesList.length).fill(false));
+
+    switch (selectedItem) {
+      case 'Edit':
+        navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quiz._id}/edit`);
+        break;
+      case 'Delete':
+        setShowDeleteQuizModal(true);
+        break;
+    }
+  }
 
   useEffect(() => {
     if (courseId !== undefined) {
@@ -129,11 +159,10 @@ function QuizList() {
                       {q.isPublished ? (
                         <FaCheckCircle
                           onClick={() => handlePublishToggle(q._id)}
-                          className={`me-1 ${
-                            getIsQuizClosed(q.availableUntilDate)
-                              ? "wd-icon-green-muted"
-                              : "wd-icon-green"
-                          }`}
+                          className={`me-1 ${getIsQuizClosed(q.availableUntilDate)
+                            ? "wd-icon-green-muted"
+                            : "wd-icon-green"
+                            }`}
                         />
                       ) : (
                         <FaBan
@@ -142,11 +171,39 @@ function QuizList() {
                         />
                       )}
 
-                      <FaEllipsisV className="ms-2" />
+                      <div className="dropdown" onClick={() => toggleDropdown(qIndex)}>
+                        <button
+                          className="wd-quizzes-actions-dropdown"
+                          aria-expanded={showDropdowns[qIndex]}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            toggleDropdown(qIndex)
+                          }
+                          }
+                        >
+                          <FaEllipsisV className="ms-2" />
+                        </button>
+                        <div className={`dropdown-menu dropdown-menu-start wd-quiz-dropdown-menu${showDropdowns[qIndex] ? ' show' : ''}`}>
+                          {quizzesDropDownEllipsisOption.map((option, index) => (
+                            <button
+                              key={index}
+                              className="dropdown-item px-3 py-1 mt-1"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleDropdownSelectedOption(option.item, q);
+                              }}>
+                              {option.icon}
+                              {option.item}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
                     </span>
                   </li>
                 ))}
               </ul>
+
+              {showDeleteQuizModal && <DeleteQuiz show={showDeleteQuizModal} setShow={setShowDeleteQuizModal} />}
             </div>
           </Collapse>
         </li>
@@ -156,3 +213,4 @@ function QuizList() {
 }
 
 export default QuizList;
+
