@@ -37,7 +37,6 @@ function QuizQuestionEditor({
   };
 
   const renderAnswers = () => {
-    console.log("internalQuizQuestion: ", internalQuizQuestion);
     switch (internalQuizQuestion.quizQuestionType) {
       case eQuizQuestionType.MCQ:
         return (
@@ -131,7 +130,7 @@ function QuizQuestionEditor({
               />
             </div>
           </div>
-          <div>
+          <div className="mb-4">
             <div className="fs-5 fw-medium mt-3">Answers:</div>
             <div>{renderAnswers()}</div>
           </div>

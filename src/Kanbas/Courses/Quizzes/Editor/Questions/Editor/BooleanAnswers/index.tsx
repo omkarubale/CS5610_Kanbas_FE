@@ -13,6 +13,15 @@ function QuizQuestionEditorBooleanAnswers({
   setQuizQuestion: (quizQuestion: IKanbasQuizQuestion) => void;
 }) {
   const trueFalseQuestion = quizQuestion as IKanbasQuizQuestionTrueFalse;
+
+  const handleChangeCorrectChoice = (correctAnswer: boolean) => {
+    const _trueFalseQuestion = {
+      ...trueFalseQuestion,
+      correctBooleanAnswer: correctAnswer,
+    };
+    setQuizQuestion(_trueFalseQuestion);
+  };
+
   return (
     <>
       <div>
@@ -20,7 +29,8 @@ function QuizQuestionEditorBooleanAnswers({
           <Form.Check
             type="radio"
             id={`trueFalse_${trueFalseQuestion._id}`}
-            value="true"
+            checked={trueFalseQuestion.correctBooleanAnswer === true}
+            onChange={(e) => handleChangeCorrectChoice(e.target.checked)}
             label="True"
           />
         </div>
@@ -28,17 +38,11 @@ function QuizQuestionEditorBooleanAnswers({
           <Form.Check
             type="radio"
             id={`trueFalse_${trueFalseQuestion._id}`}
-            value="false"
+            checked={trueFalseQuestion.correctBooleanAnswer === false}
+            onChange={(e) => handleChangeCorrectChoice(!e.target.checked)}
             label="False"
           />
         </div>
-      </div>
-      <div className="d-flex">
-        <Button className=" d-contents text-danger">
-          <div className="ms-auto d-flex justify-content-center align-items-center">
-            <FaPlus className="me-1" /> Add Another Answer
-          </div>
-        </Button>
       </div>
     </>
   );
