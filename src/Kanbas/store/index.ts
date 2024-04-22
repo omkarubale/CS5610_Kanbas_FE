@@ -12,11 +12,7 @@ import {
   IKanbasAssignment,
   IKanbasAssignmentSection,
 } from "./interfaces/assignments";
-import {
-  IKanbasQuiz,
-  IKanbasQuizDetails,
-  IKanbasQuizQuestion,
-} from "./interfaces/quizzes";
+import { IKanbasQuiz, IKanbasQuizQuestion } from "./interfaces/quizzes";
 export interface KanbasState {
   navigationReducer: {
     navigationTitle: string;
@@ -39,8 +35,7 @@ export interface KanbasState {
   quizzesReducer: {
     quizzesAvailable: boolean;
     quizzes: IKanbasQuiz[];
-    quizzesDetails: IKanbasQuizDetails[]; // TEMP: till Node BE is implemented
-    quiz: IKanbasQuizDetails;
+    quiz: IKanbasQuiz;
     quizQuestions: IKanbasQuizQuestion[];
     quizQuestion: any;
     currentQuestionIndex: number;

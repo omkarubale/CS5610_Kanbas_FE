@@ -6,7 +6,7 @@ import MiddleContentData from "../../../layout/Content/NotLeftSide/MiddleContent
 import { useNavigate, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { KanbasState } from "../../../store";
-import { IKanbasQuizDetails } from "../../../store/interfaces/quizzes";
+import { IKanbasQuiz } from "../../../store/interfaces/quizzes";
 import { setQuiz } from "../reducer";
 import { useEffect } from "react";
 import { getQuizDetails, postQuizSetPublish } from "../client";
@@ -46,7 +46,7 @@ function QuizDetails() {
 
   useEffect(() => {
     if (quizId !== undefined && courseId !== undefined) {
-      getQuizDetails(quizId).then((quiz: IKanbasQuizDetails) => {
+      getQuizDetails(quizId).then((quiz: IKanbasQuiz) => {
         dispatch(setQuiz(quiz));
       });
     }

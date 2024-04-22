@@ -23,7 +23,7 @@ import { getCurrentHumanReadableDate } from "../../common/Utils";
 export const quizzesDropDownEllipsisOption = [
   { item: "Edit", icon: <FaEdit className="me-1" /> },
   { item: "Delete", icon: <MdDelete className="me-1" /> },
-  { item: "Publish", icon: <FaCheckCircle className="me-1" /> }
+  { item: "Publish", icon: <FaCheckCircle className="me-1" /> },
 ];
 
 function QuizList() {
@@ -48,7 +48,7 @@ function QuizList() {
       quizzesList.find((q) => q._id == quizId)?.isPublished ?? false;
 
     postQuizSetPublish(quizId, !_isPublished).then(() => {
-      dispatch(setQuizPublished({ quizId, isPublish: !_isPublished }));
+      dispatch(setQuizPublished({ quizId, isPublished: !_isPublished }));
     });
   };
 
@@ -161,10 +161,11 @@ function QuizList() {
                         {q.isPublished ? (
                           <FaCheckCircle
                             onClick={() => handlePublishToggle(q._id)}
-                            className={`me-1 ${getIsQuizClosed(q.availableUntilDate)
-                              ? "wd-icon-green-muted"
-                              : "wd-icon-green"
-                              }`}
+                            className={`me-1 ${
+                              getIsQuizClosed(q.availableUntilDate)
+                                ? "wd-icon-green-muted"
+                                : "wd-icon-green"
+                            }`}
                           />
                         ) : (
                           <FaBan

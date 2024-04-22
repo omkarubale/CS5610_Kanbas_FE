@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   IKanbasQuiz,
-  IKanbasQuizDetails,
   IKanbasQuizQuestion,
 } from "./../../store/interfaces/quizzes";
 import { eAssignmentGroup } from "../../store/enums/eAssignmentGroup";
@@ -11,15 +10,13 @@ import { eQuizType } from "../../store/enums/eQuizType";
 const initialState: {
   quizzesAvailable: boolean;
   quizzes: IKanbasQuiz[];
-  quizzesDetails: IKanbasQuizDetails[]; // TEMP: till Node BE is implemented
-  quiz: IKanbasQuizDetails;
+  quiz: IKanbasQuiz;
   quizQuestions: IKanbasQuizQuestion[];
   quizQuestion: any; // Type interpreted at save call based on questionType
   currentQuestionIndex: number; // Index of current question being viewed
 } = {
   quizzesAvailable: false,
   quizzes: [] as IKanbasQuiz[],
-  quizzesDetails: [] as IKanbasQuizDetails[], // TEMP: till Node BE is implemented
   quiz: {
     _id: "1234",
     courseId: "0", // Course
@@ -60,21 +57,14 @@ const quizzesSlice = createSlice({
   name: "quizzes",
   initialState,
   reducers: {
-    // TEMP: till Node BE is implemented
-    setQuizzesDetails: (state, action) => {
-      if (!state.quizzesAvailable) {
-        state.quizzesDetails = action.payload;
-        state.quizzesAvailable = true;
-      }
-    },
     setQuizzes: (state, action) => {
       state.quizzes = action.payload;
     },
     setQuizPublished: (state, action) => {
-      const { quizId, isPublish } = action.payload;
+      const { quizId, isPublished } = action.payload;
       state.quizzes = state.quizzes.map((quiz) => {
         if (quiz._id === quizId) {
-          return { ...quiz, isPublished: isPublish };
+          return { ...quiz, isPublished: isPublished };
         } else {
           return quiz;
         }
@@ -89,7 +79,7 @@ const quizzesSlice = createSlice({
         _id: new Date().getTime().toString(),
       };
 
-      state.quizzesDetails = [...state.quizzesDetails, state.quiz];
+      state.quizzes = [...state.quizzes, state.quiz];
     },
     deleteQuiz: (state, action) => {
       state.quizzes = state.quizzes.filter(
@@ -97,7 +87,7 @@ const quizzesSlice = createSlice({
       );
     },
     updateQuiz: (state) => {
-      state.quizzesDetails = state.quizzesDetails.map((quiz) => {
+      state.quizzes = state.quizzes.map((quiz) => {
         if (quiz._id === state.quiz._id) {
           return state.quiz;
         } else {
@@ -110,7 +100,7 @@ const quizzesSlice = createSlice({
     },
     setQuizById: (state, action) => {
       const quizId = action.payload;
-      const quiz = state.quizzesDetails.find((q) => q._id == quizId);
+      const quiz = state.quizzes.find((q) => q._id == quizId);
 
       if (quiz !== undefined) state.quiz = quiz;
     },
@@ -206,7 +196,6 @@ const quizzesSlice = createSlice({
 export const {
   setQuizzes,
   setQuizPublished,
-  setQuizzesDetails,
   addQuiz,
   deleteQuiz,
   updateQuiz,

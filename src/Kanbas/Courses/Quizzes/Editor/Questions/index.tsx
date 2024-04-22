@@ -20,12 +20,12 @@ function QuizQuestionsEditor() {
     navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quizId}`);
   };
 
-  const handleSave = (isPublish: boolean) => {
+  const handleSave = (isPublished: boolean) => {
     if (quizId !== undefined) {
       postQuizQuestions(quizId, quizQuestions).then(() => {
-        if (isPublish) {
+        if (isPublished) {
           postQuizSetPublish(quizId, true).then(() => {
-            dispatch(setQuizPublished({ quizId, isPublish: true }));
+            dispatch(setQuizPublished({ quizId, isPublished: true }));
           });
         }
       });

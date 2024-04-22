@@ -1,7 +1,6 @@
 import axios from "axios";
 import {
   IKanbasQuiz,
-  IKanbasQuizDetails,
   IKanbasQuizQuestion,
 } from "../../store/interfaces/quizzes";
 
@@ -23,9 +22,7 @@ export const getCourseQuizzes = async (courseId: string) => {
 };
 
 export const getQuizDetails = async (quizId: string) => {
-  const response = await api.get<IKanbasQuizDetails>(
-    `${QUIZZES_API}/${quizId}`
-  );
+  const response = await api.get<IKanbasQuiz>(`${QUIZZES_API}/${quizId}`);
   return response.data;
 };
 
@@ -39,19 +36,16 @@ export const postQuizSetPublish = async (
   return response.data;
 };
 
-export const createQuiz = async (
-  courseId: string,
-  quiz: IKanbasQuizDetails
-) => {
-  const response = await api.post<IKanbasQuizDetails[]>(
+export const createQuiz = async (courseId: string, quiz: IKanbasQuiz) => {
+  const response = await api.post<IKanbasQuiz>(
     `${COURSES_API}/${courseId}/quizzes`,
     quiz
   );
   return response.data;
 };
 
-export const putQuiz = async (quiz: IKanbasQuizDetails) => {
-  const response = await api.put<IKanbasQuizDetails[]>(
+export const putQuiz = async (quiz: IKanbasQuiz) => {
+  const response = await api.put<IKanbasQuiz>(
     `${QUIZZES_API}/${quiz._id}`,
     quiz
   );

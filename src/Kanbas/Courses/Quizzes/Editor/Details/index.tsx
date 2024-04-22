@@ -39,23 +39,33 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
     dispatch(resetQuiz());
   };
 
-  const handleSave = (isPublish: boolean) => {
-    if (isPublish) {
-      dispatch(setQuiz({ ...quizDetails, isPublish: isPublish }));
+  const handleNavigateAfterSave = (isPublished: boolean, qId: string) => {
+    if (isPublished) {
+      navigate(`/Kanbas/Courses/${courseId}/Quizzes`);
+    } else {
+      navigate(`/Kanbas/Courses/${courseId}/Quizzes/${qId}`);
+    }
+  };
+
+  const handleSave = async (isPublished: boolean) => {
+    if (isPublished) {
+      dispatch(setQuiz({ ...quizDetails, isPublished: isPublished }));
     }
 
     if (courseId !== undefined) {
       if (isCreate) {
-        createQuiz(courseId, quizDetails).then(() => {
-          dispatch(addQuiz(courseId));
-        });
+        createQuiz(courseId, { ...quizDetails, isPublished: isPublished }).then(
+          (q) => {
+            dispatch(addQuiz(courseId));
+            handleNavigateAfterSave(isPublished, q._id);
+          }
+        );
       } else {
-        putQuiz(quizDetails).then(() => {
+        putQuiz({ ...quizDetails, isPublished: isPublished }).then((q) => {
           dispatch(updateQuiz());
+          handleNavigateAfterSave(isPublished, q._id);
         });
       }
-
-      handleCancel();
     }
   };
 

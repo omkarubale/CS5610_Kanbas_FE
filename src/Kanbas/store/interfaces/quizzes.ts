@@ -14,9 +14,6 @@ export interface IKanbasQuiz {
   questionsCount: number;
   isMultipleAvailableDates: boolean;
   isPublished: boolean;
-}
-
-export interface IKanbasQuizDetails extends IKanbasQuiz {
   description: string;
   quizType: eQuizType;
   accessCode: string;
