@@ -56,7 +56,7 @@ function QuizQuestionList() {
       setQuizEditModes([
         ...quizEditModes,
         {
-          isEditMode: true,
+          isEditMode: false,
           quizQuestionId: tempQuizQuestionId,
         } as IQuizQuestionEditMode,
       ]);
