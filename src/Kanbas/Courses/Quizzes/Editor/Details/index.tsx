@@ -169,6 +169,7 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
                   })
                 )
               }
+              disabled
             />
           </div>
         </Form.Group>

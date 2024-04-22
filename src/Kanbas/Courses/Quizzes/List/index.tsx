@@ -23,6 +23,7 @@ import { getCurrentHumanReadableDate } from "../../common/Utils";
 export const quizzesDropDownEllipsisOption = [
   { item: "Edit", icon: <FaEdit className="me-1" /> },
   { item: "Delete", icon: <MdDelete className="me-1" /> },
+  { item: "Publish", icon: <FaCheckCircle className="me-1" /> }
 ];
 
 function QuizList() {
@@ -98,6 +99,9 @@ function QuizList() {
         break;
       case "Delete":
         setShowDeleteQuizModal(true);
+        break;
+      case "Publish":
+        handlePublishToggle(quiz._id);
         break;
     }
   };
