@@ -47,6 +47,7 @@ export interface KanbasState {
   };
   quizPreviewReducer: {
     flaggedQuestions: boolean[];
+    questionRefs: [];
     scrollToQuestion: any;
     lastSavedTime: Date;
   };

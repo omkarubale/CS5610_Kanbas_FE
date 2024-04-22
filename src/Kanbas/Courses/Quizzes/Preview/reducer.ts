@@ -4,10 +4,12 @@ import { eQuizQuestionType } from "../../../store/enums/eQuizQuestionType";
 
 const initialState: {
   flaggedQuestions: boolean[]; // To store flag status of each question for preview
+  questionRefs: (HTMLElement | null)[];
   scrollToQuestion: Number;
   lastSavedTime: Date;
 } = {
   flaggedQuestions: [],
+  questionRefs: [],
   scrollToQuestion: 0,
   lastSavedTime: new Date(),
 };
@@ -20,6 +22,10 @@ const quizPreviewSlice = createSlice({
       const questionIndex = action.payload;
       state.flaggedQuestions[questionIndex] =
         !state.flaggedQuestions[questionIndex];
+    },
+    setQuestionRef: (state, action) => {
+      const { index, ref } = action.payload;
+      state.questionRefs[index] = ref;
     },
     setScrollToQuestion: (state, action) => {
       state.scrollToQuestion = action.payload;
@@ -35,6 +41,7 @@ const quizPreviewSlice = createSlice({
 
 export const {
   toggleFlagQuestion,
+  setQuestionRef,
   setScrollToQuestion,
   updateLastSavedTime,
   resetPreview,

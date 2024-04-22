@@ -8,14 +8,12 @@ import { KanbasState } from "../../../../store";
 import { IKanbasQuizQuestion } from "../../../../store/interfaces/quizzes";
 import { FaFlag } from "react-icons/fa";
 import { setActiveQuestion } from "../../reducer";
-import { useRef } from "react";
-import { updateLastSavedTime } from "../reducer";
+import { setScrollToQuestion, updateLastSavedTime } from "../reducer";
 
-function QuizPreviewQuestionLinks() {
+function QuizPreviewQuestionLinks({ isScrollable }: { isScrollable: boolean }) {
 
     const { courseId, quizId } = useParams();
     const dispatch = useDispatch();
-    const questionRefs = useRef<(HTMLElement | null)[]>([]);
 
     const flaggedQuestions = useSelector(
         (state: KanbasState) => state.quizPreviewReducer.flaggedQuestions
@@ -29,21 +27,28 @@ function QuizPreviewQuestionLinks() {
         (state: KanbasState) => state.quizzesReducer.currentQuestionIndex
     );
 
+    const questionRefs = useSelector(
+        (state: KanbasState) => state.quizPreviewReducer.questionRefs
+    );
+
     const scrollToQuestionIndex = useSelector(
         (state: KanbasState) => state.quizPreviewReducer.scrollToQuestion
     )
 
     const scrollToQuestion = (index: number) => {
-        const questionRef = questionRefs.current[index];
-        questionRef?.scrollIntoView({ behavior: 'smooth' });
+        const questionRef: HTMLElement = questionRefs[index];
+        if (questionRef) {
+            questionRef.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     }
 
     const handleQuestionClick = (index: any) => {
         dispatch(setActiveQuestion(index));
+        dispatch(setScrollToQuestion(index));
         dispatch(updateLastSavedTime(new Date()));
 
-        if (scrollToQuestionIndex !== undefined) {
-            scrollToQuestion(scrollToQuestionIndex);
+        if (isScrollable && questionRefs !== undefined) {
+            scrollToQuestion(index);
         }
     }
 

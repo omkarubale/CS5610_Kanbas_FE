@@ -79,7 +79,10 @@ function QuizPreview() {
                 </MiddleContentData>
             </MiddleContent>
             <RightSide>
-                <QuizPreviewQuestionLinks />
+                {quizDetails.isOneQuestionAtATime
+                    ? <QuizPreviewQuestionLinks isScrollable={false} />
+                    : <QuizPreviewQuestionLinks isScrollable={true} />}
+
             </RightSide>
         </>
     );

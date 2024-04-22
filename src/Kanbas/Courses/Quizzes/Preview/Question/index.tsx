@@ -5,6 +5,9 @@ import MultipleChoice from "./Common/MultipleChoice";
 import { eQuizQuestionType } from "../../../../store/enums/eQuizQuestionType";
 import ShortAnswers from "./Common/ShortAnswers";
 import "./index.css";
+import { useRef } from "react";
+import { useDispatch } from "react-redux";
+import { setQuestionRef } from "../reducer";
 
 function QuizQuestion({
   question,
@@ -17,8 +20,16 @@ function QuizQuestion({
   isQuestionFlagged: boolean;
   handleFlagClick: (index: number) => void;
 }) {
+
+  const dispatch = useDispatch();
+
+  const setRef = (index: number, ref: HTMLElement | null) => {
+    dispatch(setQuestionRef({ index, ref }));
+  };
+
   return (
     <div
+      ref={(ref: HTMLElement | null) => setRef(index, ref)}
       key={index}
       id={`question-${index}`}
       className="wd-quiz-question-holder"
@@ -39,14 +50,14 @@ function QuizQuestion({
       </div>
       {(question.quizQuestionType === eQuizQuestionType.MCQ ||
         question.quizQuestionType === eQuizQuestionType.TrueOrFalse) && (
-        <div className="wd-quiz-question multiple-choice-question">
-          <QuizQuestionHeader
-            questionTitle={`Question ${index + 1}`}
-            points={question.points}
-          />
-          <MultipleChoice question={question} />
-        </div>
-      )}
+          <div className="wd-quiz-question multiple-choice-question">
+            <QuizQuestionHeader
+              questionTitle={`Question ${index + 1}`}
+              points={question.points}
+            />
+            <MultipleChoice question={question} />
+          </div>
+        )}
 
       {question.quizQuestionType === eQuizQuestionType.FillInTheBlank && (
         <div className="wd-quiz-question short-answer-question">
