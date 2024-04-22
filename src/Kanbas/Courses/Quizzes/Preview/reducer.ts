@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IKanbasQuizQuestion } from "../../../store/interfaces/quizzes";
-import { eQuizQuestionType } from "../../../store/enums/eQuizQuestionType";
 
 const initialState: {
   flaggedQuestions: boolean[]; // To store flag status of each question for preview
+  questionRefs: string[]
   scrollToQuestion: Number;
   lastSavedTime: Date;
 } = {
   flaggedQuestions: [],
+  questionRefs: [],
   scrollToQuestion: 0,
   lastSavedTime: new Date(),
 };
@@ -20,6 +20,12 @@ const quizPreviewSlice = createSlice({
       const questionIndex = action.payload;
       state.flaggedQuestions[questionIndex] =
         !state.flaggedQuestions[questionIndex];
+    },
+    setQuestionRef: (state, action) => {
+      const { index, ref } = action.payload;
+      if (ref) {
+        state.questionRefs[index] = ref.id;
+      }
     },
     setScrollToQuestion: (state, action) => {
       state.scrollToQuestion = action.payload;
@@ -35,6 +41,7 @@ const quizPreviewSlice = createSlice({
 
 export const {
   toggleFlagQuestion,
+  setQuestionRef,
   setScrollToQuestion,
   updateLastSavedTime,
   resetPreview,
