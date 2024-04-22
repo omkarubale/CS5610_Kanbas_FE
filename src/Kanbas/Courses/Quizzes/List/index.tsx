@@ -17,12 +17,12 @@ import { getCourseQuizzes, postQuizSetPublish } from "../client";
 import "./index.css";
 import moment from "moment";
 import { MdDelete } from "react-icons/md";
-import DeleteQuiz from "./Delete";
+import DeleteQuizModal from "./Delete";
 
 export const quizzesDropDownEllipsisOption = [
   { item: "Edit", icon: <FaEdit className="me-1" /> },
-  { item: "Delete", icon: <MdDelete className="me-1" /> }
-]
+  { item: "Delete", icon: <MdDelete className="me-1" /> },
+];
 
 function QuizList() {
   const { courseId } = useParams();
@@ -34,7 +34,9 @@ function QuizList() {
   );
 
   const [quizzesExpanded, setQuizzesExpanded] = useState(true);
-  const [showDropdowns, setShowDropdowns] = useState(Array(quizzesList.length).fill(false));
+  const [showDropdowns, setShowDropdowns] = useState(
+    Array(quizzesList.length).fill(false)
+  );
   const [showDeleteQuizModal, setShowDeleteQuizModal] = useState(false);
 
   const handleQuizSelection = (quizId: string) => {
@@ -86,24 +88,27 @@ function QuizList() {
   };
 
   const toggleDropdown = (index: number) => {
-    setShowDropdowns(prevState =>
-      prevState.map((value, idx) => idx === index ? !value : value)
+    setShowDropdowns((prevState) =>
+      prevState.map((value, idx) => (idx === index ? !value : value))
     );
-  }
+  };
 
-  const handleDropdownSelectedOption = async (selectedItem: string, quiz: IKanbasQuiz) => {
+  const handleDropdownSelectedOption = async (
+    selectedItem: string,
+    quiz: IKanbasQuiz
+  ) => {
     dispatch(setQuiz(quiz));
     setShowDropdowns(Array(quizzesList.length).fill(false));
 
     switch (selectedItem) {
-      case 'Edit':
+      case "Edit":
         navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quiz._id}/edit`);
         break;
-      case 'Delete':
+      case "Delete":
         setShowDeleteQuizModal(true);
         break;
     }
-  }
+  };
 
   useEffect(() => {
     if (courseId !== undefined) {
@@ -155,55 +160,76 @@ function QuizList() {
                         {q.questionsCount} Questions
                       </p>
                     </div>
-                    <span className="float-end wd-quizzes-grid-content-actions d-flex align-items-center">
-                      {q.isPublished ? (
-                        <FaCheckCircle
-                          onClick={() => handlePublishToggle(q._id)}
-                          className={`me-1 ${getIsQuizClosed(q.availableUntilDate)
-                            ? "wd-icon-green-muted"
-                            : "wd-icon-green"
+                    <div className="float-end d-flex">
+                      <div className="wd-quizzes-grid-content-actions d-flex align-items-center">
+                        {q.isPublished ? (
+                          <FaCheckCircle
+                            onClick={() => handlePublishToggle(q._id)}
+                            className={`me-1 ${
+                              getIsQuizClosed(q.availableUntilDate)
+                                ? "wd-icon-green-muted"
+                                : "wd-icon-green"
                             }`}
-                        />
-                      ) : (
-                        <FaBan
-                          onClick={() => handlePublishToggle(q._id)}
-                          className="me-1"
-                        />
-                      )}
-
-                      <div className="dropdown" onClick={() => toggleDropdown(qIndex)}>
-                        <button
-                          className="wd-quizzes-actions-dropdown"
-                          aria-expanded={showDropdowns[qIndex]}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            toggleDropdown(qIndex)
-                          }
-                          }
+                          />
+                        ) : (
+                          <FaBan
+                            onClick={() => handlePublishToggle(q._id)}
+                            className="me-1"
+                          />
+                        )}
+                      </div>
+                      <div>
+                        <div
+                          className="dropdown"
+                          onClick={() => toggleDropdown(qIndex)}
                         >
-                          <FaEllipsisV className="ms-2" />
-                        </button>
-                        <div className={`dropdown-menu dropdown-menu-start wd-quiz-dropdown-menu${showDropdowns[qIndex] ? ' show' : ''}`}>
-                          {quizzesDropDownEllipsisOption.map((option, index) => (
-                            <button
-                              key={index}
-                              className="dropdown-item px-3 py-1 mt-1"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleDropdownSelectedOption(option.item, q);
-                              }}>
-                              {option.icon}
-                              {option.item}
-                            </button>
-                          ))}
+                          <button
+                            className="wd-quizzes-actions-dropdown"
+                            aria-expanded={showDropdowns[qIndex]}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleDropdown(qIndex);
+                            }}
+                          >
+                            <FaEllipsisV className="ms-2" />
+                          </button>
+                          <div
+                            className={`dropdown-menu dropdown-menu-start wd-quiz-dropdown-menu${
+                              showDropdowns[qIndex] ? " show" : ""
+                            }`}
+                          >
+                            {quizzesDropDownEllipsisOption.map(
+                              (option, index) => (
+                                <button
+                                  key={index}
+                                  className="dropdown-item px-3 py-1 mt-1"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleDropdownSelectedOption(
+                                      option.item,
+                                      q
+                                    );
+                                  }}
+                                >
+                                  {option.icon}
+                                  {option.item}
+                                </button>
+                              )
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </span>
+                    </div>
                   </li>
                 ))}
               </ul>
 
-              {showDeleteQuizModal && <DeleteQuiz show={showDeleteQuizModal} setShow={setShowDeleteQuizModal} />}
+              {showDeleteQuizModal && (
+                <DeleteQuizModal
+                  show={showDeleteQuizModal}
+                  setShow={setShowDeleteQuizModal}
+                />
+              )}
             </div>
           </Collapse>
         </li>
@@ -213,4 +239,3 @@ function QuizList() {
 }
 
 export default QuizList;
-
