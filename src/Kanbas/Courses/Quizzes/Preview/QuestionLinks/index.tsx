@@ -36,7 +36,8 @@ function QuizPreviewQuestionLinks({ isScrollable }: { isScrollable: boolean }) {
     )
 
     const scrollToQuestion = (index: number) => {
-        const questionRef: HTMLElement = questionRefs[index];
+        const questionId = questionRefs[index];
+        const questionRef = document.getElementById(questionId);
         if (questionRef) {
             questionRef.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
