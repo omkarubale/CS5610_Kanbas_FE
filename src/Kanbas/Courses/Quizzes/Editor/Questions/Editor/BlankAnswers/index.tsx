@@ -58,7 +58,8 @@ function QuizQuestionEditorBlankAnswers({
         {blankQuestion.correctBlankAnswers.map((choice, index) => (
           <div className="d-flex mt-2" key={index}>
             <Form.Control
-              type="text"
+              as="textarea"
+              rows={2}
               className="w-50"
               name={`fillBlank_${blankQuestion._id}`}
               placeholder="Type your answer..."

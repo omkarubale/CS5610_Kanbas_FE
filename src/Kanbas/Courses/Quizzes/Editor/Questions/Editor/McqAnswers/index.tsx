@@ -96,7 +96,8 @@ function QuizQuestionEditorMcqAnswers({
             />
             <Form.Control
               className="ms-2 w-50"
-              type="text"
+              as="textarea"
+              rows={2}
               name={`mcq_text_${mcqQuestion._id}`}
               placeholder="Type your answer..."
               value={choice.choiceText}
