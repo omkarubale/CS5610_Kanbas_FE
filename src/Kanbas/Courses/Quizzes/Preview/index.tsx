@@ -13,8 +13,8 @@ import "./index.css";
 import { useEffect, useState } from "react";
 import { IKanbasQuizQuestion } from "../../../store/interfaces/quizzes";
 import { useParams } from "react-router";
-import { getQuizQuestions } from "../client";
-import { resetPreview, setQuizQuestions } from "../reducer";
+import { getQuizDetails, getQuizQuestions } from "../client";
+import { resetPreview, setQuiz, setQuizQuestions } from "../reducer";
 import { getCurrentHumanReadableDate } from "../../common/Utils";
 import { updateLastSavedTime } from "./reducer";
 
@@ -36,8 +36,11 @@ function QuizPreview() {
 
     useEffect(() => {
         if (quizId !== undefined) {
-            getQuizQuestions(quizId).then((questions: IKanbasQuizQuestion[]) => {
+            getQuizDetails(quizId).then((quizDetails) => {
                 dispatch(resetPreview());
+                dispatch(setQuiz(quizDetails));
+            });
+            getQuizQuestions(quizId).then((questions: IKanbasQuizQuestion[]) => {
                 dispatch(setQuizQuestions(questions));
                 dispatch(updateLastSavedTime(new Date()));
             });
