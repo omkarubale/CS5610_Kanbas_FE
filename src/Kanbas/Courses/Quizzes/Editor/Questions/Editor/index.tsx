@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { IKanbasQuizQuestion } from "../../../../../store/interfaces/quizzes";
+import {
+  IKanbasQuizQuestion,
+  IKanbasQuizQuestionBlank,
+  IKanbasQuizQuestionMCQ,
+  IKanbasQuizQuestionTrueFalse,
+} from "../../../../../store/interfaces/quizzes";
 import { Button, Form } from "react-bootstrap";
 import { FaPlus } from "react-icons/fa6";
 import { eQuizQuestionType } from "../../../../../store/enums/eQuizQuestionType";
@@ -7,6 +12,9 @@ import "./index.css";
 import { useDispatch } from "react-redux";
 import { setQuestion } from "../reducer";
 import TinyMCEEditor from "../../../../common/Editor/TinyMCEEditor";
+import QuizQuestionEditorMcqAnswers from "./McqAnswers";
+import QuizQuestionEditorBooleanAnswers from "./BooleanAnswers";
+import QuizQuestionEditorBlankAnswers from "./BlankAnswers";
 
 function QuizQuestionEditor({
   quizQuestion,
@@ -29,7 +37,35 @@ function QuizQuestionEditor({
   };
 
   const renderAnswers = () => {
-    return <>Answers List</>;
+    console.log("internalQuizQuestion: ", internalQuizQuestion);
+    switch (internalQuizQuestion.quizQuestionType) {
+      case eQuizQuestionType.MCQ:
+        return (
+          <QuizQuestionEditorMcqAnswers
+            quizQuestion={internalQuizQuestion}
+            setQuizQuestion={setInternalQuizQuestion}
+          />
+        );
+
+      case eQuizQuestionType.TrueOrFalse:
+        return (
+          <QuizQuestionEditorBooleanAnswers
+            quizQuestion={internalQuizQuestion}
+            setQuizQuestion={setInternalQuizQuestion}
+          />
+        );
+
+      case eQuizQuestionType.FillInTheBlank:
+        return (
+          <QuizQuestionEditorBlankAnswers
+            quizQuestion={internalQuizQuestion}
+            setQuizQuestion={setInternalQuizQuestion}
+          />
+        );
+
+      default:
+        return <div>Unsupported question type</div>;
+    }
   };
 
   const handleUpdateQuestion = () => {
@@ -87,7 +123,7 @@ function QuizQuestionEditor({
             correct answer.
           </span>
           <div>
-            <div className="fs-5 fw-medium">Question:</div>
+            <div className="fs-5 fw-medium mt-3">Question:</div>
             <div>
               <TinyMCEEditor
                 initialValue={questionText}
@@ -96,16 +132,8 @@ function QuizQuestionEditor({
             </div>
           </div>
           <div>
-            <div className="fs-5 fw-medium">Answers:</div>
+            <div className="fs-5 fw-medium mt-3">Answers:</div>
             <div>{renderAnswers()}</div>
-
-            <div className="d-flex">
-              <Button className=" d-contents text-danger">
-                <div className="ms-auto d-flex justify-content-center align-items-center">
-                  <FaPlus className="me-1" /> Add Another Answer
-                </div>
-              </Button>
-            </div>
           </div>
           <div>
             <Button

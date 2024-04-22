@@ -1,13 +1,8 @@
-import { createSlice, Dispatch, UnknownAction } from "@reduxjs/toolkit";
-import { quizzes, quizQuestions } from "./../../Database";
+import { createSlice } from "@reduxjs/toolkit";
 import {
   IKanbasQuiz,
   IKanbasQuizDetails,
   IKanbasQuizQuestion,
-  IKanbasQuizQuestionBlank,
-  IKanbasQuizQuestionMCQ,
-  IKanbasQuizQuestionMCQChoice,
-  IKanbasQuizQuestionTrueFalse,
 } from "./../../store/interfaces/quizzes";
 import { eAssignmentGroup } from "../../store/enums/eAssignmentGroup";
 import { eQuizQuestionType } from "../../store/enums/eQuizQuestionType";
@@ -99,7 +94,7 @@ const quizzesSlice = createSlice({
     deleteQuiz: (state, action) => {
       state.quizzes = state.quizzes.filter(
         (quiz) => quiz._id !== action.payload
-      )
+      );
     },
     updateQuiz: (state) => {
       state.quizzesDetails = state.quizzesDetails.map((quiz) => {
@@ -231,33 +226,3 @@ export const {
   resetPreview,
 } = quizzesSlice.actions;
 export default quizzesSlice.reducer;
-
-export const fetchQuizzes = async (
-  dispatch: Dispatch<UnknownAction>,
-  courseId: string
-) => {
-  const _quizzes = quizzes
-    .filter((q) => q.courseId == courseId)
-    .map((quiz) => {
-      return {
-        _id: quiz._id,
-        courseId: quiz.courseId,
-        title: quiz.title,
-        assignmentGroup: eAssignmentGroup.Quizzes,
-        availableDate: new Date(quiz.availableDate),
-        dueDate: new Date(quiz.dueDate),
-        points: quiz.points,
-        questionsCount: quiz.questionsCount,
-        isMultipleAvailableDates: quiz.isMultipleAvailableDates,
-        isPublished: quiz.isPublished,
-        isShuffleAnswers: quiz.isShuffleAnswers,
-        timeLimit: quiz.timeLimit,
-        isMultipleAttempts: quiz.isMultipleAttempts,
-        showCorrectAnswersDate: new Date(quiz.showCorrectAnswersDate),
-        isOneQuestionAtATime: quiz.isOneQuestionAtATime,
-        isWebcamRequired: quiz.isWebcamRequired,
-        isLockQuestionsAfterAnswering: quiz.isLockQuestionsAfterAnswering,
-      } as IKanbasQuizDetails;
-    });
-  dispatch(setQuizzesDetails(_quizzes));
-};
