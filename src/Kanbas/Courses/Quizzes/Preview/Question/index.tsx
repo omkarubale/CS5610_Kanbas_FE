@@ -20,7 +20,6 @@ function QuizQuestion({
   isQuestionFlagged: boolean;
   handleFlagClick: (index: number) => void;
 }) {
-
   const dispatch = useDispatch();
 
   const setRef = (index: number, ref: HTMLElement | null) => {
@@ -48,18 +47,18 @@ function QuizQuestion({
           />
         </button>
       </div>
-      {(question.quizQuestionType === eQuizQuestionType.MCQ ||
-        question.quizQuestionType === eQuizQuestionType.TrueOrFalse) && (
-          <div className="wd-quiz-question multiple-choice-question">
-            <QuizQuestionHeader
-              questionTitle={`Question ${index + 1}`}
-              points={question.points}
-            />
-            <MultipleChoice question={question} />
-          </div>
-        )}
+      {(question?.quizQuestionType === eQuizQuestionType.MCQ ||
+        question?.quizQuestionType === eQuizQuestionType.TrueOrFalse) && (
+        <div className="wd-quiz-question multiple-choice-question">
+          <QuizQuestionHeader
+            questionTitle={`Question ${index + 1}`}
+            points={question.points}
+          />
+          <MultipleChoice question={question} />
+        </div>
+      )}
 
-      {question.quizQuestionType === eQuizQuestionType.FillInTheBlank && (
+      {question?.quizQuestionType === eQuizQuestionType.FillInTheBlank && (
         <div className="wd-quiz-question short-answer-question">
           <QuizQuestionHeader
             questionTitle={`Question ${index + 1}`}
