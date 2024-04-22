@@ -49,7 +49,18 @@ function QuizQuestionList() {
   };
 
   const handleAddQuestion = () => {
-    if (quizId !== undefined) dispatch(addQuestion(quizId));
+    if (quizId !== undefined) {
+      const tempQuizQuestionId = new Date().toUTCString();
+
+      dispatch(addQuestion({ tempQuizQuestionId, quizId }));
+      setQuizEditModes([
+        ...quizEditModes,
+        {
+          isEditMode: true,
+          quizQuestionId: tempQuizQuestionId,
+        } as IQuizQuestionEditMode,
+      ]);
+    }
   };
 
   const handleRemoveQuestion = (quizQuestion: IKanbasQuizQuestion) => {

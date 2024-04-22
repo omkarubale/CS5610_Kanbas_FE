@@ -3,6 +3,7 @@ import {
   IKanbasQuizQuestion,
   IKanbasQuizQuestionBlank,
   IKanbasQuizQuestionMCQ,
+  IKanbasQuizQuestionMCQChoice,
   IKanbasQuizQuestionTrueFalse,
 } from "../../../../../store/interfaces/quizzes";
 import { Button, Form } from "react-bootstrap";
@@ -36,28 +37,76 @@ function QuizQuestionEditor({
     setInternalQuizQuestion({ ...internalQuizQuestion, questionText: content });
   };
 
+  const handleQuestionTypeChange = (newQuizQuestionType: Number) => {
+    let _quizQuestion: IKanbasQuizQuestion = internalQuizQuestion;
+
+    switch (internalQuizQuestion.quizQuestionType) {
+      case eQuizQuestionType.MCQ:
+        _quizQuestion = {
+          ...internalQuizQuestion,
+          answerChoices: [] as IKanbasQuizQuestionMCQChoice[],
+          quizQuestionType: Number(newQuizQuestionType),
+        } as IKanbasQuizQuestionMCQ;
+        break;
+
+      case eQuizQuestionType.TrueOrFalse:
+        _quizQuestion = {
+          ...internalQuizQuestion,
+          correctBooleanAnswer: true,
+          quizQuestionType: Number(newQuizQuestionType),
+        } as IKanbasQuizQuestionTrueFalse;
+        break;
+
+      case eQuizQuestionType.FillInTheBlank:
+        _quizQuestion = {
+          ...internalQuizQuestion,
+          correctBlankAnswers: [],
+          quizQuestionType: Number(newQuizQuestionType),
+        } as IKanbasQuizQuestionBlank;
+        break;
+
+      default:
+        return <div>Unsupported question type</div>;
+    }
+
+    console.log("Handling Type Change", _quizQuestion);
+    setInternalQuizQuestion(_quizQuestion);
+  };
+
   const renderAnswers = () => {
     switch (internalQuizQuestion.quizQuestionType) {
       case eQuizQuestionType.MCQ:
+        const mcqQuestion: IKanbasQuizQuestionMCQ =
+          internalQuizQuestion as IKanbasQuizQuestionMCQ;
+        if (mcqQuestion.answerChoices === undefined)
+          mcqQuestion.answerChoices = [];
         return (
           <QuizQuestionEditorMcqAnswers
-            quizQuestion={internalQuizQuestion}
+            mcqQuestion={mcqQuestion}
             setQuizQuestion={setInternalQuizQuestion}
           />
         );
 
       case eQuizQuestionType.TrueOrFalse:
+        const trueFalseQuestion: IKanbasQuizQuestionTrueFalse =
+          internalQuizQuestion as IKanbasQuizQuestionTrueFalse;
+        if (trueFalseQuestion.correctBooleanAnswer === undefined)
+          trueFalseQuestion.correctBooleanAnswer = true;
         return (
           <QuizQuestionEditorBooleanAnswers
-            quizQuestion={internalQuizQuestion}
+            trueFalseQuestion={trueFalseQuestion}
             setQuizQuestion={setInternalQuizQuestion}
           />
         );
 
       case eQuizQuestionType.FillInTheBlank:
+        const blankQuestion: IKanbasQuizQuestionBlank =
+          internalQuizQuestion as IKanbasQuizQuestionBlank;
+        if (blankQuestion.correctBlankAnswers === undefined)
+          blankQuestion.correctBlankAnswers = [];
         return (
           <QuizQuestionEditorBlankAnswers
-            quizQuestion={internalQuizQuestion}
+            blankQuestion={blankQuestion}
             setQuizQuestion={setInternalQuizQuestion}
           />
         );
@@ -94,12 +143,7 @@ function QuizQuestionEditor({
             <Form.Select
               className="ms-2"
               value={internalQuizQuestion.quizQuestionType}
-              onChange={(e) =>
-                setInternalQuizQuestion({
-                  ...internalQuizQuestion,
-                  quizQuestionType: Number(e.target.value),
-                })
-              }
+              onChange={(e) => handleQuestionTypeChange(Number(e.target.value))}
             >
               <option value={eQuizQuestionType.MCQ}>Multiple Choice</option>
               <option value={eQuizQuestionType.FillInTheBlank}>

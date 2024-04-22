@@ -6,14 +6,12 @@ import {
 import { FaPlus } from "react-icons/fa6";
 
 function QuizQuestionEditorBooleanAnswers({
-  quizQuestion,
+  trueFalseQuestion,
   setQuizQuestion,
 }: {
-  quizQuestion: IKanbasQuizQuestion;
+  trueFalseQuestion: IKanbasQuizQuestionTrueFalse;
   setQuizQuestion: (quizQuestion: IKanbasQuizQuestion) => void;
 }) {
-  const trueFalseQuestion = quizQuestion as IKanbasQuizQuestionTrueFalse;
-
   const handleChangeCorrectChoice = (correctAnswer: boolean) => {
     const _trueFalseQuestion = {
       ...trueFalseQuestion,

@@ -6,14 +6,12 @@ import {
 import { FaPlus, FaTrash } from "react-icons/fa6";
 
 function QuizQuestionEditorBlankAnswers({
-  quizQuestion,
+  blankQuestion,
   setQuizQuestion,
 }: {
-  quizQuestion: IKanbasQuizQuestion;
+  blankQuestion: IKanbasQuizQuestionBlank;
   setQuizQuestion: (quizQuestion: IKanbasQuizQuestion) => void;
 }) {
-  const blankQuestion = quizQuestion as IKanbasQuizQuestionBlank;
-
   const handleChangeChoiceText = (index: number, text: string) => {
     const _correctBlankAnswers = blankQuestion.correctBlankAnswers.map(
       (cba, _index) => {

@@ -8,14 +8,12 @@ import "./index.css";
 import { FaPlus, FaTrash } from "react-icons/fa6";
 
 function QuizQuestionEditorMcqAnswers({
-  quizQuestion,
+  mcqQuestion,
   setQuizQuestion,
 }: {
-  quizQuestion: IKanbasQuizQuestion;
+  mcqQuestion: IKanbasQuizQuestionMCQ;
   setQuizQuestion: (quizQuestion: IKanbasQuizQuestion) => void;
 }) {
-  const mcqQuestion = quizQuestion as IKanbasQuizQuestionMCQ;
-
   const handleChangeCorrectChoice = (index: number) => {
     const _answerChoices = mcqQuestion.answerChoices.map((ac, _index) => {
       if (index == _index) {

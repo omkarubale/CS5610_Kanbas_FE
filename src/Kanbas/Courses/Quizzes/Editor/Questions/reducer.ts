@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IKanbasQuizQuestion } from "../../../../store/interfaces/quizzes";
+import {
+  IKanbasQuizQuestion,
+  IKanbasQuizQuestionMCQ,
+} from "../../../../store/interfaces/quizzes";
 import { eQuizQuestionType } from "../../../../store/enums/eQuizQuestionType";
 
 const initialState: {
@@ -16,15 +19,16 @@ const quizQuestionsSlice = createSlice({
       state.questions = action.payload;
     },
     addQuestion: (state, action) => {
-      const quizId = action.payload;
+      const { tempQuizQuestionId, quizId } = action.payload;
       state.questions.push({
-        _id: new Date().toUTCString(),
-        points: 1,
-        title: "New Question",
-        questionText: "New Question Text",
+        _id: tempQuizQuestionId,
         quizId: quizId,
         quizQuestionType: eQuizQuestionType.MCQ,
-      } as IKanbasQuizQuestion);
+        title: "New Question",
+        questionText: "New Question Text",
+        points: 1,
+        answerChoices: [],
+      } as IKanbasQuizQuestionMCQ);
     },
     setQuestion: (state, action) => {
       const quizQuestion = action.payload;
