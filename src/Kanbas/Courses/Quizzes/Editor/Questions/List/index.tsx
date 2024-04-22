@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { getQuizQuestions } from "../../../client";
 import QuizQuestionEditor from "../Editor";
 import { IKanbasQuizQuestion } from "../../../../../store/interfaces/quizzes";
+import parse from "html-react-parser";
 
 interface IQuizQuestionEditMode {
   quizQuestionId: string;
@@ -92,7 +93,9 @@ function QuizQuestionList() {
                   points={quizQuestion.points}
                 />
                 <div className="wd-quiz-question-text d-flex">
-                  <div className="flex-fill">{quizQuestion.questionText}</div>
+                  <div className="flex-fill">
+                    {parse(quizQuestion.questionText)}
+                  </div>
                   <div className="ms-2">
                     <FaPen
                       onClick={() =>
