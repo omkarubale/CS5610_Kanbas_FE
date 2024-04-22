@@ -5,12 +5,7 @@ import "./index.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { KanbasState } from "../../../../store";
-import {
-  setQuiz,
-  addQuiz,
-  resetQuiz,
-  updateQuiz,
-} from "../../reducer";
+import { setQuiz, addQuiz, resetQuiz, updateQuiz } from "../../reducer";
 import { eQuizType } from "../../../../store/enums/eQuizType";
 import { eAssignmentGroup } from "../../../../store/enums/eAssignmentGroup";
 import { formatDate, formatSnakeCaseToTitleCase } from "../../../common/Utils";
@@ -53,11 +48,11 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
       if (isCreate) {
         createQuiz(courseId, quizDetails).then(() => {
           dispatch(addQuiz(courseId));
-        })
+        });
       } else {
         putQuiz(quizDetails).then(() => {
           dispatch(updateQuiz());
-        })
+        });
       }
 
       handleCancel();
@@ -72,27 +67,31 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
   const handleOptionChange = (option: eQuizEditCheckedOptions) => {
     switch (option) {
       case eQuizEditCheckedOptions.SHUFFLE_ANSWERS:
-        dispatch(setQuiz({
-          ...quizDetails,
-          isShuffleAnswers: !quizDetails.isShuffleAnswers
-        }));
+        dispatch(
+          setQuiz({
+            ...quizDetails,
+            isShuffleAnswers: !quizDetails.isShuffleAnswers,
+          })
+        );
         break;
       case eQuizEditCheckedOptions.MULTIPLE_ATTEMPS:
-        dispatch(setQuiz({
-          ...quizDetails,
-          isMultipleAttempts: !quizDetails.isMultipleAttempts
-        }));
+        dispatch(
+          setQuiz({
+            ...quizDetails,
+            isMultipleAttempts: !quizDetails.isMultipleAttempts,
+          })
+        );
         break;
       case eQuizEditCheckedOptions.TIME_LIMIT:
-        dispatch(setQuiz({
-          ...quizDetails,
-          timeLimit: quizDetails.timeLimit
-            ? undefined
-            : 20
-        }));
+        dispatch(
+          setQuiz({
+            ...quizDetails,
+            timeLimit: quizDetails.timeLimit ? undefined : 20,
+          })
+        );
         break;
     }
-  }
+  };
 
   return (
     <Form>
@@ -205,7 +204,9 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
               <Form.Check
                 label="Shuffle Answers"
                 checked={quizDetails.isShuffleAnswers}
-                onChange={() => handleOptionChange(eQuizEditCheckedOptions.SHUFFLE_ANSWERS)}
+                onChange={() =>
+                  handleOptionChange(eQuizEditCheckedOptions.SHUFFLE_ANSWERS)
+                }
               />
               <Form.Check
                 label={
@@ -228,12 +229,16 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
                   </div>
                 }
                 checked={quizDetails.timeLimit !== undefined}
-                onChange={() => handleOptionChange(eQuizEditCheckedOptions.TIME_LIMIT)}
+                onChange={() =>
+                  handleOptionChange(eQuizEditCheckedOptions.TIME_LIMIT)
+                }
               />
               <Form.Check
                 label="Allow Multiple Attempts"
                 checked={quizDetails.isMultipleAttempts}
-                onChange={() => handleOptionChange(eQuizEditCheckedOptions.MULTIPLE_ATTEMPS)}
+                onChange={() =>
+                  handleOptionChange(eQuizEditCheckedOptions.MULTIPLE_ATTEMPS)
+                }
               />
             </div>
           </div>

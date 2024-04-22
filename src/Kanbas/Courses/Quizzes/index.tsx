@@ -5,12 +5,16 @@ import QuizList from "./List";
 import { FaEllipsisV, FaPlus } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router";
 import { Button } from "react-bootstrap";
+import { resetQuiz } from "./reducer";
+import { useDispatch } from "react-redux";
 
 function Quizzes() {
   const { courseId } = useParams();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleAddQuizButton = () => {
+    dispatch(resetQuiz());
     navigate(`/Kanbas/Courses/${courseId}/Quizzes/create`);
   };
 
