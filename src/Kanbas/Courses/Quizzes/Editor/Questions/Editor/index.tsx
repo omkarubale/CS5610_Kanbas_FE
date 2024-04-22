@@ -78,7 +78,7 @@ function QuizQuestionEditor({
 
   return (
     <>
-      <div>
+      <div className="wd-quiz-question-edit-container">
         <div className="wd-quiz-question-edit-header d-flex">
           <div className="d-flex">
             <Form.Control
@@ -111,18 +111,27 @@ function QuizQuestionEditor({
           <div className="d-flex ms-auto">
             <div className="mt-2">pts: </div>
             <Form.Control
+              type="number"
               className="wd-quiz-question-edit-pts ms-2"
               value={internalQuizQuestion.points}
+              onChange={(e) =>
+                setInternalQuizQuestion({
+                  ...internalQuizQuestion,
+                  points: Number(e.target.value),
+                })
+              }
             />
           </div>
         </div>
         <div className="wd-quiz-question-edit-body">
-          <span className="fs-6">
-            Enter your question and multiple answers, then select the one
-            correct answer.
-          </span>
+          <div className="mt-2">
+            <span className="fs-6">
+              Enter your question and multiple answers, then select the one
+              correct answer.
+            </span>
+          </div>
           <div>
-            <div className="fs-5 fw-medium mt-3">Question:</div>
+            <div className="fs-5 fw-medium mt-3 mb-2">Question:</div>
             <div>
               <TinyMCEEditor
                 initialValue={questionText}
