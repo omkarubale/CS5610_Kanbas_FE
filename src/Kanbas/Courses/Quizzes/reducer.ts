@@ -274,8 +274,8 @@ export const fetchQuizzQuestions = async (
       if (quizQuestion.quizQuestionType == eQuizQuestionType.MCQ) {
         _quizQuestion = {
           quizQuestionType: eQuizQuestionType.MCQ,
-          choices:
-            quizQuestion.choices?.map((c) => {
+          answerChoices:
+            quizQuestion.answerChoices?.map((c) => {
               return {
                 choiceText: c.choiceText,
                 isCorrect: c.isCorrect,
@@ -287,14 +287,14 @@ export const fetchQuizzQuestions = async (
       ) {
         _quizQuestion = {
           quizQuestionType: eQuizQuestionType.TrueOrFalse,
-          correctAnswer: quizQuestion.correctAnswer,
+          correctBooleanAnswer: quizQuestion.correctBooleanAnswer,
         } as IKanbasQuizQuestionTrueFalse;
       } else if (
         quizQuestion.quizQuestionType == eQuizQuestionType.FillInTheBlank
       ) {
         _quizQuestion = {
           quizQuestionType: eQuizQuestionType.FillInTheBlank,
-          correctAnswers: quizQuestion.correctAnswers,
+          correctBlankAnswers: quizQuestion.correctBlankAnswers,
         } as IKanbasQuizQuestionBlank;
       } else {
         throw new Error("Question Type not supported!");

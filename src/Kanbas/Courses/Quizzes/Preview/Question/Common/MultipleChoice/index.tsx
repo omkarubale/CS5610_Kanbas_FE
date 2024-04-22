@@ -11,7 +11,7 @@ function MultipleChoice({ question }: { question: any }) {
 
     const renderAnswerOptions = () => {
         if (question.quizQuestionType === eQuizQuestionType.MCQ) {
-            return renderChoices(question.choices);
+            return renderChoices(question.answerChoices);
         } else if (question.quizQuestionType === eQuizQuestionType.TrueOrFalse) {
             return renderTrueFalseOptions();
         } else {
@@ -23,7 +23,7 @@ function MultipleChoice({ question }: { question: any }) {
         return (
             <>
                 {
-                    choices.map((choice: any, index: number) => (
+                    choices?.map((choice: any, index: number) => (
                         <div className="wd-quiz-question-answer" key={index}>
                             <label className="d-flex justify-content-start">
                                 <span className="wd-quiz-answer-input">

@@ -213,6 +213,7 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
                     Time Limit
                     <input
                       type="text"
+                      className="form-control"
                       value={quizDetails.timeLimit}
                       onChange={(e) =>
                         dispatch(
