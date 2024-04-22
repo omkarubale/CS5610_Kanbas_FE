@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Card, Form } from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
 import "./index.css";
@@ -10,7 +10,7 @@ import { eQuizType } from "../../../../store/enums/eQuizType";
 import { eAssignmentGroup } from "../../../../store/enums/eAssignmentGroup";
 import { formatDate, formatSnakeCaseToTitleCase } from "../../../common/Utils";
 import TinyMCEEditor from "../../../common/Editor/TinyMCEEditor";
-import { createQuiz, putQuiz } from "../../client";
+import { createQuiz, getQuizDetails, putQuiz } from "../../client";
 import { eQuizEditCheckedOptions } from "../../../../store/enums/eQuizEditCheckedOptions";
 
 function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
@@ -74,7 +74,7 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
           })
         );
         break;
-      case eQuizEditCheckedOptions.MULTIPLE_ATTEMPS:
+      case eQuizEditCheckedOptions.MULTIPLE_ATTEMPTS:
         dispatch(
           setQuiz({
             ...quizDetails,
@@ -86,12 +86,30 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
         dispatch(
           setQuiz({
             ...quizDetails,
-            timeLimit: quizDetails.timeLimit ? undefined : 20,
+            timeLimit: quizDetails.timeLimit ? 0 : 20,
+          })
+        );
+        break;
+      case eQuizEditCheckedOptions.ACCESS_CODE:
+        dispatch(
+          setQuiz({
+            ...quizDetails,
+            accessCode: quizDetails.accessCode ? "" : "Access_Code",
           })
         );
         break;
     }
   };
+
+  useEffect(() => {
+    if (isCreate || quizId === undefined) {
+      dispatch(resetQuiz());
+    } else {
+      getQuizDetails(quizId).then((quizDetails) => {
+        dispatch(setQuiz(quizDetails));
+      });
+    }
+  }, [dispatch]);
 
   return (
     <Form>
@@ -213,9 +231,8 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
                 label={
                   <div>
                     Time Limit
-                    <input
-                      type="text"
-                      className="form-control"
+                    <Form.Control
+                      type="number"
                       value={quizDetails.timeLimit}
                       onChange={(e) =>
                         dispatch(
@@ -226,19 +243,43 @@ function QuizDetailsEditor({ isCreate }: { isCreate: boolean }) {
                         )
                       }
                       min="0"
+                      max="240"
                     />
                   </div>
                 }
-                checked={quizDetails.timeLimit !== undefined}
+                checked={quizDetails.timeLimit !== 0}
                 onChange={() =>
                   handleOptionChange(eQuizEditCheckedOptions.TIME_LIMIT)
+                }
+              />
+              <Form.Check
+                label={
+                  <div>
+                    Access Code
+                    <Form.Control
+                      type="text"
+                      value={quizDetails.accessCode}
+                      onChange={(e) =>
+                        dispatch(
+                          setQuiz({
+                            ...quizDetails,
+                            accessCode: e.target.value,
+                          })
+                        )
+                      }
+                    />
+                  </div>
+                }
+                checked={quizDetails.accessCode !== ""}
+                onChange={() =>
+                  handleOptionChange(eQuizEditCheckedOptions.ACCESS_CODE)
                 }
               />
               <Form.Check
                 label="Allow Multiple Attempts"
                 checked={quizDetails.isMultipleAttempts}
                 onChange={() =>
-                  handleOptionChange(eQuizEditCheckedOptions.MULTIPLE_ATTEMPS)
+                  handleOptionChange(eQuizEditCheckedOptions.MULTIPLE_ATTEMPTS)
                 }
               />
             </div>

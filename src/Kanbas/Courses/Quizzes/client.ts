@@ -39,16 +39,19 @@ export const postQuizSetPublish = async (
   return response.data;
 };
 
-export const createQuiz = async (courseId: string, quiz: IKanbasQuiz) => {
-  const response = await api.post<IKanbasQuiz[]>(
+export const createQuiz = async (
+  courseId: string,
+  quiz: IKanbasQuizDetails
+) => {
+  const response = await api.post<IKanbasQuizDetails[]>(
     `${COURSES_API}/${courseId}/quizzes`,
     quiz
   );
   return response.data;
 };
 
-export const putQuiz = async (quiz: IKanbasQuiz) => {
-  const response = await api.put<IKanbasQuiz[]>(
+export const putQuiz = async (quiz: IKanbasQuizDetails) => {
+  const response = await api.put<IKanbasQuizDetails[]>(
     `${QUIZZES_API}/${quiz._id}`,
     quiz
   );
