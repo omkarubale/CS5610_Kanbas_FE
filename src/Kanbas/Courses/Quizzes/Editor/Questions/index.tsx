@@ -2,7 +2,7 @@ import { Button, Form } from "react-bootstrap";
 
 import QuizQuestionList from "./List";
 import { useNavigate, useParams } from "react-router";
-import { setQuizPublished } from "../../reducer";
+import { setQuiz, setQuizPublished } from "../../reducer";
 import { useDispatch, useSelector } from "react-redux";
 import { postQuizQuestions, postQuizSetPublish } from "../../client";
 import { KanbasState } from "../../../../store";
@@ -15,6 +15,7 @@ function QuizQuestionsEditor() {
   const quizQuestions = useSelector(
     (state: KanbasState) => state.quizQuestionsReducer.questions
   );
+  const quiz = useSelector((state: KanbasState) => state.quizzesReducer.quiz);
 
   const handleCancel = () => {
     navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quizId}`);
@@ -26,6 +27,8 @@ function QuizQuestionsEditor() {
         if (isPublished) {
           postQuizSetPublish(quizId, true).then(() => {
             dispatch(setQuizPublished({ quizId, isPublished: true }));
+            // update state in reducer for quiz.isPublished
+            dispatch(setQuiz({ ...quiz, isPublished: true }));
           });
         }
       });
