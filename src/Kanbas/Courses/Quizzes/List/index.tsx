@@ -35,9 +35,7 @@ function QuizList() {
   );
 
   const [quizzesExpanded, setQuizzesExpanded] = useState(true);
-  const [showDropdowns, setShowDropdowns] = useState(
-    Array(quizzesList.length).fill(false)
-  );
+  const [activeDropdownIndex, setActiveDropdownIndex] = useState(-1);
   const [showDeleteQuizModal, setShowDeleteQuizModal] = useState(false);
 
   const handleQuizSelection = (quizId: string) => {
@@ -86,9 +84,7 @@ function QuizList() {
   };
 
   const toggleDropdown = (index: number) => {
-    setShowDropdowns((prevState) =>
-      prevState.map((value, idx) => (idx === index ? !value : value))
-    );
+    setActiveDropdownIndex(index === activeDropdownIndex ? -1 : index);
   };
 
   const handleDropdownSelectedOption = async (
@@ -96,8 +92,6 @@ function QuizList() {
     quiz: IKanbasQuiz
   ) => {
     dispatch(setQuiz(quiz));
-    setShowDropdowns(Array(quizzesList.length).fill(false));
-
     switch (selectedItem) {
       case "Edit":
         navigate(`/Kanbas/Courses/${courseId}/Quizzes/${quiz._id}/edit`);
@@ -158,16 +152,15 @@ function QuizList() {
                         {q.points} Points | {q.questionsCount} Questions
                       </p>
                     </div>
-                    <div className="float-end d-flex">
+                    <div className="float-end d-flex justify-content-center align-items-center">
                       <div className="wd-quizzes-grid-content-actions d-flex align-items-center">
                         {q.isPublished ? (
                           <FaCheckCircle
                             onClick={() => handlePublishToggle(q._id)}
-                            className={`me-1 ${
-                              getIsQuizClosed(q.availableUntilDate)
-                                ? "wd-icon-green-muted"
-                                : "wd-icon-green"
-                            }`}
+                            className={`me-1 ${getIsQuizClosed(q.availableUntilDate)
+                              ? "wd-icon-green-muted"
+                              : "wd-icon-green"
+                              }`}
                           />
                         ) : (
                           <FaBan
@@ -183,26 +176,23 @@ function QuizList() {
                         >
                           <button
                             className="wd-quizzes-actions-dropdown"
-                            aria-expanded={showDropdowns[qIndex]}
+                            aria-expanded={activeDropdownIndex === qIndex}
                             onClick={(e) => {
-                              e.stopPropagation();
                               toggleDropdown(qIndex);
                             }}
                           >
                             <FaEllipsisV className="ms-2" />
                           </button>
                           <div
-                            className={`dropdown-menu dropdown-menu-start wd-quiz-dropdown-menu${
-                              showDropdowns[qIndex] ? " show" : ""
-                            }`}
+                            className={`dropdown-menu dropdown-menu-start wd-quiz-dropdown-menu
+                            ${activeDropdownIndex === qIndex ? " show" : ""}`}
                           >
                             {quizzesDropDownEllipsisOption.map(
                               (option, index) => (
                                 <button
                                   key={index}
-                                  className="dropdown-item px-3 py-1 mt-1"
+                                  className="dropdown-item px-3 py-1 mt-1 d-flex align-items-center"
                                   onClick={(e) => {
-                                    e.stopPropagation();
                                     handleDropdownSelectedOption(
                                       option.item,
                                       q
