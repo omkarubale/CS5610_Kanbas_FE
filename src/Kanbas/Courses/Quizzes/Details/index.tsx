@@ -13,7 +13,10 @@ import { getQuizDetails, postQuizSetPublish } from "../client";
 import { FaBan, FaCheckCircle, FaEllipsisV } from "react-icons/fa";
 import "./index.css";
 import { eQuizType } from "../../../store/enums/eQuizType";
-import { formatSnakeCaseToTitleCase } from "../../common/Utils";
+import {
+  formatSnakeCaseToTitleCase,
+  getCurrentHumanReadableDate,
+} from "../../common/Utils";
 
 function QuizDetails() {
   const { courseId, quizId } = useParams();
@@ -133,13 +136,11 @@ function QuizDetails() {
                 Show Correct Answers
               </div>
               <div className="col-8 wd-quix-details-value">
-                {quiz.showCorrectAnswersDate.toString()}
+                {getCurrentHumanReadableDate(quiz.showCorrectAnswersDate)}
               </div>
             </div>
             <div className="row wd-quiz-details-item">
-              <div className="col-4 wd-quiz-details-label">
-                Access Code
-              </div>
+              <div className="col-4 wd-quiz-details-label">Access Code</div>
               <div className="col-8 wd-quix-details-value">
                 {quiz.accessCode}
               </div>
@@ -178,10 +179,12 @@ function QuizDetails() {
               </thead>
               <tbody>
                 <tr>
-                  <td>{quiz.dueDate.toString()}</td>
+                  <td>{getCurrentHumanReadableDate(quiz.dueDate)}</td>
                   <td>Everyone</td>
-                  <td>{quiz.availableDate.toString()}</td>
-                  <td>{quiz.availableUntilDate.toString()}</td>
+                  <td>{getCurrentHumanReadableDate(quiz.availableDate)}</td>
+                  <td>
+                    {getCurrentHumanReadableDate(quiz.availableUntilDate)}
+                  </td>
                 </tr>
               </tbody>
             </Table>

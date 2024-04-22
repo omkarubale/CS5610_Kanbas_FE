@@ -18,6 +18,7 @@ import "./index.css";
 import moment from "moment";
 import { MdDelete } from "react-icons/md";
 import DeleteQuizModal from "./Delete";
+import { getCurrentHumanReadableDate } from "../../common/Utils";
 
 export const quizzesDropDownEllipsisOption = [
   { item: "Edit", icon: <FaEdit className="me-1" /> },
@@ -52,10 +53,6 @@ function QuizList() {
     });
   };
 
-  const getDateDisplay = (date: Date) => {
-    return moment(date).calendar();
-  };
-
   const getIsQuizClosed = (availableUntilDate: Date): boolean => {
     const today = new Date();
 
@@ -75,7 +72,8 @@ function QuizList() {
     if (today < availableFromDate) {
       return (
         <>
-          <b>Not Available until</b> {getDateDisplay(availableFromDate)}{" "}
+          <b>Not Available until</b>{" "}
+          {getCurrentHumanReadableDate(availableFromDate)}{" "}
         </>
       );
     }
@@ -156,8 +154,8 @@ function QuizList() {
                           q.availableDate,
                           q.availableUntilDate
                         )}{" "}
-                        | Due {getDateDisplay(q.dueDate)} | {q.points} Points |{" "}
-                        {q.questionsCount} Questions
+                        | Due {getCurrentHumanReadableDate(q.dueDate)} |{" "}
+                        {q.points} Points | {q.questionsCount} Questions
                       </p>
                     </div>
                     <div className="float-end d-flex">
