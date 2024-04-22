@@ -8,7 +8,7 @@ function ShortAnswers({ question }: { question: any }) {
                 <p>{question.questionText}</p>
             </div>
             <div className="wd-quiz-question-answers">
-                {question.correctAnswers.map((choice: any, index: number) => (
+                {question.correctBlankAnswers.map((choice: String, index: number) => (
                     <div className="wd-quiz-question-answer" key={index}>
                         <Form>
                             <Form.Group className="mb-3">
