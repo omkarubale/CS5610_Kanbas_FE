@@ -231,3 +231,85 @@ export const {
   resetPreview,
 } = quizzesSlice.actions;
 export default quizzesSlice.reducer;
+
+export const fetchQuizzes = async (
+  dispatch: Dispatch<UnknownAction>,
+  courseId: string
+) => {
+  const _quizzes = quizzes
+    .filter((q) => q.courseId == courseId)
+    .map((quiz) => {
+      return {
+        _id: quiz._id,
+        courseId: quiz.courseId,
+        title: quiz.title,
+        assignmentGroup: eAssignmentGroup.Quizzes,
+        availableDate: new Date(quiz.availableDate),
+        dueDate: new Date(quiz.dueDate),
+        points: quiz.points,
+        questionsCount: quiz.questionsCount,
+        isMultipleAvailableDates: quiz.isMultipleAvailableDates,
+        isPublished: quiz.isPublished,
+        isShuffleAnswers: quiz.isShuffleAnswers,
+        timeLimit: quiz.timeLimit,
+        isMultipleAttempts: quiz.isMultipleAttempts,
+        showCorrectAnswersDate: new Date(quiz.showCorrectAnswersDate),
+        isOneQuestionAtATime: quiz.isOneQuestionAtATime,
+        isWebcamRequired: quiz.isWebcamRequired,
+        isLockQuestionsAfterAnswering: quiz.isLockQuestionsAfterAnswering,
+      } as IKanbasQuizDetails;
+    });
+  dispatch(setQuizzesDetails(_quizzes));
+};
+
+export const fetchQuizzQuestions = async (
+  dispatch: Dispatch<UnknownAction>,
+  quizId: string
+) => {
+  const _quizQuestions = quizQuestions
+    .filter((qq) => qq.quizId == quizId)
+    .map((quizQuestion) => {
+      let _quizQuestion: IKanbasQuizQuestion | undefined = undefined;
+
+      if (quizQuestion.quizQuestionType == eQuizQuestionType.MCQ) {
+        _quizQuestion = {
+          quizQuestionType: eQuizQuestionType.MCQ,
+          answerChoices:
+            quizQuestion.answerChoices?.map((c) => {
+              return {
+                choiceText: c.choiceText,
+                isCorrect: c.isCorrect,
+              } as IKanbasQuizQuestionMCQChoice;
+            }) ?? [],
+        } as IKanbasQuizQuestionMCQ;
+      } else if (
+        quizQuestion.quizQuestionType == eQuizQuestionType.TrueOrFalse
+      ) {
+        _quizQuestion = {
+          quizQuestionType: eQuizQuestionType.TrueOrFalse,
+          correctBooleanAnswer: quizQuestion.correctBooleanAnswer,
+        } as IKanbasQuizQuestionTrueFalse;
+      } else if (
+        quizQuestion.quizQuestionType == eQuizQuestionType.FillInTheBlank
+      ) {
+        _quizQuestion = {
+          quizQuestionType: eQuizQuestionType.FillInTheBlank,
+          correctBlankAnswers: quizQuestion.correctBlankAnswers,
+        } as IKanbasQuizQuestionBlank;
+      } else {
+        throw new Error("Question Type not supported!");
+      }
+
+      if (_quizQuestion !== undefined) {
+        _quizQuestion._id = quizQuestion._id;
+        _quizQuestion.quizId = quizQuestion.quizId;
+        _quizQuestion.title = quizQuestion.title;
+        _quizQuestion.questionText = quizQuestion.questionText;
+        _quizQuestion.points = quizQuestion.points;
+
+        return _quizQuestion;
+      }
+      throw new Error("Question Type not supported!");
+    });
+  dispatch(setQuizQuestions(_quizQuestions));
+};
