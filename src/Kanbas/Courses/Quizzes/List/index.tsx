@@ -68,7 +68,7 @@ function QuizList() {
   ) => {
     const today = new Date();
 
-    if (today < availableFromDate) {
+    if (new Date(today).valueOf() < new Date(availableFromDate).valueOf()) {
       return (
         <>
           <b>Not Available until</b>{" "}
@@ -77,7 +77,7 @@ function QuizList() {
       );
     }
 
-    if (today < availableUntilDate) {
+    if (new Date(today).valueOf() < new Date(availableUntilDate).valueOf()) {
       return <b>Available</b>;
     }
 
