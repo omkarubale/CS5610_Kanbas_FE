@@ -81,7 +81,10 @@ function QuizQuestionList() {
             className="wd-quiz-question-container"
           >
             {isQuestionEditMode(quizQuestion._id) ? (
-              <QuizQuestionEditor quizQuestion={quizQuestion} />
+              <QuizQuestionEditor
+                quizQuestion={quizQuestion}
+                setQuestionEditMode={setQuestionEditMode}
+              />
             ) : (
               <div className="wd-quiz-question">
                 <QuizQuestionHeader

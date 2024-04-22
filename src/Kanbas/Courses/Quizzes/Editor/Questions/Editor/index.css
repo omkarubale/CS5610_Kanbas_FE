@@ -1,0 +1,14 @@
+.wd-quiz-question-edit-header {
+    border: 1px solid #aaa;
+    padding: 12px;
+}
+
+.wd-quiz-question-edit-body {
+    border: 1px solid #aaa;
+    border-top: none;
+    padding: 12px;
+}
+
+.wd-quiz-question-edit-pts { 
+    width: 60px;
+}
